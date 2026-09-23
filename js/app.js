@@ -1,91 +1,177 @@
-const starsCanvas = document.getElementById("stars-canvas");
-const ctx = starsCanvas ? starsCanvas.getContext("2d") : null;
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
 
-function resizeCanvas() {
-  if (!starsCanvas) return;
-  starsCanvas.width = window.innerWidth;
-  starsCanvas.height = window.innerHeight;
+const coruscant = document.getElementById("coruscant");
+
+function rand(min, max) {
+  return min + Math.random() * (max - min);
 }
 
-const stars = [];
-
-function createStars() {
-  stars.length = 0;
-  const count = window.innerWidth < 768 ? 60 : window.innerWidth < 1200 ? 90 : 140;
+function buildTraffic() {
+  if (!coruscant) return;
+  coruscant.querySelectorAll(".ship").forEach((el) => el.remove());
+  const count = window.innerWidth < 768 ? 10 : 16;
+  const lanes = Math.max(4, Math.floor(count * 0.6));
   for (let i = 0; i < count; i++) {
-    stars.push({
-      x: Math.random() * (starsCanvas?.width || window.innerWidth),
-      y: Math.random() * (starsCanvas?.height || window.innerHeight),
-      radius: Math.random() * 1.2 + 0.2,
-      velocity: Math.random() * 0.05 + 0.01,
-      alpha: Math.random() * 0.5 + 0.3,
-    });
+    const ship = document.createElement("div");
+    ship.className = "ship";
+    const isTie = i % 3 === 0;
+    if (isTie) ship.classList.add("ship--tie");
+    const img = document.createElement("img");
+    img.src = isTie ? "img/tie-fighter.png" : "img/x-wing.png";
+    img.alt = "";
+    ship.appendChild(img);
+
+    ship.style.top = rand(2, 96) + "%";
+    const y = parseFloat(ship.style.top);
+    const rev = y % 2 < 1;
+    if (rev) ship.classList.add("ship--rev");
+
+    ship.style.animationDuration = rand(7, 16).toFixed(1) + "s";
+    ship.style.animationDelay = -rand(0, 18).toFixed(1) + "s";
+    if (i < lanes) ship.style.opacity = "0.65";
+    coruscant.appendChild(ship);
   }
 }
 
-function drawStars() {
-  if (!ctx || !starsCanvas) return;
-  ctx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
-  for (let i = 0; i < stars.length; i++) {
-    const star = stars[i];
-    ctx.beginPath();
-    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-    ctx.fill();
-    star.y += star.velocity;
-    if (star.y > starsCanvas.height) {
-      star.y = 0;
-      star.x = Math.random() * starsCanvas.width;
+function buildCoruscant() {
+  buildTraffic();
+  scheduleFalcon();
+}
+
+let falconTimer = null;
+
+function scheduleFalcon() {
+  clearTimeout(falconTimer);
+  if (prefersReducedMotion) return;
+  falconTimer = setTimeout(spawnFalcon, rand(22, 40) * 1000);
+}
+
+function spawnFalcon() {
+  if (!coruscant) return;
+  if (document.hidden) {
+    scheduleFalcon();
+    return;
+  }
+  const ship = document.createElement("div");
+  ship.className = "ship ship--falcon";
+  const img = document.createElement("img");
+  img.src = "img/falcon.png";
+  img.alt = "";
+  ship.appendChild(img);
+  ship.style.top = rand(8, 50).toFixed(1) + "%";
+  ship.style.animationDuration = rand(18, 26).toFixed(1) + "s";
+  ship.addEventListener("animationend", () => {
+    ship.remove();
+    scheduleFalcon();
+  });
+  coruscant.appendChild(ship);
+}
+
+let resizeTimer = null;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(buildCoruscant, 250);
+});
+
+/* ─────────────────────── PROGRESS + BACK TO TOP ─────────────────────── */
+
+const progressBar = document.querySelector(".scroll-progress");
+const backToTop = document.getElementById("back-to-top");
+
+let ticking = false;
+
+function onScroll() {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    const scrollY = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+
+    if (progressBar) {
+      progressBar.style.width = max > 0 ? (scrollY / max) * 100 + "%" : "0%";
     }
-  }
-  requestAnimationFrame(drawStars);
-}
 
-if (starsCanvas && ctx) {
-  resizeCanvas();
-  createStars();
-  drawStars();
-  window.addEventListener("resize", () => {
-    resizeCanvas();
-    createStars();
+    if (backToTop) {
+      backToTop.classList.toggle("visible", scrollY > 400);
+    }
+
+    ticking = false;
   });
 }
 
-const yodaInner = document.querySelector(".yoda");
-if (yodaInner) {
-  yodaInner.innerHTML = `<svg viewBox="0 0 64 72" role="presentation">
-    <g transform="translate(32 62)">
-      <ellipse cx="0" cy="0" rx="15" ry="9" fill="#3c5a3c" opacity="0.6"/>
-      <ellipse cx="-4" cy="-3" rx="6" ry="4" fill="#5f805f" transform="rotate(-20 -4 -3)"/>
-      <ellipse cx="7" cy="-4" rx="4" ry="3" fill="#5f805f"/>
-    </g>
-    <g class="yoda-ears" transform="translate(10.5 15)">
-      <ellipse cx="-8" cy="0" rx="4.5" ry="13" fill="#6f966f" transform="rotate(-25 -8 0)"/>
-      <ellipse cx="8" cy="0" rx="4" ry="12" fill="#6f966f" transform="rotate(25 8 0)"/>
-      <ellipse cx="-8" cy="0" rx="2.2" ry="8" fill="#547454" transform="rotate(-25 -8 0) opacity 0.6"/>
-      <ellipse cx="8" cy="0" rx="2" ry="7.5" fill="#547454" transform="rotate(25 8 0) opacity 0.6"/>
-    </g>
-    <g transform="translate(6 4)">
-      <ellipse cx="26" cy="38" rx="24" ry="26" fill="#b9d8b9" stroke="#8ab08a" stroke-width="2"/>
-    </g>
-    <g transform="translate(6 4)">
-      <g transform="translate(26 30)">
-        <ellipse cx="-7" cy="0" rx="5" ry="6" fill="#fff"/>
-        <ellipse cx="7" cy="0" rx="5" ry="6" fill="#fff"/>
-        <ellipse cx="-7" cy="0" rx="2.4" ry="3" fill="#2b3a2b"/>
-        <ellipse cx="7" cy="0" rx="2.4" ry="3" fill="#2b3a2b"/>
-        <circle cx="-7" cy="0" r="1.4" fill="#e8ffe8"/>
-        <circle cx="7" cy="0" r="1.4" fill="#e8ffe8"/>
-      </g>
-      <g transform="translate(10 40)">
-        <rect x="0" y="0" width="18" height="2.5" rx="1.25" fill="#5f805f" transform="rotate(-12 9 1.25)"/>
-      </g>
-      <ellipse cx="26" cy="50" rx="7" ry="5" fill="#8eaf8e"/>
-    </g>
-  </svg>`;
+window.addEventListener("scroll", onScroll, { passive: true });
+
+if (backToTop) {
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+  });
 }
 
+/* ─────────────────────────── SCROLL SPY ─────────────────────────── */
+
+const navLinks = Array.from(document.querySelectorAll(".nav a"));
+
+function setActiveLink(id) {
+  navLinks.forEach((link) => {
+    link.classList.toggle("active", link.getAttribute("href") === "#" + id);
+  });
+}
+
+setActiveLink("profil");
+
+if ("IntersectionObserver" in window) {
+  const spy = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActiveLink(entry.target.id);
+      });
+    },
+    { rootMargin: "-35% 0px -55% 0px" }
+  );
+  document.querySelectorAll("main section[id]").forEach((s) => spy.observe(s));
+}
+
+/* ─────────────────────────── REVEAL ─────────────────────────── */
+
+const sections = document.querySelectorAll("main section");
+
+if (!prefersReducedMotion && "IntersectionObserver" in window) {
+  const reveal = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = "running";
+          reveal.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.06 }
+  );
+  sections.forEach((section) => {
+    section.style.animationPlayState = "paused";
+    reveal.observe(section);
+  });
+} else {
+  sections.forEach((section) => {
+    section.style.animation = "none";
+    section.style.opacity = "1";
+  });
+}
+
+/* ────────────────────────────── YODA ────────────────────────────── */
+
 const yodaEl = document.querySelector(".yoda");
+
+if (yodaEl) {
+  const img = document.createElement("img");
+  img.src = "img/yoda.png";
+  img.alt = "";
+  img.className = "yoda-img";
+  yodaEl.appendChild(img);
+}
+
 const yodaBubble = document.querySelector(".yoda-bubble");
 const yodaText = document.querySelector("#yoda-text");
 const yodaNext = document.querySelector("#yoda-next");
@@ -93,25 +179,47 @@ const yodaClose = document.querySelector("#yoda-close");
 
 const yodaLines = [
   "En paix, jeune Padawan... Ton parcours, je vois.",
-  "Bachelier STI2D option SIN, obtenu en juin 2026, tu es. Actuellement en BTS SIO SISR, 2026–2028.",
+  "Bachelier STI2D option SIN obtenu en juin 2026, tu es. BTS SIO SISR, depuis, tu suis.",
   "Vers les systèmes et réseaux, ton chemin s'oriente. Java, Python, HTML et CSS, maîtriser tu veux.",
-  "Sérieux, rigoureux et curieux, qualités d'un bon technicien tu possèdes.",
-  "Une alternance, tu recherches. L'Entreprise, avec toi, grandir pourra.",
+  "Sérieux, rigoureux et curieux, les qualités d'un bon technicien, tu possèdes.",
+  "Une alternance, tu recherches. L'Entreprise, avec toi, grandira. Certainement.",
   "Que la Force du code soit avec toi, Padawan !",
 ];
 
 let yodaIndex = 0;
 let isBubbleOpen = false;
+let typeTimer = null;
+
+function typeText(el, text, done) {
+  clearTimeout(typeTimer);
+  el.textContent = "";
+  el.classList.add("typing");
+  let i = 0;
+  function step() {
+    if (i <= text.length) {
+      el.textContent = text.slice(0, i) + (i < text.length ? "▌" : "");
+      i++;
+      if (i <= text.length) {
+        typeTimer = setTimeout(step, 16);
+      } else {
+        el.classList.remove("typing");
+        if (done) done();
+      }
+    }
+  }
+  step();
+}
 
 function showYodaLine(index) {
   if (!yodaText) return;
   yodaIndex = index % yodaLines.length;
-  yodaText.textContent = yodaLines[yodaIndex];
+  typeText(yodaText, yodaLines[yodaIndex]);
 }
 
 function openBubble() {
   if (!yodaBubble) return;
   isBubbleOpen = true;
+  yodaBubble.setAttribute("aria-hidden", "false");
   showYodaLine(0);
   yodaBubble.classList.add("active");
 }
@@ -119,31 +227,26 @@ function openBubble() {
 function closeBubble() {
   if (!yodaBubble) return;
   isBubbleOpen = false;
+  yodaBubble.setAttribute("aria-hidden", "true");
+  clearTimeout(typeTimer);
   yodaBubble.classList.remove("active");
 }
 
-function nextLine() {
-  if (!isBubbleOpen) return;
-  showYodaLine(yodaIndex + 1);
+function toggleBubble(e) {
+  if (e) e.preventDefault();
+  if (isBubbleOpen) {
+    closeBubble();
+  } else {
+    openBubble();
+  }
 }
 
 if (yodaEl) {
-  yodaEl.addEventListener("click", () => {
-    if (isBubbleOpen) {
-      closeBubble();
-    } else {
-      openBubble();
-    }
-  });
-
+  yodaEl.addEventListener("click", toggleBubble);
   yodaEl.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      if (isBubbleOpen) {
-        closeBubble();
-      } else {
-        openBubble();
-      }
+      toggleBubble();
     }
   });
 }
@@ -151,7 +254,7 @@ if (yodaEl) {
 if (yodaNext) {
   yodaNext.addEventListener("click", (e) => {
     e.stopPropagation();
-    nextLine();
+    showYodaLine(yodaIndex + 1);
   });
 }
 
@@ -163,33 +266,10 @@ if (yodaClose) {
 }
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && isBubbleOpen) {
-    closeBubble();
-  }
+  if (e.key === "Escape" && isBubbleOpen) closeBubble();
 });
 
-const sections = document.querySelectorAll("section");
-const prefersReducedMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)"
-).matches;
+/* ─────────────────────────── INIT ─────────────────────────── */
 
-if (!prefersReducedMotion && "IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = "running";
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.08,
-    }
-  );
-
-  sections.forEach((section) => {
-    section.style.animationPlayState = "paused";
-    observer.observe(section);
-  });
-}
+buildCoruscant();
+onScroll();

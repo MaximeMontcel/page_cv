@@ -10,15 +10,8 @@
 </head>
 <body>
 
-  <canvas id="stars-canvas" aria-hidden="true"></canvas>
-  <div id="stars-bg" aria-hidden="true"></div>
-  <div id="stars-bg2" aria-hidden="true"></div>
-  <div id="stars-bg3" aria-hidden="true"></div>
-  <div class="planet planet--tatooine" aria-hidden="true"></div>
-  <div class="planet planet--dagobah" aria-hidden="true"></div>
-  <div class="planet planet--endor" aria-hidden="true"></div>
-  <div class="lightsaber lightsaber--blue active" aria-hidden="true"></div>
-  <div class="lightsaber lightsaber--green active" aria-hidden="true"></div>
+  <div id="coruscant" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
   <header class="hero" role="banner">
     <h1>Maxime MONTCEL</h1>
@@ -48,12 +41,12 @@
   <main>
 
     <section id="profil" class="about">
-      <h2>Profil</h2>
+      <h2 class="saber-title saber-blue"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Profil</span></h2>
       <p>Bachelier STI2D option SIN obtenu en juin 2026, je suis actuellement étudiant en BTS SIO option SISR (2026 – 2028) et je recherche une alternance. Désireux d'évoluer dans les systèmes et réseaux, j'ai développé des compétences en HTML/CSS, Java, Python et configuration de postes lors de mes projets scolaires. Sérieux et rigoureux, je recherche une entreprise pour mettre en pratique mes connaissances et développer mes compétences techniques.</p>
     </section>
 
     <section id="competences">
-      <h2>Compétences techniques</h2>
+      <h2 class="saber-title saber-green"><img class="saber-img" src="img/saber-green.png" alt="" aria-hidden="true"><span class="saber-label">Compétences techniques</span></h2>
       <div class="skills-grid">
         <div class="skill-card">
           <h3>Programmation</h3>
@@ -74,7 +67,7 @@
     </section>
 
     <section id="qualites">
-      <h2>Qualités professionnelles</h2>
+      <h2 class="saber-title saber-yellow"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Qualités professionnelles</span></h2>
       <ul class="tag-list">
         <li>Sens de l'observation</li>
         <li>Autonomie dans l'apprentissage</li>
@@ -85,7 +78,7 @@
     </section>
 
     <section id="experiences">
-      <h2>Expériences professionnelles</h2>
+      <h2 class="saber-title saber-red"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Expériences professionnelles</span></h2>
       <div class="timeline">
         <div class="timeline-item">
           <h3>Stage d'observation de 2de</h3>
@@ -102,7 +95,7 @@
     </section>
 
     <section id="formations">
-      <h2>Formations</h2>
+      <h2 class="saber-title saber-purple"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Formations</span></h2>
       <div class="timeline">
         <div class="timeline-item">
           <h3>BTS SIO – Option SISR</h3>
@@ -123,7 +116,7 @@
     </section>
 
     <section id="langues">
-      <h2>Langues</h2>
+      <h2 class="saber-title saber-orange"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Langues</span></h2>
       <ul class="tag-list">
         <li>Français – Langue maternelle</li>
         <li>Anglais – Intermédiaire</li>
@@ -132,7 +125,7 @@
     </section>
 
     <section id="certificats">
-      <h2>Certificats</h2>
+      <h2 class="saber-title saber-cyan"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Certificats</span></h2>
       <ul class="tag-list">
         <li>Apprentissage Anticipé de la Conduite (en cours)</li>
         <li>Formation aux premiers secours (PSC 1)</li>
@@ -141,7 +134,7 @@
     </section>
 
     <section id="interets">
-      <h2>Centres d'intérêt</h2>
+      <h2 class="saber-title saber-magenta"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Centres d'intérêt</span></h2>
       <ul class="tag-list">
         <li>Football en club depuis 9 ans</li>
         <li>Cinéma</li>
@@ -155,6 +148,10 @@
     <p>&copy; 2026 Maxime MONTCEL – <a href="https://github.com/MaximeMontcel">Profil GitHub</a></p>
     <p class="footer-note">Que la Force du code soit avec toi… mais pour l'alternance : rejoins la bonne équipe ✦</p>
   </footer>
+
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Retour en haut de page">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 14 12 8 18 14" /></svg>
+  </button>
 
   <aside class="yoda-wrapper" aria-label="Assistant Yoda">
     <div class="yoda-bubble" id="yoda-bubble" aria-hidden="true">
