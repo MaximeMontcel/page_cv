@@ -6,8 +6,19 @@
   <title>Maxime MONTCEL – CV Technicien Systèmes et Réseaux</title>
   <meta name="description" content="CV en ligne de Maxime MONTCEL, étudiant en BTS SIO SISR et bachelier STI2D. Compétences en Java, Python, HTML/CSS et administration. Recherche d'alternance en systèmes et réseaux.">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
 </head>
 <body>
+
+  <canvas id="stars-canvas" aria-hidden="true"></canvas>
+  <div id="stars-bg" aria-hidden="true"></div>
+  <div id="stars-bg2" aria-hidden="true"></div>
+  <div id="stars-bg3" aria-hidden="true"></div>
+  <div class="planet planet--tatooine" aria-hidden="true"></div>
+  <div class="planet planet--dagobah" aria-hidden="true"></div>
+  <div class="planet planet--endor" aria-hidden="true"></div>
+  <div class="lightsaber lightsaber--blue active" aria-hidden="true"></div>
+  <div class="lightsaber lightsaber--green active" aria-hidden="true"></div>
 
   <header class="hero" role="banner">
     <h1>Maxime MONTCEL</h1>
@@ -142,7 +153,19 @@
 
   <footer>
     <p>&copy; 2026 Maxime MONTCEL – <a href="https://github.com/MaximeMontcel">Profil GitHub</a></p>
+    <p class="footer-note">Que la Force du code soit avec toi… mais pour l'alternance : rejoins la bonne équipe ✦</p>
   </footer>
+
+  <aside class="yoda-wrapper" aria-label="Assistant Yoda">
+    <div class="yoda-bubble" id="yoda-bubble" aria-hidden="true">
+      <p id="yoda-text"></p>
+      <div class="bubble-actions">
+        <button type="button" class="btn-yoda" id="yoda-next">Suivant</button>
+        <button type="button" class="btn-yoda" id="yoda-close">Fermer</button>
+      </div>
+    </div>
+    <div class="yoda" role="button" tabindex="0" aria-label="Parler avec Yoda"></div>
+  </aside>
 
 </body>
 </html>
