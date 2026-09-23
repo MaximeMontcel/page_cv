@@ -15,7 +15,7 @@ Contrat d'apprentissage - 2 SEM en Entreprise - 2 SEM de Cours
 
 ## Profil
 
-Futur bachelier STI2D option SIN, je souhaite intégrer un BTS SIO option SISR en alternance à partir de septembre 2026. Désireux d'évoluer dans les systèmes et réseaux, j'ai développé des compétences en HTML/CSS, Java, Python et configuration de postes lors de mes projets scolaires. Sérieux et rigoureux, je recherche une entreprise pour mettre en pratique mes connaissances et développer mes compétences techniques.
+Bachelier STI2D option SIN obtenu en juin 2026, je suis actuellement étudiant en BTS SIO option SISR (2026 – 2028) et je recherche une alternance. Désireux d'évoluer dans les systèmes et réseaux, j'ai développé des compétences en HTML/CSS, Java, Python et configuration de postes lors de mes projets scolaires. Sérieux et rigoureux, je recherche une entreprise pour mettre en pratique mes connaissances et développer mes compétences techniques.
 
 ## Compétences techniques
 
@@ -43,9 +43,9 @@ Pharmacie St-Laurent, Veauche    : Découverte du monde du travail
 
 ## Formations
 
-**BTS SIO - Option SISR** — CFAI LDA, Saint-Étienne — *Septembre 2026*
+**BTS SIO - Option SISR** — CFAI LDA, Saint-Étienne — *Septembre 2026 – Juin 2028 (en cours)*
 
-**Baccalauréat technologique STI2D option SIN** — Lycée François-Mauriac Forez, Andrézieux-Bouthéon — *En cours*
+**Baccalauréat technologique STI2D option SIN** — Lycée François-Mauriac Forez, Andrézieux-Bouthéon — *Obtenu en juin 2026*
 
 **Diplôme national du Brevet** — Collège Émile Falabrègue, Saint-Bonnet-Le-Château — *2023, Mention Très Bien*
 
