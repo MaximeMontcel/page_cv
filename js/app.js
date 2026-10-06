@@ -437,6 +437,252 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && introIsOpen) closeIntro();
 });
 
+/* ─────────────────────────── EFFETS SONORES ─────────────────────────── */
+
+function sfxNoise(ctx, dur) {
+  const len = Math.floor(ctx.sampleRate * dur);
+  const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+  const data = buf.getChannelData(0);
+  for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+  return buf;
+}
+
+const SFX = {
+  ignite(ctx, t, out) {
+    const src = ctx.createBufferSource();
+    src.buffer = sfxNoise(ctx, 0.6);
+    const bp = ctx.createBiquadFilter();
+    bp.type = "bandpass";
+    bp.Q.value = 1.6;
+    bp.frequency.setValueAtTime(500, t);
+    bp.frequency.exponentialRampToValueAtTime(2600, t + 0.32);
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.4, t + 0.07);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 0.55);
+    src.connect(bp);
+    bp.connect(g);
+    g.connect(out);
+    src.start(t);
+    src.stop(t + 0.6);
+    const hum = ctx.createOscillator();
+    hum.type = "sawtooth";
+    hum.frequency.value = 112;
+    const hg = ctx.createGain();
+    hg.gain.setValueAtTime(0.0001, t);
+    hg.gain.exponentialRampToValueAtTime(0.1, t + 0.12);
+    hg.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
+    hum.connect(hg);
+    hg.connect(out);
+    hum.start(t);
+    hum.stop(t + 0.65);
+  },
+
+  blaster(ctx, t, out) {
+    const o = ctx.createOscillator();
+    o.type = "square";
+    o.frequency.setValueAtTime(1750, t);
+    o.frequency.exponentialRampToValueAtTime(240, t + 0.16);
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.3, t + 0.012);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+    o.connect(g);
+    g.connect(out);
+    o.start(t);
+    o.stop(t + 0.22);
+    const src = ctx.createBufferSource();
+    src.buffer = sfxNoise(ctx, 0.12);
+    const hp = ctx.createBiquadFilter();
+    hp.type = "highpass";
+    hp.frequency.value = 1200;
+    const ng = ctx.createGain();
+    ng.gain.setValueAtTime(0.22, t);
+    ng.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
+    src.connect(hp);
+    hp.connect(ng);
+    ng.connect(out);
+    src.start(t);
+    src.stop(t + 0.12);
+  },
+
+  chirp(ctx, t, out) {
+    [[1240, 0], [1760, 0.08], [1080, 0.16]].forEach(([f, d]) => {
+      const o = ctx.createOscillator();
+      o.type = "square";
+      o.frequency.setValueAtTime(f, t + d);
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t + d);
+      g.gain.exponentialRampToValueAtTime(0.16, t + d + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.001, t + d + 0.07);
+      o.connect(g);
+      g.connect(out);
+      o.start(t + d);
+      o.stop(t + d + 0.09);
+    });
+  },
+
+  force(ctx, t, out) {
+    const src = ctx.createBufferSource();
+    src.buffer = sfxNoise(ctx, 1.1);
+    const bp = ctx.createBiquadFilter();
+    bp.type = "bandpass";
+    bp.Q.value = 0.8;
+    bp.frequency.setValueAtTime(300, t);
+    bp.frequency.exponentialRampToValueAtTime(1800, t + 0.35);
+    bp.frequency.exponentialRampToValueAtTime(260, t + 1.0);
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.3, t + 0.3);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 1.05);
+    src.connect(bp);
+    bp.connect(g);
+    g.connect(out);
+    src.start(t);
+    src.stop(t + 1.1);
+    const pad = ctx.createOscillator();
+    pad.type = "sine";
+    pad.frequency.setValueAtTime(96, t);
+    pad.frequency.linearRampToValueAtTime(128, t + 1.0);
+    const pg = ctx.createGain();
+    pg.gain.setValueAtTime(0.0001, t);
+    pg.gain.exponentialRampToValueAtTime(0.14, t + 0.25);
+    pg.gain.exponentialRampToValueAtTime(0.001, t + 1.1);
+    pad.connect(pg);
+    pg.connect(out);
+    pad.start(t);
+    pad.stop(t + 1.15);
+  },
+
+  hyper(ctx, t, out) {
+    const src = ctx.createBufferSource();
+    src.buffer = sfxNoise(ctx, 1.4);
+    const bp = ctx.createBiquadFilter();
+    bp.type = "bandpass";
+    bp.Q.value = 1.1;
+    bp.frequency.setValueAtTime(180, t);
+    bp.frequency.exponentialRampToValueAtTime(7000, t + 1.0);
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.42, t + 0.75);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 1.35);
+    src.connect(bp);
+    bp.connect(g);
+    g.connect(out);
+    src.start(t);
+    src.stop(t + 1.4);
+    const sub = ctx.createOscillator();
+    sub.type = "sine";
+    sub.frequency.setValueAtTime(70, t);
+    sub.frequency.exponentialRampToValueAtTime(42, t + 1.2);
+    const sg = ctx.createGain();
+    sg.gain.setValueAtTime(0.0001, t);
+    sg.gain.exponentialRampToValueAtTime(0.3, t + 0.5);
+    sg.gain.exponentialRampToValueAtTime(0.001, t + 1.3);
+    sub.connect(sg);
+    sg.connect(out);
+    sub.start(t);
+    sub.stop(t + 1.35);
+  },
+
+  beep(ctx, t, out) {
+    const o = ctx.createOscillator();
+    o.type = "triangle";
+    o.frequency.setValueAtTime(880, t);
+    o.frequency.setValueAtTime(1320, t + 0.07);
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.2, t + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 0.16);
+    o.connect(g);
+    g.connect(out);
+    o.start(t);
+    o.stop(t + 0.18);
+  },
+};
+
+let sfxMuted = false;
+try {
+  sfxMuted = localStorage.getItem("sw-sfx-muted") === "1";
+} catch (err) {
+  /* stockage indisponible */
+}
+let sfxCtx = null;
+let sfxBus = null;
+let lastSfxAt = 0;
+
+function sfxReady() {
+  if (!sfxCtx) {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return false;
+    try {
+      sfxCtx = new AC();
+      sfxBus = sfxCtx.createGain();
+      sfxBus.gain.value = 0.55;
+      sfxBus.connect(sfxCtx.destination);
+    } catch (err) {
+      return false;
+    }
+  }
+  if (sfxCtx.state === "suspended") sfxCtx.resume();
+  return true;
+}
+
+function sfx(name, gap = 220) {
+  if (sfxMuted || !SFX[name] || !sfxReady()) return;
+  const now = performance.now();
+  if (now - lastSfxAt < gap) return;
+  lastSfxAt = now;
+  try {
+    SFX[name](sfxCtx, sfxCtx.currentTime + 0.02, sfxBus);
+  } catch (err) {
+    /* ignore */
+  }
+}
+
+document.addEventListener("pointerdown", () => sfxReady(), { once: true });
+
+const soundToggleEl = document.getElementById("sound-toggle");
+
+function syncSoundToggle() {
+  if (!soundToggleEl) return;
+  soundToggleEl.setAttribute("aria-pressed", String(sfxMuted));
+  soundToggleEl.setAttribute(
+    "aria-label",
+    sfxMuted ? "Activer les effets sonores" : "Couper les effets sonores"
+  );
+  const icon = soundToggleEl.querySelector("span");
+  if (icon) icon.textContent = sfxMuted ? "🔇" : "🔊";
+}
+
+if (soundToggleEl) {
+  syncSoundToggle();
+  soundToggleEl.addEventListener("click", () => {
+    sfxMuted = !sfxMuted;
+    try {
+      localStorage.setItem("sw-sfx-muted", sfxMuted ? "1" : "0");
+    } catch (err) {
+      /* ignore */
+    }
+    syncSoundToggle();
+    if (!sfxMuted) sfx("beep", 0);
+  });
+}
+
+document
+  .querySelectorAll(
+    ".nav a, .hero-contact a, footer a, .back-to-top, .btn-intro, .intro-close, .intro-mute"
+  )
+  .forEach((el) => el.addEventListener("click", () => sfx("blaster")));
+
+document
+  .querySelectorAll(".saber-title")
+  .forEach((el) => el.addEventListener("mouseenter", () => sfx("ignite", 450)));
+
+if (yodaEl) yodaEl.addEventListener("click", () => sfx("force", 400));
+if (yodaNext) yodaNext.addEventListener("click", () => sfx("chirp", 200));
+if (backToTop) backToTop.addEventListener("click", () => sfx("hyper", 600));
+
 /* ─────────────────────────── INIT ─────────────────────────── */
 
 buildCoruscant();
