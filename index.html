@@ -13,7 +13,11 @@
 </head>
 <body>
 
-  <div id="coruscant" aria-hidden="true"></div>
+  <div id="coruscant" aria-hidden="true">
+    <div class="nebula nebula--blue"></div>
+    <div class="nebula nebula--violet"></div>
+    <div class="nebula nebula--gold"></div>
+  </div>
   <div class="scroll-progress" aria-hidden="true"></div>
 
   <header class="hero" role="banner">
@@ -36,6 +40,7 @@
   <nav class="nav" aria-label="Navigation principale">
     <ul>
       <li><a href="#profil">Profil</a></li>
+      <li><a href="#droids">Droids</a></li>
       <li><a href="#competences">Compétences</a></li>
       <li><a href="#qualites">Qualités</a></li>
       <li><a href="#experiences">Expériences</a></li>
@@ -43,6 +48,7 @@
       <li><a href="#langues">Langues</a></li>
       <li><a href="#certificats">Certificats</a></li>
       <li><a href="#interets">Centres d'intérêt</a></li>
+      <li><a href="#planetes">Galaxie</a></li>
     </ul>
   </nav>
 
@@ -54,8 +60,37 @@
       <p>Bachelier STI2D option SIN obtenu en juin 2026, je suis actuellement étudiant en BTS SIO option SISR (2026 – 2028) et je recherche une alternance. Désireux d'évoluer dans les systèmes et réseaux, j'ai développé des compétences en HTML/CSS, Java, Python et configuration de postes lors de mes projets scolaires. Sérieux et rigoureux, je recherche une entreprise pour mettre en pratique mes connaissances et développer mes compétences techniques.</p>
     </section>
 
+    <section id="droids">
+      <p class="section-code">Dossier 02 · L'équipage de droids</p>
+      <h2 class="saber-title saber-blue"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">L'équipage de droids</span></h2>
+      <div class="droids-grid">
+
+        <article class="droid-card" data-droid="r2">
+          <img class="droid-photo" src="img/droid-r2d2.jpg" alt="R2-D2" width="1280" height="536" loading="lazy">
+          <h3>R2-D2</h3>
+          <p class="droid-role">Astromech de terrain</p>
+          <p class="droid-desc">Fiable sous pression, il répare le système quand tout s'effondre. <strong>Rigueur, fiabilité, gestion des pannes.</strong></p>
+        </article>
+
+        <article class="droid-card" data-droid="c3po">
+          <img class="droid-photo" src="img/droid-c3po.jpg" alt="C-3PO" width="1280" height="536" loading="lazy">
+          <h3>C-3PO</h3>
+          <p class="droid-role">Maître du protocole</p>
+          <p class="droid-desc">Il parle six millions de langages… et sait toujours se présenter. <strong>Communication, travail en équipe, ponctualité.</strong></p>
+        </article>
+
+        <article class="droid-card" data-droid="bb8">
+          <img class="droid-photo" src="img/droid-bb8.jpg" alt="BB-8" width="1280" height="536" loading="lazy">
+          <h3>BB-8</h3>
+          <p class="droid-role">Explorateur curieux</p>
+          <p class="droid-desc">Petit, rapide, jamais fatigué : il explore chaque nouveau terrain. <strong>Autonomie, apprentissage, curiosité.</strong></p>
+        </article>
+
+      </div>
+    </section>
+
     <section id="competences">
-      <p class="section-code">Dossier 02 · Compétences techniques</p>
+      <p class="section-code">Dossier 03 · Compétences techniques</p>
       <h2 class="saber-title saber-green"><img class="saber-img" src="img/saber-green.png" alt="" aria-hidden="true"><span class="saber-label">Compétences techniques</span></h2>
       <div class="skills-grid">
         <div class="skill-card">
@@ -77,7 +112,7 @@
     </section>
 
     <section id="qualites">
-      <p class="section-code">Dossier 03 · Qualités professionnelles</p>
+      <p class="section-code">Dossier 04 · Qualités professionnelles</p>
       <h2 class="saber-title saber-yellow"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Qualités professionnelles</span></h2>
       <ul class="tag-list">
         <li>Sens de l'observation</li>
@@ -89,7 +124,7 @@
     </section>
 
     <section id="experiences">
-      <p class="section-code">Dossier 04 · Expériences professionnelles</p>
+      <p class="section-code">Dossier 05 · Expériences professionnelles</p>
       <h2 class="saber-title saber-red"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Expériences professionnelles</span></h2>
       <div class="timeline">
         <div class="timeline-item">
@@ -107,7 +142,7 @@
     </section>
 
     <section id="formations">
-      <p class="section-code">Dossier 05 · Formations</p>
+      <p class="section-code">Dossier 06 · Formations</p>
       <h2 class="saber-title saber-purple"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Formations</span></h2>
       <div class="timeline">
         <div class="timeline-item">
@@ -129,7 +164,7 @@
     </section>
 
     <section id="langues">
-      <p class="section-code">Dossier 06 · Langues</p>
+      <p class="section-code">Dossier 07 · Langues</p>
       <h2 class="saber-title saber-orange"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Langues</span></h2>
       <ul class="tag-list">
         <li>Français – Langue maternelle</li>
@@ -139,7 +174,7 @@
     </section>
 
     <section id="certificats">
-      <p class="section-code">Dossier 07 · Certificats</p>
+      <p class="section-code">Dossier 08 · Certificats</p>
       <h2 class="saber-title saber-cyan"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Certificats</span></h2>
       <ul class="tag-list">
         <li>Apprentissage Anticipé de la Conduite (en cours)</li>
@@ -149,7 +184,7 @@
     </section>
 
     <section id="interets">
-      <p class="section-code">Dossier 08 · Centres d'intérêt</p>
+      <p class="section-code">Dossier 09 · Centres d'intérêt</p>
       <h2 class="saber-title saber-magenta"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Centres d'intérêt</span></h2>
       <ul class="tag-list">
         <li>Football en club depuis 9 ans</li>
@@ -158,12 +193,120 @@
       </ul>
     </section>
 
+    <section id="planetes">
+      <p class="section-code">Dossier 10 · Les 20 planètes les plus importantes</p>
+      <h2 class="saber-title saber-cyan"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Les planètes de la galaxie</span></h2>
+      <div class="marquee marquee--planets" tabindex="0" aria-label="Défilement : les vingt planètes les plus importantes de l'univers Star Wars">
+        <div class="marquee-track">
+          <div class="marquee-group">
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-tatooine.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Tatooine</strong><span class="chip-desc">Planète désert à deux soleils, berceau de Luke Skywalker.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-coruscant.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Coruscant</strong><span class="chip-desc">Océan de métropoles, capitale de la République puis de l'Empire.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-naboo.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Naboo</strong><span class="chip-desc">Plaines verdoyantes et grottes de Gunga, planète de Padmé Amidala.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-hoth.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Hoth</strong><span class="chip-desc">Monde gelé et isolé, base rebelle d'Echo.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-dagobah.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dagobah</strong><span class="chip-desc">Marais brumeux et pleins de vie, ermitage de Yoda.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-endor.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Endor</strong><span class="chip-desc">Lune forestière des Ewoks, dernière bataille de l'Empire.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-kashyyyk.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Kashyyyk</strong><span class="chip-desc">Monde-forêt des Wookiees, arbres cathédrales gigantesques.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-mustafar.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Mustafar</strong><span class="chip-desc">Planète de laves, forteresse personnelle de Dark Vador.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-alderaan.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Alderaan</strong><span class="chip-desc">Monde pacifique de la princesse Leia, détruit par l'Étoile de la Mort.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-mandalore.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Mandalore</strong><span class="chip-desc">Planète guerrière des Mandaloriens et de leur armure en beskar.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-geonosis.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Geonosis</strong><span class="chip-desc">Monde caverneux où fut forgée l'armée Séparatiste.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-kamino.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Kamino</strong><span class="chip-desc">Planète océanique, berceau de l'armée de clones.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-utapau.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Utapau</strong><span class="chip-desc">Mesas creusées de cités-arches, dernière retraite de Grievous.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-bespin.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Bespin</strong><span class="chip-desc">Géante gazeuse surmontée de la Cité des Nuages.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-ilum.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Ilum</strong><span class="chip-desc">Planète glaciaire des cristaux de kyber, sanctuaire Jedi.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-ahch-to.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Ahch-To</strong><span class="chip-desc">Îles perdues du premier temple, ermitage de Luke.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-scarif.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Scarif</strong><span class="chip-desc">Paradis tropical protégé par un bouclier planétaire.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-jakku.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Jakku</strong><span class="chip-desc">Déserts de la Frontière, charnier de la bataille finale.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-crait.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Crait</strong><span class="chip-desc">Plaines de sel aux veines rouges, débâcle de la Résistance.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-corellia.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Corellia</strong><span class="chip-desc">Chantiers navals réputés, patrie de Han Solo.</span></span></span>
+          </div>
+          <div class="marquee-group" aria-hidden="true">
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-tatooine.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Tatooine</strong><span class="chip-desc">Planète désert à deux soleils, berceau de Luke Skywalker.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-coruscant.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Coruscant</strong><span class="chip-desc">Océan de métropoles, capitale de la République puis de l'Empire.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-naboo.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Naboo</strong><span class="chip-desc">Plaines verdoyantes et grottes de Gunga, planète de Padmé Amidala.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-hoth.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Hoth</strong><span class="chip-desc">Monde gelé et isolé, base rebelle d'Echo.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-dagobah.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dagobah</strong><span class="chip-desc">Marais brumeux et pleins de vie, ermitage de Yoda.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-endor.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Endor</strong><span class="chip-desc">Lune forestière des Ewoks, dernière bataille de l'Empire.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-kashyyyk.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Kashyyyk</strong><span class="chip-desc">Monde-forêt des Wookiees, arbres cathédrales gigantesques.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-mustafar.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Mustafar</strong><span class="chip-desc">Planète de laves, forteresse personnelle de Dark Vador.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-alderaan.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Alderaan</strong><span class="chip-desc">Monde pacifique de la princesse Leia, détruit par l'Étoile de la Mort.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-mandalore.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Mandalore</strong><span class="chip-desc">Planète guerrière des Mandaloriens et de leur armure en beskar.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-geonosis.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Geonosis</strong><span class="chip-desc">Monde caverneux où fut forgée l'armée Séparatiste.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-kamino.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Kamino</strong><span class="chip-desc">Planète océanique, berceau de l'armée de clones.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-utapau.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Utapau</strong><span class="chip-desc">Mesas creusées de cités-arches, dernière retraite de Grievous.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-bespin.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Bespin</strong><span class="chip-desc">Géante gazeuse surmontée de la Cité des Nuages.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-ilum.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Ilum</strong><span class="chip-desc">Planète glaciaire des cristaux de kyber, sanctuaire Jedi.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-ahch-to.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Ahch-To</strong><span class="chip-desc">Îles perdues du premier temple, ermitage de Luke.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-scarif.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Scarif</strong><span class="chip-desc">Paradis tropical protégé par un bouclier planétaire.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-jakku.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Jakku</strong><span class="chip-desc">Déserts de la Frontière, charnier de la bataille finale.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-crait.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Crait</strong><span class="chip-desc">Plaines de sel aux veines rouges, débâcle de la Résistance.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/planet-corellia.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Corellia</strong><span class="chip-desc">Chantiers navals réputés, patrie de Han Solo.</span></span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="personnages">
+      <p class="section-code">Dossier 11 · Les 21 personnages les plus importants</p>
+      <h2 class="saber-title saber-orange"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Les personnages de la galaxie</span></h2>
+      <div class="marquee marquee--chars" tabindex="0" aria-label="Défilement : les vingt et un personnages les plus importants de l'univers Star Wars">
+        <div class="marquee-track">
+          <div class="marquee-group">
+            <span class="marquee-chip"><img class="chip-img" src="img/char-luke.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Luke Skywalker</strong><span class="chip-desc">Farm boy devenu Jedi, héros de la trilogie originale.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-leia.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Leia Organa</strong><span class="chip-desc">Princesse d'Alderaan, générale de l'Alliance rebelle.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-anakin.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Anakin Skywalker</strong><span class="chip-desc">Le Chosen One, Jedi tombé sous l'emprise de l'Empereur.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-vader.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dark Vador</strong><span class="chip-desc">Seigneur Sith en armure noire, poing de l'Empire.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-han.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Han Solo</strong><span class="chip-desc">Contremandier légendaire, capitaine du Faucon Millenium.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-chewbacca.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Chewbacca</strong><span class="chip-desc">Wookiee loyal, co-pilote et meilleur ami de Han Solo.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-obiwan.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Obi-Wan Kenobi</strong><span class="chip-desc">Maître Jedi, mentor d'Anakin puis de Luke.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-yoda.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Yoda</strong><span class="chip-desc">Grand Maître Jedi, près de 900 ans de sagesse.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-palpatine.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dark Sidious</strong><span class="chip-desc">Empereur Palpatine, maître Sith manipulateur.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-maul.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dark Maul</strong><span class="chip-desc">Sith à la lame double, apprenti de Sidious.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-grogu.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Grogu</strong><span class="chip-desc">Jeune padawan disparu, protégé par Din Djarin.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-rey.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Rey</strong><span class="chip-desc">Force sensible au destin inattendu, dernière Jedi.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-kylo.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Kylo Ren</strong><span class="chip-desc">Chevalier de Ren, héritier tourmenté de la lignée Skywalker.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-finn.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Finn</strong><span class="chip-desc">Stormtrooper repenti, héros de la Résistance.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-ahsoka.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Ahsoka Tano</strong><span class="chip-desc">Ancienne padawan d'Anakin, devenue esprit libre.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-din.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Din Djarin</strong><span class="chip-desc">Le Mandalorien, chasseur de primes au cœur d'or.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-boba.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Boba Fett</strong><span class="chip-desc">Chasseur de primes en armure mandalorienne.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-lando.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Lando Calrissian</strong><span class="chip-desc">Ancien capitaine du Faucon, baron de la Cité des Nuages.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-jyn.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Jyn Erso</strong><span class="chip-desc">Agente rebelle, à l'origine du vol des plans de l'Étoile de la Mort.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-padme.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Padmé Amidala</strong><span class="chip-desc">Reine puis sénatrice de Naboo, mère de Luke et Leia.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-dooku.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Comte Dooku</strong><span class="chip-desc">Seigneur Sith et chef des Séparatistes.</span></span></span>
+          </div>
+          <div class="marquee-group" aria-hidden="true">
+            <span class="marquee-chip"><img class="chip-img" src="img/char-luke.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Luke Skywalker</strong><span class="chip-desc">Farm boy devenu Jedi, héros de la trilogie originale.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-leia.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Leia Organa</strong><span class="chip-desc">Princesse d'Alderaan, générale de l'Alliance rebelle.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-anakin.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Anakin Skywalker</strong><span class="chip-desc">Le Chosen One, Jedi tombé sous l'emprise de l'Empereur.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-vader.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dark Vador</strong><span class="chip-desc">Seigneur Sith en armure noire, poing de l'Empire.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-han.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Han Solo</strong><span class="chip-desc">Contremandier légendaire, capitaine du Faucon Millenium.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-chewbacca.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Chewbacca</strong><span class="chip-desc">Wookiee loyal, co-pilote et meilleur ami de Han Solo.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-obiwan.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Obi-Wan Kenobi</strong><span class="chip-desc">Maître Jedi, mentor d'Anakin puis de Luke.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-yoda.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Yoda</strong><span class="chip-desc">Grand Maître Jedi, près de 900 ans de sagesse.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-palpatine.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dark Sidious</strong><span class="chip-desc">Empereur Palpatine, maître Sith manipulateur.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-maul.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dark Maul</strong><span class="chip-desc">Sith à la lame double, apprenti de Sidious.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-grogu.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Grogu</strong><span class="chip-desc">Jeune padawan disparu, protégé par Din Djarin.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-rey.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Rey</strong><span class="chip-desc">Force sensible au destin inattendu, dernière Jedi.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-kylo.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Kylo Ren</strong><span class="chip-desc">Chevalier de Ren, héritier tourmenté de la lignée Skywalker.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-finn.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Finn</strong><span class="chip-desc">Stormtrooper repenti, héros de la Résistance.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-ahsoka.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Ahsoka Tano</strong><span class="chip-desc">Ancienne padawan d'Anakin, devenue esprit libre.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-din.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Din Djarin</strong><span class="chip-desc">Le Mandalorien, chasseur de primes au cœur d'or.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-boba.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Boba Fett</strong><span class="chip-desc">Chasseur de primes en armure mandalorienne.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-lando.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Lando Calrissian</strong><span class="chip-desc">Ancien capitaine du Faucon, baron de la Cité des Nuages.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-jyn.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Jyn Erso</strong><span class="chip-desc">Agente rebelle, à l'origine du vol des plans de l'Étoile de la Mort.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-padme.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Padmé Amidala</strong><span class="chip-desc">Reine puis sénatrice de Naboo, mère de Luke et Leia.</span></span></span>
+            <span class="marquee-chip"><img class="chip-img" src="img/char-dooku.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Comte Dooku</strong><span class="chip-desc">Seigneur Sith et chef des Séparatistes.</span></span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
     <p>&copy; 2026 Maxime MONTCEL – <a href="https://github.com/MaximeMontcel">Profil GitHub</a></p>
     <p class="footer-note">Que la Force du code soit avec toi… mais pour l'alternance : rejoins la bonne équipe ✦</p>
-    <p class="footer-credits">Direction artistique inspirée du <a href="https://www.starwars.com/databank">Databank StarWars.com</a> et de <a href="https://starwars.fandom.com/">Wookieepedia</a> · Effets sonores synthétisés en Web Audio</p>
+    <p class="footer-credits">Visuels : <a href="https://www.starwars.com/databank">Databank StarWars.com</a> · Univers : <a href="https://starwars.fandom.com/">Wookieepedia</a> · Effets sonores synthétisés en Web Audio</p>
   </footer>
 
   <button type="button" class="sound-toggle" id="sound-toggle" aria-pressed="false" aria-label="Couper les effets sonores">

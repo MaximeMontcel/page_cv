@@ -38,6 +38,31 @@ function buildTraffic() {
 function buildCoruscant() {
   buildTraffic();
   scheduleFalcon();
+  scheduleShootingStar();
+}
+
+let shootTimer = null;
+
+function scheduleShootingStar() {
+  clearTimeout(shootTimer);
+  if (prefersReducedMotion) return;
+  shootTimer = setTimeout(spawnShootingStar, rand(3.5, 8) * 1000);
+}
+
+function spawnShootingStar() {
+  if (!coruscant || prefersReducedMotion) return;
+  if (document.hidden) {
+    scheduleShootingStar();
+    return;
+  }
+  const star = document.createElement("div");
+  star.className = "shooting-star";
+  star.style.top = rand(4, 55).toFixed(1) + "%";
+  star.style.left = rand(15, 75).toFixed(1) + "%";
+  star.style.animationDuration = rand(0.9, 1.5).toFixed(2) + "s";
+  star.addEventListener("animationend", () => star.remove());
+  coruscant.appendChild(star);
+  scheduleShootingStar();
 }
 
 let falconTimer = null;
@@ -97,6 +122,10 @@ function onScroll() {
       backToTop.classList.toggle("visible", scrollY > 400);
     }
 
+    if (coruscant && !prefersReducedMotion) {
+      coruscant.style.transform = "translateY(" + Math.min(36, scrollY * 0.04) + "px)";
+    }
+
     ticking = false;
   });
 }
@@ -125,7 +154,10 @@ if ("IntersectionObserver" in window) {
   const spy = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveLink(entry.target.id);
+        if (entry.isIntersecting) {
+          const id = entry.target.id === "personnages" ? "planetes" : entry.target.id;
+          setActiveLink(id);
+        }
       });
     },
     { rootMargin: "-35% 0px -55% 0px" }
@@ -682,6 +714,14 @@ document
 if (yodaEl) yodaEl.addEventListener("click", () => sfx("force", 400));
 if (yodaNext) yodaNext.addEventListener("click", () => sfx("chirp", 200));
 if (backToTop) backToTop.addEventListener("click", () => sfx("hyper", 600));
+
+const droidSfx = { r2: "chirp", c3po: "beep", bb8: "chirp" };
+
+document.querySelectorAll(".droid-card").forEach((card) => {
+  const sound = droidSfx[card.dataset.droid] || "beep";
+  card.addEventListener("mouseenter", () => sfx(sound, 350));
+  card.addEventListener("click", () => sfx(sound, 350));
+});
 
 /* ─────────────────────────── INIT ─────────────────────────── */
 
