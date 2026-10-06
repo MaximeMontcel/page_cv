@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maxime MONTCEL – CV Technicien Systèmes et Réseaux</title>
   <meta name="description" content="CV en ligne de Maxime MONTCEL, étudiant en BTS SIO SISR et bachelier STI2D. Compétences en Java, Python, HTML/CSS et administration. Recherche d'alternance en systèmes et réseaux.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/app.js" defer></script>
 </head>
@@ -23,6 +26,9 @@
         Me contacter sur GitHub
       </a>
     </div>
+    <button type="button" class="btn-intro" id="btn-intro">
+      <span aria-hidden="true">▶</span> Lire le générique Star&nbsp;Wars
+    </button>
   </header>
 
   <nav class="nav" aria-label="Navigation principale">
@@ -163,6 +169,31 @@
     </div>
     <div class="yoda" role="button" tabindex="0" aria-label="Parler avec Yoda"></div>
   </aside>
+
+  <div id="intro-overlay" role="dialog" aria-modal="true" aria-label="Générique d'ouverture Star Wars" aria-hidden="true">
+    <div class="intro-stars" aria-hidden="true"></div>
+
+    <p class="intro-fade" aria-hidden="true">Il y a bien longtemps, dans une galaxie lointaine, très lointaine…</p>
+
+    <div class="intro-logo" aria-hidden="true"><span>STAR&nbsp;WARS</span></div>
+
+    <div class="intro-crawl">
+      <div class="crawl" id="crawl">
+        <div class="crawl-inner">
+          <p class="crawl-episode">ÉPISODE I</p>
+          <p class="crawl-title">LE PADAVAN DE L'ALTERNANCE</p>
+          <p>Il y a bien longtemps, dans une galaxie tranquille, un jeune technicien du web préparait son CV pour affronter les périls de l'alternance.</p>
+          <p>Ainsi commence l'histoire de MAXIME MONTCEL, bachelier STI2D option SIN obtenu en juin 2026, qui poursuit son entraînement vers les systèmes et les réseaux en BTS SIO SISR.</p>
+          <p>Maîtrisant les mystères du JAVA, du PYTHON et du HTML/CSS, notre Padawan construit de nouveaux mondes numériques grâce à la Force du code.</p>
+          <p>Son unique quête : trouver l'entreprise qui lui permettra de parfaire ses connaissances, avec sérieux, rigueur et autodiscipline.</p>
+          <p>Que la Force du code soit avec vous, et surtout… avec ceux qui l'accueilleront.</p>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="intro-close" id="intro-close" aria-label="Fermer le générique">✕</button>
+    <button type="button" class="intro-mute" id="intro-mute" aria-pressed="false">🔊 Musique</button>
+  </div>
 
 </body>
 </html>

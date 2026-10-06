@@ -949,3 +949,264 @@ section {
     scroll-behavior: auto;
   }
 }
+
+/* ----------------------- STAR WARS INTRO (crawl) ----------------------- */
+
+.btn-intro {
+  margin-top: clamp(1.1rem, 3vw, 1.6rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.75rem 1.6rem;
+  border: none;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: clamp(0.95rem, 2.4vw, 1.1rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #0a0f1a;
+  background: linear-gradient(135deg, #ffe81f 0%, #ffd000 55%, #e0a800 100%);
+  box-shadow: 0 0 20px rgba(255, 232, 31, 0.45), 0 10px 30px -12px rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.btn-intro:hover,
+.btn-intro:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(255, 232, 31, 0.8), 0 14px 36px -12px rgba(0, 0, 0, 0.9);
+}
+
+.btn-intro:active {
+  transform: translateY(0);
+}
+
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: none;
+  background: #000;
+  overflow: hidden;
+}
+
+#intro-overlay.is-open {
+  display: block;
+}
+
+.intro-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.intro-fade {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 8vw;
+  text-align: center;
+  color: #4bd5ee;
+  font-family: "Anton", "Arial Narrow", sans-serif;
+  font-size: clamp(1.2rem, 4.5vw, 2.6rem);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  opacity: 0;
+  z-index: 2;
+}
+
+.is-open .intro-fade {
+  animation: intro-fade 4.7s ease forwards;
+}
+
+@keyframes intro-fade {
+  0% { opacity: 0; }
+  12% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.intro-logo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: 2;
+}
+
+.intro-logo span {
+  font-family: "Anton", "Arial Narrow", sans-serif;
+  font-size: clamp(3.4rem, 15vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: 0.06em;
+  color: #ffd700;
+  text-shadow:
+    0 0 6px rgba(255, 215, 0, 0.6),
+    0 10px 40px rgba(0, 120, 255, 0.55),
+    0 0 90px rgba(255, 215, 0, 0.35);
+}
+
+.is-open .intro-logo {
+  animation: intro-logo 6.6s ease-out 4.7s forwards;
+}
+
+@keyframes intro-logo {
+  0% { opacity: 0; transform: scale(3.6); }
+  10% { opacity: 1; }
+  74% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.18); }
+}
+
+.intro-crawl {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective: 320px;
+  perspective-origin: 50% 45%;
+  display: none;
+  z-index: 1;
+}
+
+.is-open .intro-crawl {
+  display: block;
+}
+
+.crawl {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 94%;
+  transform-origin: 50% 100%;
+  transform: translateY(0) rotateX(24deg);
+  will-change: transform;
+}
+
+.is-open .crawl {
+  animation: crawl-up var(--crawl-dur, 26s) linear 11.3s forwards;
+}
+
+@keyframes crawl-up {
+  from { transform: translateY(0) rotateX(24deg); }
+  to { transform: translateY(var(--crawl-dist, -2600px)) rotateX(24deg); }
+}
+
+.crawl-inner {
+  width: min(88vw, 980px);
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+
+.crawl-inner p {
+  color: #ffe81f;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(1.15rem, 3.4vw, 2.3rem);
+  line-height: 1.75;
+  text-align: justify;
+  margin: 0 0 1.4em;
+  text-shadow: 0 0 14px rgba(255, 232, 31, 0.45), 0 0 44px rgba(255, 232, 31, 0.25);
+}
+
+.crawl-episode,
+.crawl-title {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.crawl-episode {
+  color: #4bd5ee !important;
+  font-size: clamp(1rem, 2.8vw, 1.7rem) !important;
+  margin-bottom: 0.4em !important;
+}
+
+.crawl-title {
+  font-size: clamp(1.4rem, 4.4vw, 2.9rem) !important;
+  margin-bottom: 2em !important;
+}
+
+.intro-close {
+  position: absolute;
+  top: clamp(0.75rem, 2vw, 1.4rem);
+  right: clamp(0.75rem, 2vw, 1.4rem);
+  z-index: 6;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(6, 12, 24, 0.7);
+  border: 1px solid rgba(255, 232, 31, 0.8);
+  color: #ffe81f;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.intro-close:hover,
+.intro-close:focus-visible {
+  box-shadow: 0 0 18px rgba(255, 232, 31, 0.7);
+  transform: scale(1.06);
+}
+
+.intro-mute {
+  position: absolute;
+  bottom: clamp(0.9rem, 2.4vw, 1.6rem);
+  right: clamp(0.9rem, 2.4vw, 1.6rem);
+  z-index: 6;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: rgba(6, 12, 24, 0.7);
+  border: 1px solid rgba(255, 232, 31, 0.55);
+  color: #ffe81f;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.intro-mute[aria-pressed="true"] {
+  opacity: 0.55;
+  text-decoration: line-through;
+}
+
+.intro-mute:hover,
+.intro-mute:focus-visible {
+  box-shadow: 0 0 14px rgba(255, 232, 31, 0.6);
+}
+
+#intro-overlay.is-static .intro-fade,
+#intro-overlay.is-static .intro-logo {
+  display: none;
+}
+
+#intro-overlay.is-static .intro-crawl {
+  display: block;
+  overflow-y: auto;
+}
+
+#intro-overlay.is-static .crawl {
+  position: static;
+  transform: none;
+  animation: none;
+  padding: 8vh 0 14vh;
+}
+
+#intro-overlay.is-static .crawl-inner {
+  width: min(88vw, 760px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-open .intro-fade,
+  .is-open .intro-logo,
+  .is-open .crawl {
+    animation: none;
+  }
+}
