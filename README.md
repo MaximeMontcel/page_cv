@@ -16,12 +16,13 @@ CV web statique (HTML, CSS, JavaScript sans framework) publié avec GitHub Pages
 | Fonctionnalité | Détail |
 |---|---|
 | Fond étoilé animé | Canvas en 3D légère qui suit la souris, étoiles filantes, **saut en hyperespace** au lancement du générique et au retour en haut |
-| Hero Coruscant | Ville de Coruscant en fond, X-wing, chasseurs TIE et Faucon Millenium qui traversent l'écran |
+| Arrivée en hyperespace | Au chargement du site, on démarre en plein saut en hyperespace, puis on en sort avec un flash lumineux : la bataille d'Endor surgit et le texte du hero se met en place |
+| Bataille d'Endor | Fond du hero animé en canvas : l'Étoile de la Mort II en construction au-dessus de la lune d'Endor, X-wing et chasseurs TIE en combat (**tirs rebelles rouges, tirs impériaux verts**), explosions à chaque vaisseau détruit, destroyers et croiseurs qui échangent des tirs, superlaser vert de l'Étoile de la Mort et passage du Faucon Millenium |
 | Sabres laser | Une poignée et une lame lumineuse qui **s'allume** à l'apparition de chaque section (couleur différente par section) |
-| Générique Star Wars | « Il y a bien longtemps… », logo, texte déroulant en 3D et musique générée en Web Audio (bouton pour couper le son) |
+| Générique Star Wars | « Il y a bien longtemps… », logo, texte déroulant en 3D et **vraie musique du générique** (« Main Title » de John Williams, piste officielle sur YouTube) qui démarre avec le logo ; bouton pour couper le son ; version synthétisée de secours si YouTube ne répond pas |
 | Yoda assistant | Bulle de dialogue avec effet machine à écrire, utilisable au clavier et lue par les lecteurs d'écran |
 | Droids | R2-D2, C-3PO et BB-8 **dessinés et animés en SVG** (dôme qui pivote, bras qui salue, boule qui roule) présentent mes qualités ; les cartes s'inclinent en 3D sous la souris |
-| Galaxie | Bandes défilantes de 20 planètes et 21 personnages **dessinés et animés en SVG** : coups de sabre, tirs de blaster, salut de la main, Force, éclairs de Sidious, oreilles de Yoda et Grogu, planètes qui tournent avec nuages, lunes, anneaux et vaisseaux. Bouton pause |
+| Galaxie | Bandes défilantes de 20 planètes et 21 personnages **dessinés et animés en SVG** : coups de sabre, tirs de blaster, salut de la main, Force, éclairs de Sidious, oreilles de Yoda et Grogu, planètes qui tournent avec nuages, lunes, anneaux et vaisseaux. Bouton pause, **flèches précédent / suivant** et défilement manuel (glisser au doigt, molette, flèches du clavier) |
 | Effets sonores | Sabre, blaster, bips de droids, hyperespace : **désactivés par défaut**, activables avec le bouton haut-parleur (choix mémorisé) |
 | Navigation | Menu collant avec soulignement lumineux qui suit la section lue, barre de progression, bouton retour en haut |
 | CV PDF | Version imprimable sur 2 pages A4, générée à partir de la feuille de style d'impression |
@@ -60,8 +61,9 @@ CV web statique (HTML, CSS, JavaScript sans framework) publié avec GitHub Pages
   - une seule police web (2 graisses) ;
   - script en `defer` ;
   - aucune bibliothèque ;
-  - animations mises en pause hors écran.
-- **Sons et musique** : synthétisés en JavaScript (Web Audio API), donc aucun fichier audio à télécharger.
+  - animations mises en pause hors écran (la bataille du hero s'arrête dès qu'il n'est plus visible) ;
+  - fond du hero dessiné en canvas : plus de grande photo à télécharger.
+- **Sons et musique** : effets sonores synthétisés en JavaScript (Web Audio API) ; la musique du générique est lue depuis la piste officielle sur YouTube (IFrame API, domaine youtube-nocookie.com). Le lecteur n'est chargé qu'au clic sur « Lancer le générique » : aucun fichier protégé n'est stocké dans le dépôt et la page n'est pas ralentie au chargement.
 
 ## Lancer le site en local
 
@@ -95,7 +97,7 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 
 | Indicateur | V1 | Version finale | Évolution |
 |---|---|---|---|
-| Poids des images transférées | 4 246 Ko (51 JPEG/PNG) | 161 Ko (8 WebP + 44 SVG animés compressés) | **−96 %** |
+| Poids des images transférées | 4 246 Ko (51 JPEG/PNG) | 117 Ko (3 WebP + 45 SVG compressés, fond en canvas) | **−97 %** |
 | Polices web | 3 familles, 9 graisses, dont un `@import` bloquant dans le CSS | 1 famille, 2 graisses, `<link>` + `preconnect` | −7 graisses |
 | Poids du CSS | 44,7 Ko (≈ 250 lignes inutilisées) | 37 Ko, sans code mort | −17 % |
 | Poids du HTML | 37,7 Ko | 33 Ko | −12 % |
@@ -126,17 +128,23 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 | 16 | CV encore orienté « recherche d'alternance » | Alternance trouvée au Département de la Loire | Hero, profil, section « Mon alternance », contact, générique, Yoda, title, meta description et PDF mis à jour | Contenu à jour et cohérent |
 | 17 | Missions d'alternance absentes | Information ajoutée après la signature | Support aux utilisateurs et gestion de parc ajoutés (alternance, compétences, expériences, PDF) | Expérience professionnelle concrète |
 | 18 | 44 photos officielles (droits Lucasfilm, 438 Ko) | Visuels repris du Databank | Remplacées par des illustrations SVG dessinées et animées pour le site | −63 % sur ces images et plus de photos sous droits |
+| 19 | Fond du hero : photo fixe de Coruscant (33 Ko) et vaisseaux en images | Décor statique | Bataille d'Endor dessinée et animée en canvas, avec une image fixe si l'utilisateur réduit les animations | Fond vivant, 4 images en moins (−64 Ko) |
+| 20 | Arrivée sur le site sans mise en scène | Pas d'introduction visuelle | Saut en hyperespace d'environ 1 s au chargement puis sortie vers la bataille (désactivé si l'utilisateur réduit les animations) | Effet « waouh » dès l'ouverture, contenu lisible en moins de 2,5 s |
+| 21 | Musique du générique synthétisée, peu fidèle | Pas de fichier audio dans le dépôt | Lecture de la piste officielle « Main Title » via l'API YouTube, chargée au clic seulement, avec repli sur la version synthétisée | Vraie musique sans héberger d'œuvre protégée |
+| 22 | « Erreur de configuration » du lecteur YouTube | Site ouvert en fichier local : YouTube refuse la lecture sans site d'origine (erreur 153), et un délai de secours trop court (4 s) | Détection du fichier local avec message explicatif, préchargement au survol du bouton, délai porté à 9 s, repli sur la musique synthétisée seulement en cas d'erreur réelle | Musique officielle fiable sur le site en ligne |
+| 23 | Personnages trop génériques | Mêmes formes pour tous | Casques de Vador, Kylo, Din et Boba redessinés, coiffures propres à chacun, capuche et visage de Dark Sidious, Reine Amidala maquillée, arbalète laser de Chewbacca, détails de costumes | Personnages reconnaissables au premier coup d'œil |
+| 24 | Le bouton « Mettre en pause » des bandes défilantes ne faisait rien | Règle CSS de l'animation plus prioritaire que celle de la pause | Défilement piloté en JavaScript : pause fiable, flèches précédent / suivant, défilement manuel au doigt, à la molette ou au clavier, reprise automatique après 2,5 s | Pause conforme WCAG 2.2.2 et navigation libre |
 
 ### Auto-évaluation selon la grille
 
 | Critère | Auto-note (0–4) | Justification |
 |---|---:|---|
-| C1 Contenu | 3 | Accroche claire, alternance au Département de la Loire (support utilisateurs, gestion de parc), 2 projets avec résultats chiffrés (−96 %, limites anti-spam) |
+| C1 Contenu | 3 | Accroche claire, alternance au Département de la Loire (support utilisateurs, gestion de parc), 2 projets avec résultats chiffrés (−97 %, limites anti-spam) |
 | C2 HTML sémantique | 4 | H1 unique, hiérarchie sans saut, balises structurelles, ancres et liens explicites |
 | C3 Responsive | 4 | Grilles mobile d'abord, typographie fluide, testé de 375 px à 1 024 px sans défilement horizontal |
 | C4 UX & accessibilité | 4 | Contrastes ≥ 6,85:1, focus visibles, clavier complet, mouvements réduits respectés, sons désactivés par défaut |
 | C5 SEO | 4 | Title et meta description ciblés, Open Graph, URL canonique, structure claire |
-| C6 Performance | 3 | Images −96 %, une police, `defer`, aucune bibliothèque ; à confirmer avec PageSpeed |
+| C6 Performance | 3 | Images −97 %, une police, `defer`, aucune bibliothèque ; à confirmer avec PageSpeed |
 | C7 Validation | 3 | Corrections listées ci-dessus ; scores W3C et PageSpeed à relever après publication |
 | C8 Publication | à faire | Activer GitHub Pages (Settings → Pages → `main` / root), puis tester sur mobile |
 | C9 Auto-évaluation | 4 | Résultats, causes, corrections et impact mesuré |
@@ -147,4 +155,4 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 
 ## Crédits
 
-Projet scolaire non commercial. Star Wars appartient à Lucasfilm Ltd. Les droids, planètes et personnages sont des illustrations SVG dessinées et animées pour ce site. Autres visuels (Coruscant, vaisseaux, Yoda) : [Databank StarWars.com](https://www.starwars.com/databank) ; univers : [Wookieepedia](https://starwars.fandom.com/fr/). Police : [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch) (Google Fonts).
+Projet scolaire non commercial. Star Wars appartient à Lucasfilm Ltd. Les droids, planètes et personnages sont des illustrations SVG dessinées et animées pour ce site. Autres visuels (Faucon Millenium, Yoda) : [Databank StarWars.com](https://www.starwars.com/databank) ; univers : [Wookieepedia](https://starwars.fandom.com/fr/). Musique du générique : « Main Title » de John Williams et du London Symphony Orchestra, piste officielle fournie à YouTube par Universal Music Group, lue sans être copiée dans le dépôt. Police : [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch) (Google Fonts).

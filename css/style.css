@@ -27,6 +27,7 @@
   --gutter: clamp(16px, 4vw, 32px);
   --pad: clamp(22px, 5vw, 56px);
   --ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+  --arrive: 1s; /* durée du saut en hyperespace au chargement (voir js/app.js) */
   --font-display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
   --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
@@ -190,74 +191,52 @@ a {
   text-align: center;
 }
 
-.hero-bg {
+/* bataille d'Endor dessinée en canvas (js/app.js, section 3) */
+.hero-battle {
   position: absolute;
   inset: 0;
-  z-index: -3;
-}
-
-.hero-bg img {
+  z-index: -2;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  animation: kenburns 28s var(--ease) both;
+  animation: arrive 1.4s var(--ease) var(--arrive) both;
 }
 
+/* sortie de l'hyperespace : la bataille surgit et se rapproche */
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+/* flash lumineux au moment où l'on quitte l'hyperespace */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 45%, rgba(200, 230, 255, 0.6), rgba(120, 180, 255, 0.15) 45%, transparent 70%);
+  opacity: 0;
+  animation: dropout 0.9s ease-out var(--arrive) both;
+}
+
+@keyframes dropout {
+  15% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* voile sombre derrière le texte pour garder un bon contraste */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -2;
-  background:
-    radial-gradient(ellipse 70% 55% at 50% 45%, rgba(5, 7, 13, 0.5), rgba(5, 7, 13, 0.72)),
-    linear-gradient(180deg, rgba(5, 7, 13, 0.5) 0%, rgba(5, 7, 13, 0.2) 45%, var(--bg) 100%);
-}
-
-.hero-traffic {
-  position: absolute;
-  inset: 0 0 30%;
   z-index: -1;
-  overflow: hidden;
   pointer-events: none;
+  background:
+    radial-gradient(ellipse 46% 42% at 50% 48%, rgba(5, 7, 13, 0.78), rgba(5, 7, 13, 0.35) 70%, rgba(5, 7, 13, 0) 100%),
+    linear-gradient(180deg, rgba(5, 7, 13, 0) 0%, rgba(5, 7, 13, 0) 75%, var(--bg) 100%);
 }
-
-.ship {
-  position: absolute;
-  left: 0;
-  top: var(--y);
-  width: var(--w);
-  opacity: 0.85;
-  animation: fly var(--dur) linear var(--delay) infinite;
-}
-
-.ship--rev {
-  animation-name: fly-rev;
-}
-
-.ship--rev img {
-  transform: scaleX(-1);
-}
-
-.ship--falcon {
-  opacity: 0.95;
-  animation-iteration-count: 1;
-}
-
-@keyframes fly {
-  from { transform: translateX(-20vw) scale(var(--s)); }
-  to { transform: translateX(120vw) scale(var(--s)); }
-}
-
-@keyframes fly-rev {
-  from { transform: translateX(120vw) scale(var(--s)); }
-  to { transform: translateX(-20vw) scale(var(--s)); }
-}
-
-@keyframes kenburns {
-  from { transform: scale(1.12); }
-  to { transform: scale(1); }
-}
-
 .hero-inner {
   display: flex;
   flex-direction: column;
@@ -284,7 +263,7 @@ a {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   text-shadow: 0 0 28px rgba(255, 232, 31, 0.35), 0 0 80px rgba(255, 232, 31, 0.15);
-  animation: title-in 1.3s var(--ease) both;
+  animation: title-in 1.3s var(--ease) calc(var(--arrive) - 0.3s) both;
 }
 
 .hero-title span {
@@ -325,7 +304,7 @@ a {
     0 0 38px 8px color-mix(in srgb, var(--c) 45%, transparent);
   transform: scaleX(0);
   transform-origin: left;
-  animation: ignite 0.6s var(--ease) 0.6s forwards, hum 2.6s ease-in-out 1.4s infinite;
+  animation: ignite 0.6s var(--ease) calc(var(--arrive) + 0.6s) forwards, hum 2.6s ease-in-out calc(var(--arrive) + 1.4s) infinite;
 }
 
 @keyframes ignite {
@@ -425,12 +404,12 @@ a {
   animation: rise 0.9s var(--ease) both;
 }
 
-.eyebrow.reveal-hero { animation-delay: 0.1s; }
-.hero-role { animation-delay: 0.75s; }
-.hero-meta { animation-delay: 0.85s; }
-.hero-status { animation-delay: 0.95s; }
-.hero-actions { animation-delay: 1.05s; }
-.hero-links { animation-delay: 1.15s; }
+.eyebrow.reveal-hero { animation-delay: calc(var(--arrive) + 0.1s); }
+.hero-role { animation-delay: calc(var(--arrive) + 0.6s); }
+.hero-meta { animation-delay: calc(var(--arrive) + 0.7s); }
+.hero-status { animation-delay: calc(var(--arrive) + 0.8s); }
+.hero-actions { animation-delay: calc(var(--arrive) + 0.9s); }
+.hero-links { animation-delay: calc(var(--arrive) + 1s); }
 
 @keyframes rise {
   from {
@@ -1199,19 +1178,30 @@ main:focus {
   text-transform: uppercase;
 }
 
+/* bandes défilantes : défilement automatique en JavaScript (js/app.js,
+   section 7), flèches, glisser au doigt, molette ou flèches du clavier */
+.marquee-wrap {
+  position: relative;
+}
+
 .marquee {
   margin-inline: calc(-1 * var(--pad));
   padding: 8px var(--pad);
   overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.marquee::-webkit-scrollbar {
+  display: none;
 }
 
 .marquee:focus-visible {
   outline-offset: -4px;
 }
 
-.marquee.is-ready {
+.marquee.is-looping {
   padding-inline: 0;
-  overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
@@ -1221,27 +1211,51 @@ main:focus {
   width: max-content;
 }
 
-.marquee.is-ready .marquee-track {
-  animation: marquee 140s linear infinite;
+.marquee-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: rgba(5, 7, 13, 0.88);
+  color: var(--text);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: border-color 0.25s, color 0.25s, box-shadow 0.25s, scale 0.2s var(--ease);
 }
 
-.marquee--reverse.is-ready .marquee-track {
-  animation-direction: reverse;
-  animation-duration: 150s;
+.marquee-arrow:hover {
+  border-color: var(--c);
+  color: var(--c);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--c) 50%, transparent);
+  scale: 1.08;
 }
 
-.marquee:hover .marquee-track,
-.marquee:focus-within .marquee-track,
-.marquees-paused .marquee-track,
-.is-offscreen .marquee-track,
-.is-offscreen .ship {
-  animation-play-state: paused;
+.marquee-arrow:active {
+  scale: 0.95;
 }
 
-@keyframes marquee {
-  to { transform: translateX(-50%); }
+.marquee-arrow .icon {
+  width: 20px;
+  height: 20px;
 }
 
+.marquee-arrow--prev {
+  left: calc(-1 * var(--pad) + 8px);
+}
+
+.marquee-arrow--prev .icon {
+  transform: rotate(180deg);
+}
+
+.marquee-arrow--next {
+  right: calc(-1 * var(--pad) + 8px);
+}
 .marquee-group {
   display: flex;
   gap: 14px;
@@ -1688,6 +1702,55 @@ main:focus {
   bottom: 16px;
 }
 
+.intro-music-note {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 5;
+  max-width: min(360px, calc(100vw - 220px));
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 232, 31, 0.35);
+  border-radius: 10px;
+  background: rgba(5, 7, 13, 0.8);
+  color: #c5cede;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.intro-music-note[hidden] {
+  display: none;
+}
+
+/* lecteur YouTube de la musique officielle (doit rester visible, 200 px minimum) */
+.intro-player {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
+  width: 200px;
+}
+
+.intro-player[hidden] {
+  display: none;
+}
+
+.intro-player iframe {
+  display: block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(255, 232, 31, 0.35);
+  border-radius: 12px;
+  background: #000;
+}
+
+.intro-player-credit {
+  margin: 6px 0 0;
+  color: #c5cede;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
 .intro-mute[aria-pressed="true"] {
   opacity: 0.6;
 }
@@ -1772,9 +1835,8 @@ main:focus {
   .scroll-progress,
   .skip-link,
   .nav,
-  .hero-bg,
+  .hero-battle,
   .hero::before,
-  .hero-traffic,
   .scroll-hint,
   .saber,
   .eyebrow,

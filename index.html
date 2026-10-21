@@ -45,11 +45,8 @@
   <div id="page">
 
     <header class="hero" id="haut">
-      <picture class="hero-bg">
-        <source media="(max-width: 700px)" srcset="img/coruscant-sm.webp" width="800" height="900">
-        <img src="img/coruscant.webp" alt="" width="1600" height="900" fetchpriority="high">
-      </picture>
-      <div class="hero-traffic" aria-hidden="true"></div>
+      <canvas class="hero-battle" id="battle" aria-hidden="true"></canvas>
+
 
       <div class="hero-inner">
         <p class="eyebrow reveal-hero">Holonet · Dossier n° 42</p>
@@ -107,7 +104,7 @@
           <ul class="stats reveal">
             <li class="stat"><span class="stat-num" data-count="515">515</span><span class="stat-label">score Pix<br>Niveau Indépendant 2</span></li>
             <li class="stat"><span class="stat-num">TB</span><span class="stat-label">mention Très Bien<br>au Brevet (2023)</span></li>
-            <li class="stat"><span class="stat-num" data-count="96" data-prefix="−" data-suffix=" %">−96 %</span><span class="stat-label">de poids d'images<br>sur ce CV optimisé</span></li>
+            <li class="stat"><span class="stat-num" data-count="97" data-prefix="−" data-suffix=" %">−97 %</span><span class="stat-label">de poids d'images<br>sur ce CV optimisé</span></li>
             <li class="stat"><span class="stat-num" data-count="9" data-suffix=" ans">9 ans</span><span class="stat-label">de football en club<br>(esprit d'équipe)</span></li>
           </ul>
         </div>
@@ -208,7 +205,7 @@
             <h3>Ce CV en ligne, version Star Wars</h3>
             <p>Page HTML statique sans framework, publiée avec GitHub Pages et vérifiée avec les validateurs W3C, Outiref et PageSpeed.</p>
             <ul class="checklist">
-              <li>Images passées de 4,2 Mo à 0,16 Mo (WebP et SVG), soit −96 %</li>
+              <li>Images passées de 4,2 Mo à 0,12 Mo (SVG animés, WebP et canvas), soit −97 %</li>
               <li>Navigation complète au clavier, contrastes renforcés</li>
               <li>Animations désactivées si l'utilisateur limite les mouvements</li>
               <li>44 illustrations animées dessinées en SVG et sons synthétisés en JavaScript</li>
@@ -340,7 +337,7 @@
         </div>
 
         <h3 class="marquee-title">20 planètes</h3>
-        <div class="marquee" role="region" aria-label="Planètes de la saga Star Wars" tabindex="0">
+        <div class="marquee" role="region" aria-label="Planètes de la saga Star Wars" data-name="planètes" tabindex="0">
           <div class="marquee-track">
             <ul class="marquee-group">
               <li class="g-card"><img src="img/anime/planet-tatooine.svg" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Tatooine</strong>Planète désertique à deux soleils, berceau de Luke Skywalker.</p></li>
@@ -368,7 +365,7 @@
         </div>
 
         <h3 class="marquee-title">21 personnages</h3>
-        <div class="marquee marquee--reverse" role="region" aria-label="Personnages de la saga Star Wars" tabindex="0">
+        <div class="marquee marquee--reverse" role="region" aria-label="Personnages de la saga Star Wars" data-name="personnages" tabindex="0">
           <div class="marquee-track">
             <ul class="marquee-group">
               <li class="g-card"><img src="img/anime/char-luke.svg" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Luke Skywalker</strong>Garçon de ferme devenu chevalier Jedi.</p></li>
@@ -417,7 +414,7 @@
     <footer class="footer">
       <p>© 2026 Maxime Montcel · <a href="https://github.com/MaximeMontcel">GitHub</a> · <a href="https://www.linkedin.com/in/maxime-montcel-b7a4153b3/">LinkedIn</a></p>
       <p class="footer-quote">« Que la Force soit avec toi, à tout jamais. » – Yoda</p>
-      <p class="footer-credits">Projet scolaire non commercial. Star Wars appartient à Lucasfilm Ltd. Droids, planètes et personnages dessinés et animés en SVG pour ce site. Autres visuels : <a href="https://www.starwars.com/databank">Databank StarWars.com</a> · univers : <a href="https://starwars.fandom.com/fr/">Wookieepedia</a>. Sons générés en Web Audio.</p>
+      <p class="footer-credits">Projet scolaire non commercial. Star Wars appartient à Lucasfilm Ltd. Droids, planètes et personnages dessinés et animés en SVG pour ce site. Autres visuels : <a href="https://www.starwars.com/databank">Databank StarWars.com</a> · univers : <a href="https://starwars.fandom.com/fr/">Wookieepedia</a>. Musique du générique : « Main Title », John Williams, lue depuis YouTube. Effets sonores générés en Web Audio.</p>
     </footer>
 
     <!-- Commandes flottantes -->
@@ -466,6 +463,11 @@
         </div>
       </div>
     </div>
+    <div class="intro-player" id="intro-player" hidden>
+      <div class="intro-player-slot"><div id="intro-player-frame"></div></div>
+      <p class="intro-player-credit">♪ « Main Title » – John Williams et le London Symphony Orchestra, via YouTube</p>
+    </div>
+    <p class="intro-music-note" id="intro-music-note" hidden>Site ouvert en fichier local : YouTube bloque la lecture, la musique officielle sera jouée sur la version en ligne. Musique de remplacement en cours.</p>
     <button type="button" class="intro-btn intro-close" id="intro-close">✕<span class="sr-only">Fermer le générique</span></button>
     <button type="button" class="intro-btn intro-mute" id="intro-mute" aria-pressed="false">Couper la musique</button>
   </div>
