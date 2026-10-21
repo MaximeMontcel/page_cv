@@ -92,8 +92,8 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 | W3C CSS (jigsaw.w3.org) | **CSS valide, 0 erreur** | 36 avertissements d'information seulement (variables CSS non vérifiables, préfixes `-webkit-`) |
 | Outiref (audit SEO) | **4 étoiles** | H1 unique et hiérarchie correcte, URL canonique, liens internes et externes. Remarques : textes alternatifs vides sur les illustrations décoratives (le nom figure déjà sous chaque carte), meta description courte (128 caractères), tiret bas dans l'URL du dépôt. Suite à l'audit : titre allongé à 11 mots, textes alternatifs ajoutés et meta description allongée (corrections n° 26) |
 | Structure des titres (Outiref / plan W3C) | H1 unique, hiérarchie H2 → H4 sans saut | Plan relevé par le W3C : `h1` Maxime Montcel, 8 `h2` (Profil, Mon alternance, Compétences, Projets, Parcours, Mes atouts, La galaxie, Me contacter), `h3` et `h4` imbriqués correctement |
-| PageSpeed mobile | **Performance 93 · Accessibilité 100 · Bonnes pratiques 100 · SEO 100** | FCP 2,5 s · LCP 2,5 s · TBT 0 ms · CLS 0,004 · Speed Index 3,9 s (Moto G Power, 4G lente). [Rapport](https://pagespeed.web.dev/analysis/https-maximemontcel-github-io-page_cv/rekrqs6xhi?form_factor=mobile) |
-| PageSpeed ordinateur | **Performance 98 · Accessibilité 100 · Bonnes pratiques 100 · SEO 100** | [Rapport](https://pagespeed.web.dev/analysis/https-maximemontcel-github-io-page_cv/rekrqs6xhi?form_factor=desktop) |
+| PageSpeed mobile | **Performance 96 · Accessibilité 100 · Bonnes pratiques 100 · SEO 100** | FCP 1,1 s · LCP 1,3 s · TBT 40 ms · CLS 0,004 (Moto G Power, 4G lente), mesuré sur la V13. Avant la police locale : 93, FCP 2,5 s, LCP 2,5 s. [Rapport](https://pagespeed.web.dev/analysis/https-maximemontcel-github-io-page_cv/9ig67kqwkx?form_factor=mobile) |
+| PageSpeed ordinateur | **Performance 100 · Accessibilité 100 · Bonnes pratiques 100 · SEO 100** | FCP 0,2 s · LCP 0,3 s · TBT 0 ms, mesuré sur la V13 (98 avant la police locale). [Rapport](https://pagespeed.web.dev/analysis/https-maximemontcel-github-io-page_cv/9ig67kqwkx?form_factor=desktop) |
 | Contrastes (calcul WCAG) | 6,85:1 au minimum | Texte gris 9,5:1, liens et dates jaunes 15:1, bouton principal 15,6:1 |
 | Responsive | OK à 375 px, 800 px et 1 024 px | Largeur de page égale à la largeur d'écran (pas de défilement horizontal) |
 | Clavier | OK | Lien d'évitement, menu, boutons, Yoda, générique (Tab bloqué dans la fenêtre, Échap pour fermer) |
@@ -143,7 +143,7 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 | 24 | Le bouton « Mettre en pause » des bandes défilantes ne faisait rien | Règle CSS de l'animation plus prioritaire que celle de la pause | Défilement piloté en JavaScript : pause fiable, flèches précédent / suivant, défilement manuel au doigt, à la molette ou au clavier, reprise automatique après 2,5 s | Pause conforme WCAG 2.2.2 et navigation libre |
 | 25 | Accroche du profil trop longue (environ 5 lignes) | Deux paragraphes | Accroche ramenée à 2 phrases, comme le demande la consigne (2–3 lignes) | Lecture recruteur plus rapide |
 | 26 | Outiref : 43 images sans texte alternatif, meta description courte (128 caractères) | Illustrations considérées comme décoratives | Texte alternatif sur les 41 illustrations de la galaxie, meta description allongée à 209 caractères | Meilleure note SEO, images décrites pour les lecteurs d'écran |
-| 27 | PageSpeed : la police Google bloque le rendu (≈ 1,4 s d'économie possible) | Feuille de style chargée depuis fonts.googleapis.com | Police hébergée dans le dépôt (2 × 10 Ko) et préchargée | Affichage plus rapide, plus de dépendance externe |
+| 27 | PageSpeed : la police Google bloque le rendu (≈ 1,4 s d'économie possible) | Feuille de style chargée depuis fonts.googleapis.com | Police hébergée dans le dépôt (2 × 10 Ko) et préchargée | PageSpeed mobile 93 → 96, ordinateur 98 → 100 ; FCP mobile 2,5 s → 1,1 s |
 | 28 | Yoda et le Faucon Millenium encore en photos officielles | Visuels du Databank | Redessinés en SVG comme les autres personnages | 100 % de visuels originaux, −41 Ko |
 | 29 | Dépôt et projet peu « vendeurs » pour un recruteur | Pas d'aperçu ni de preuve de qualité | Capture d'écran en tête du README et scores PageSpeed affichés dans le projet du CV | Qualité démontrée en un coup d'œil |
 
@@ -156,12 +156,12 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 | C3 Responsive | 4 | Grilles mobile d'abord, typographie fluide, testé de 375 px à 1 024 px sans défilement horizontal |
 | C4 UX & accessibilité | 4 | Contrastes ≥ 6,85:1, focus visibles, clavier complet, mouvements réduits respectés, sons désactivés par défaut |
 | C5 SEO | 4 | Title et meta description ciblés, Open Graph, URL canonique, structure claire |
-| C6 Performance | 4 | PageSpeed 93 sur mobile et 98 sur ordinateur (mesuré avant d'héberger la police), TBT 0 ms, CLS 0,004 ; images −98 %, une police locale, `defer`, aucune bibliothèque |
-| C7 Validation | 4 | W3C HTML 0 erreur, CSS valide, titres conformes, PageSpeed 93 à 100 ; journal de 24 corrections V1 → finale |
+| C6 Performance | 4 | PageSpeed 96 sur mobile et 100 sur ordinateur, LCP 1,3 s sur mobile ; images −98 %, une police locale, `defer`, aucune bibliothèque |
+| C7 Validation | 4 | W3C HTML 0 erreur, CSS valide, titres conformes, PageSpeed 96 à 100 ; journal de 24 corrections V1 → finale |
 | C8 Publication | 4 | En ligne sur https://maximemontcel.github.io/page_cv/, testé sur mobile (375 px), plusieurs itérations après publication |
 | C9 Auto-évaluation | 4 | Résultats, causes, corrections et impact mesuré |
 | C10 Confidentialité | 4 | Aucune donnée sensible, message de contact clair via GitHub et LinkedIn |
-| C11 Qualité du dépôt | 3 | Arborescence claire, README utile, commits numérotés V1 → V10 (le dernier, « Modif du README », pourrait être plus précis) |
+| C11 Qualité du dépôt | 3 | Arborescence claire, README utile, commits numérotés V1 → V13 avec messages détaillés |
 
 ---
 
