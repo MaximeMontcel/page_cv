@@ -36,7 +36,7 @@ Alternant en BTS SIO option SISR au Département de la Loire, j'assure le suppor
 Site d'une entreprise fictive de matériel informatique avec un espace d'administration en PHP natif : connexion protégée contre la force brute, formulaire de contact limité (1 message par minute et 5 par heure par IP), envoi d'e-mails SMTP avec PHPMailer, page de maintenance.
 
 **Ce CV en ligne, version Star Wars** – [voir sur GitHub](https://github.com/MaximeMontcel/page_cv)
-Page HTML statique sans framework publiée avec GitHub Pages : images passées de 4,2 Mo à 0,1 Mo (−98 %), 46 illustrations animées en SVG, bataille d'Endor animée en canvas, navigation complète au clavier, animations désactivées si l'utilisateur limite les mouvements.
+Page HTML statique sans framework publiée avec GitHub Pages : images passées de 4,2 Mo à 0,1 Mo (−98 %), 46 illustrations animées en SVG, bataille d'Endor animée en canvas, PageSpeed 100 en accessibilité, bonnes pratiques et SEO, W3C sans erreur, navigation complète au clavier, animations désactivées si l'utilisateur limite les mouvements.
 
 ## Formations
 

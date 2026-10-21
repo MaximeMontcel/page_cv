@@ -1,5 +1,7 @@
 # CV en ligne de Maxime Montcel, version Star Wars
 
+![Aperçu du CV en ligne : bataille d'Endor animée derrière le nom](img/og-image.jpg)
+
 CV web statique (HTML, CSS, JavaScript sans framework) publié avec GitHub Pages. Étudiant en **BTS SIO option SISR**, je suis en **alternance au Département de la Loire**.
 
 - **Site en ligne** : https://maximemontcel.github.io/page_cv/
@@ -143,6 +145,7 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 | 26 | Outiref : 43 images sans texte alternatif, meta description courte (128 caractères) | Illustrations considérées comme décoratives | Texte alternatif sur les 41 illustrations de la galaxie, meta description allongée à 209 caractères | Meilleure note SEO, images décrites pour les lecteurs d'écran |
 | 27 | PageSpeed : la police Google bloque le rendu (≈ 1,4 s d'économie possible) | Feuille de style chargée depuis fonts.googleapis.com | Police hébergée dans le dépôt (2 × 10 Ko) et préchargée | Affichage plus rapide, plus de dépendance externe |
 | 28 | Yoda et le Faucon Millenium encore en photos officielles | Visuels du Databank | Redessinés en SVG comme les autres personnages | 100 % de visuels originaux, −41 Ko |
+| 29 | Dépôt et projet peu « vendeurs » pour un recruteur | Pas d'aperçu ni de preuve de qualité | Capture d'écran en tête du README et scores PageSpeed affichés dans le projet du CV | Qualité démontrée en un coup d'œil |
 
 ### Auto-évaluation selon la grille
 
