@@ -1,65 +1,78 @@
-# Maxime MONTCEL
+# Maxime Montcel
 
-**Technicien système et réseaux - Alternance TS SIO**
+**Futur technicien systèmes et réseaux – Alternant en BTS SIO option SISR au Département de la Loire**
 
-Contrat d'apprentissage - 2 SEM en Entreprise - 2 SEM de Cours
+Contrat d'apprentissage · 2 semaines en entreprise / 2 semaines en cours · Loire (42)
 
-## Coordonnées
+## Contact
 
 - Loire (42), France
-- 07 XX XX XX XX
-- maximemontcel42@gmail.comm
-- [Profil GitHub](https://github.com/MaximeMontcel)
-- [Profil Likedin](https://)
-- Français
+- [Voir mes projets GitHub](https://github.com/MaximeMontcel)
+- [Mon profil LinkedIn](https://www.linkedin.com/in/maxime-montcel-b7a4153b3/)
+
+> Par souci de confidentialité, ni téléphone, ni e-mail, ni adresse postale ne sont publiés.
 
 ## Profil
 
-Bachelier STI2D option SIN obtenu en juin 2026, je suis actuellement étudiant en BTS SIO option SISR (2026 – 2028) et je recherche une alternance. Désireux d'évoluer dans les systèmes et réseaux, j'ai développé des compétences en HTML/CSS, Java, Python et configuration de postes lors de mes projets scolaires. Sérieux et rigoureux, je recherche une entreprise pour mettre en pratique mes connaissances et développer mes compétences techniques.
+Bachelier STI2D option SIN (juin 2026), je prépare un BTS SIO option SISR au CFAI LDA de Saint-Étienne, en alternance au Département de la Loire. J'ai déjà pratiqué la configuration de postes, la programmation (Java, Python) et le développement web (HTML/CSS, PHP) lors de mes projets. Rigoureux, ponctuel et curieux, je mets désormais ces acquis en pratique au sein d'une collectivité, tout en continuant à progresser.
 
-## Compétences techniques
+## Mon alternance
 
-- Programmation Java
-- Programmation Python
-- Utilisation intelligente de l'IA
-- Saisie informatique
-- Développement Web HTML/CSS
+- **Employeur** : Département de la Loire (collectivité territoriale)
+- **Contrat** : apprentissage pendant mon BTS SIO option SISR (2026 – 2028)
+- **Rythme** : 2 semaines en entreprise / 2 semaines en cours au CFAI LDA de Saint-Étienne
+- **Domaine** : systèmes et réseaux, en lien direct avec ma formation SISR
 
-## Qualités professionnelles
+## Compétences
 
-- Sens de l'observation
-- Autonomie dans l'apprentissage
-- Rigueur et précision
-- Fiabilité et ponctualité
-- Travail en équipe
+- **Systèmes et réseaux** : configuration de postes de travail, administration systèmes et réseaux (BTS SISR en cours), serveur web local WAMP (Apache, PHP)
+- **Développement** : Java, Python, HTML5 / CSS3, PHP 8, JavaScript (bases)
+- **Outils et méthodes** : Git, GitHub et GitHub Desktop, publication GitHub Pages, utilisation raisonnée de l'IA, saisie informatique
+- **Qualité web** : accessibilité (clavier, contrastes), SEO de base, performance (PageSpeed), validation W3C
 
-## Expériences professionnelles
+## Projets
 
-**Stage d'observation de 2de** — *06/2024 - 07/2024*
-Police Municipale, Saint-Galmier : Découverte du monde du travail
+**IT Config : site vitrine et panel d'administration** (BTS SIO, 1re année) – [voir sur GitHub](https://github.com/MaximeMontcel/Documentation-et-ToDoList-TP-2-bis)
+Site d'une entreprise fictive de matériel informatique avec un espace d'administration en PHP natif : connexion protégée contre la force brute, formulaire de contact limité (1 message par minute et 5 par heure par IP), envoi d'e-mails SMTP avec PHPMailer, page de maintenance.
 
-**Stage d'observation de 3e** — *11/2022 - 12/2022*
-Pharmacie St-Laurent, Veauche    : Découverte du monde du travail
+**Ce CV en ligne, version Star Wars** – [voir sur GitHub](https://github.com/MaximeMontcel/page_cv)
+Page HTML statique sans framework publiée avec GitHub Pages : images passées de 4,2 Mo à 0,6 Mo (−87 %), navigation complète au clavier, animations désactivées si l'utilisateur limite les mouvements.
 
 ## Formations
 
-**BTS SIO - Option SISR** — CFAI LDA, Saint-Étienne — *Septembre 2026 – Juin 2028 (en cours)*
+**BTS SIO, option SISR** — CFAI LDA, Saint-Étienne — *septembre 2026 – juin 2028 (en cours)*
 
-**Baccalauréat technologique STI2D option SIN** — Lycée François-Mauriac Forez, Andrézieux-Bouthéon — *Obtenu en juin 2026*
+**Baccalauréat technologique STI2D, option SIN** — Lycée François-Mauriac Forez, Andrézieux-Bouthéon — *obtenu en juin 2026*
 
-**Diplôme national du Brevet** — Collège Émile Falabrègue, Saint-Bonnet-Le-Château — *2023, Mention Très Bien*
+**Diplôme national du Brevet** — Collège Émile Falabrègue, Saint-Bonnet-le-Château — *2023, mention Très Bien*
+
+## Expériences
+
+**Stage d'observation de seconde** — Police municipale, Saint-Galmier — *juin – juillet 2024*
+Découverte du monde du travail et de l'organisation d'un service public.
+
+**Stage d'observation de troisième** — Pharmacie Saint-Laurent, Veauche — *novembre – décembre 2022*
+Découverte du monde du travail et de l'accueil du public.
+
+## Qualités
+
+- Rigueur et précision
+- Fiabilité et ponctualité
+- Travail en équipe
+- Sens de l'observation
+- Autonomie dans l'apprentissage
 
 ## Langues
 
-- **Français** — Langue maternelle
-- **Anglais** — Intermédiaire
-- **Espagnol** — Notions
+- **Français** — langue maternelle
+- **Anglais** — intermédiaire
+- **Espagnol** — notions
 
 ## Certificats
 
-- Apprentissage Anticipé de la Conduite *(en cours)*
-- Formation aux premiers secours (PSC 1)
-- Niveau Indépendant 2 sur Pix, score actuel de 515
+- Pix : Niveau Indépendant 2 (score 515)
+- Prévention et secours civiques de niveau 1 (PSC 1)
+- Apprentissage anticipé de la conduite (en cours)
 
 ## Centres d'intérêt
 

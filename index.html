@@ -1,356 +1,465 @@
-﻿<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maxime MONTCEL – CV Technicien Systèmes et Réseaux</title>
-  <meta name="description" content="CV en ligne de Maxime MONTCEL, étudiant en BTS SIO SISR et bachelier STI2D. Compétences en Java, Python, HTML/CSS et administration. Recherche d'alternance en systèmes et réseaux.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maxime Montcel – CV BTS SIO SISR en alternance</title>
+  <meta name="description" content="CV de Maxime Montcel, étudiant en BTS SIO SISR à Saint-Étienne, en alternance au Département de la Loire en systèmes et réseaux.">
+  <meta name="author" content="Maxime Montcel">
+  <meta name="theme-color" content="#05070d">
+  <link rel="canonical" href="https://maximemontcel.github.io/page_cv/">
+  <meta property="og:type" content="profile">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Maxime Montcel – CV BTS SIO SISR en alternance">
+  <meta property="og:description" content="Étudiant en BTS SIO SISR, en alternance au Département de la Loire en systèmes et réseaux.">
+  <meta property="og:url" content="https://maximemontcel.github.io/page_cv/">
+  <meta property="og:image" content="https://maximemontcel.github.io/page_cv/img/og-image.jpg">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&amp;display=swap">
   <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.className = "js";</script>
   <script src="js/app.js" defer></script>
 </head>
 <body>
 
-  <div id="coruscant" aria-hidden="true">
-    <div class="nebula nebula--blue"></div>
-    <div class="nebula nebula--violet"></div>
-    <div class="nebula nebula--gold"></div>
-  </div>
+  <!-- Sprite d'icônes SVG (réutilisées avec <use>) -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.6-2.67-.31-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path fill="currentColor" d="M6 4h4v16H6zM14 4h4v16h-4z"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="m6 14 6-6 6 6"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m16 9 6 6m0-6-6 6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+  <canvas id="starfield" aria-hidden="true"></canvas>
   <div class="scroll-progress" aria-hidden="true"></div>
 
-  <header class="hero" role="banner">
-    <p class="hero-eyebrow">Archive galactique · Dossier personnel</p>
-    <h1>Maxime MONTCEL</h1>
-    <img class="hero-saber" src="img/saber.png" alt="" aria-hidden="true">
-    <p class="subtitle">Technicien Système et Réseaux – Alternance TS SIO</p>
-    <p class="location">Loire (42), France</p>
-    <div class="hero-contact">
-      <a href="https://github.com/MaximeMontcel" aria-label="Profil GitHub de Maxime MONTCEL">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-        Me contacter sur GitHub
-      </a>
-    </div>
-    <button type="button" class="btn-intro" id="btn-intro">
-      <span aria-hidden="true">▶</span> Lire le générique Star&nbsp;Wars
-    </button>
-  </header>
+  <div id="page">
 
-  <nav class="nav" aria-label="Navigation principale">
-    <ul>
-      <li><a href="#profil">Profil</a></li>
-      <li><a href="#droids">Droids</a></li>
-      <li><a href="#competences">Compétences</a></li>
-      <li><a href="#qualites">Qualités</a></li>
-      <li><a href="#experiences">Expériences</a></li>
-      <li><a href="#formations">Formations</a></li>
-      <li><a href="#langues">Langues</a></li>
-      <li><a href="#certificats">Certificats</a></li>
-      <li><a href="#interets">Centres d'intérêt</a></li>
-      <li><a href="#planetes">Galaxie</a></li>
-    </ul>
-  </nav>
+    <header class="hero" id="haut">
+      <picture class="hero-bg">
+        <source media="(max-width: 700px)" srcset="img/coruscant-sm.webp" width="800" height="900">
+        <img src="img/coruscant.webp" alt="" width="1600" height="900" fetchpriority="high">
+      </picture>
+      <div class="hero-traffic" aria-hidden="true"></div>
 
-  <main>
+      <div class="hero-inner">
+        <p class="eyebrow reveal-hero">Holonet · Dossier n° 42</p>
+        <h1 class="hero-title"><span>Maxime</span> <span>Montcel</span></h1>
+        <div class="saber saber--hero" aria-hidden="true">
+          <img class="saber-hilt" src="img/saber-hilt.webp" alt="" width="156" height="96">
+          <span class="saber-blade"></span>
+        </div>
+        <p class="hero-role reveal-hero">Futur technicien systèmes &amp; réseaux</p>
+        <p class="hero-meta reveal-hero">BTS SIO option SISR · CFAI LDA · Loire (42)</p>
+        <p class="hero-status reveal-hero"><span class="status-dot" aria-hidden="true"></span>Alternant au Département de la Loire</p>
 
-    <section id="profil" class="about">
-      <p class="section-code">Dossier 01 · Profil</p>
-      <h2 class="saber-title saber-blue"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Profil</span></h2>
-      <p>Bachelier STI2D option SIN obtenu en juin 2026, je suis actuellement étudiant en BTS SIO option SISR (2026 – 2028) et je recherche une alternance. Désireux d'évoluer dans les systèmes et réseaux, j'ai développé des compétences en HTML/CSS, Java, Python et configuration de postes lors de mes projets scolaires. Sérieux et rigoureux, je recherche une entreprise pour mettre en pratique mes connaissances et développer mes compétences techniques.</p>
-    </section>
-
-    <section id="droids">
-      <p class="section-code">Dossier 02 · L'équipage de droids</p>
-      <h2 class="saber-title saber-blue"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">L'équipage de droids</span></h2>
-      <div class="droids-grid">
-
-        <article class="droid-card" data-droid="r2">
-          <img class="droid-photo" src="img/droid-r2d2.jpg" alt="R2-D2" width="1280" height="536" loading="lazy">
-          <h3>R2-D2</h3>
-          <p class="droid-role">Astromech de terrain</p>
-          <p class="droid-desc">Fiable sous pression, il répare le système quand tout s'effondre. <strong>Rigueur, fiabilité, gestion des pannes.</strong></p>
-        </article>
-
-        <article class="droid-card" data-droid="c3po">
-          <img class="droid-photo" src="img/droid-c3po.jpg" alt="C-3PO" width="1280" height="536" loading="lazy">
-          <h3>C-3PO</h3>
-          <p class="droid-role">Maître du protocole</p>
-          <p class="droid-desc">Il parle six millions de langages… et sait toujours se présenter. <strong>Communication, travail en équipe, ponctualité.</strong></p>
-        </article>
-
-        <article class="droid-card" data-droid="bb8">
-          <img class="droid-photo" src="img/droid-bb8.jpg" alt="BB-8" width="1280" height="536" loading="lazy">
-          <h3>BB-8</h3>
-          <p class="droid-role">Explorateur curieux</p>
-          <p class="droid-desc">Petit, rapide, jamais fatigué : il explore chaque nouveau terrain. <strong>Autonomie, apprentissage, curiosité.</strong></p>
-        </article>
-
+        <div class="hero-actions reveal-hero">
+          <a class="btn btn--primary" href="cv-maxime-montcel.pdf" download>
+            <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Télécharger mon CV (PDF)
+          </a>
+          <button type="button" class="btn btn--ghost" id="btn-intro">
+            <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>Lancer le générique
+          </button>
+        </div>
+        <ul class="hero-links reveal-hero">
+          <li><a class="chip-link" href="https://github.com/MaximeMontcel"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>Voir mes projets GitHub</a></li>
+          <li><a class="chip-link" href="https://www.linkedin.com/in/maxime-montcel-b7a4153b3/"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>Mon profil LinkedIn</a></li>
+        </ul>
       </div>
-    </section>
 
-    <section id="competences">
-      <p class="section-code">Dossier 03 · Compétences techniques</p>
-      <h2 class="saber-title saber-green"><img class="saber-img" src="img/saber-green.png" alt="" aria-hidden="true"><span class="saber-label">Compétences techniques</span></h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3>Programmation</h3>
-          <ul>
-            <li>Java</li>
-            <li>Python</li>
-            <li>HTML/CSS</li>
+      <a class="scroll-hint" href="#profil"><span class="sr-only">Descendre vers le profil</span><span class="scroll-hint-line" aria-hidden="true"></span></a>
+    </header>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <ul class="nav-list">
+        <li><a href="#profil">Profil</a></li>
+        <li><a href="#alternance">Alternance</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#parcours">Parcours</a></li>
+        <li><a href="#atouts">Atouts</a></li>
+        <li><a href="#galaxie">Galaxie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <span class="nav-indicator" aria-hidden="true"></span>
+    </nav>
+
+    <main id="contenu" tabindex="-1">
+
+      <!-- 01 · PROFIL -->
+      <section id="profil" class="section" data-color="blue" aria-labelledby="t-profil">
+        <p class="kicker">Dossier 01</p>
+        <h2 id="t-profil" class="saber-title">Profil</h2>
+        <div class="profil-grid">
+          <div class="profil-text reveal">
+            <p class="lead">Bachelier STI2D option SIN (juin 2026), je prépare un <strong>BTS SIO option SISR</strong> au CFAI LDA de Saint-Étienne, en <strong>alternance au Département de la Loire</strong>.</p>
+            <p>J'ai déjà pratiqué la configuration de postes, la programmation (Java, Python) et le développement web (HTML/CSS, PHP) lors de mes projets. Rigoureux, ponctuel et curieux, je mets désormais ces acquis en pratique au sein d'une collectivité, tout en continuant à progresser.</p>
+          </div>
+          <ul class="stats reveal">
+            <li class="stat"><span class="stat-num" data-count="515">515</span><span class="stat-label">score Pix<br>Niveau Indépendant 2</span></li>
+            <li class="stat"><span class="stat-num">TB</span><span class="stat-label">mention Très Bien<br>au Brevet (2023)</span></li>
+            <li class="stat"><span class="stat-num" data-count="87" data-prefix="−" data-suffix=" %">−87 %</span><span class="stat-label">de poids d'images<br>sur ce CV optimisé</span></li>
+            <li class="stat"><span class="stat-num" data-count="9" data-suffix=" ans">9 ans</span><span class="stat-label">de football en club<br>(esprit d'équipe)</span></li>
           </ul>
         </div>
-        <div class="skill-card">
-          <h3>Outils &amp; Méthodes</h3>
-          <ul>
-            <li>Utilisation intelligente de l'IA</li>
-            <li>Saisie informatique</li>
-          </ul>
+      </section>
+
+      <!-- 02 · ALTERNANCE -->
+      <section id="alternance" class="section" data-color="green" aria-labelledby="t-alternance">
+        <p class="kicker">Dossier 02</p>
+        <h2 id="t-alternance" class="saber-title">Mon alternance</h2>
+        <ul class="mission-grid">
+          <li class="card mission reveal">
+            <h3>Employeur</h3>
+            <p><strong>Département de la Loire</strong>, collectivité territoriale.</p>
+          </li>
+          <li class="card mission reveal">
+            <h3>Contrat</h3>
+            <p>Apprentissage pendant mon <strong>BTS SIO option SISR</strong> (2026 – 2028).</p>
+          </li>
+          <li class="card mission reveal">
+            <h3>Rythme</h3>
+            <p><strong>2 semaines en entreprise / 2 semaines en cours</strong> au CFAI LDA de Saint-Étienne.</p>
+          </li>
+          <li class="card mission reveal">
+            <h3>Domaine</h3>
+            <p>Systèmes et réseaux, en lien direct avec ma formation SISR.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 03 · COMPÉTENCES -->
+      <section id="competences" class="section" data-color="cyan" aria-labelledby="t-competences">
+        <p class="kicker">Dossier 03</p>
+        <h2 id="t-competences" class="saber-title">Compétences</h2>
+        <div class="skills-grid">
+          <article class="card skill reveal">
+            <h3>Systèmes &amp; réseaux</h3>
+            <ul class="tags">
+              <li>Configuration de postes de travail</li>
+              <li>Administration systèmes et réseaux (BTS SISR en cours)</li>
+              <li>Serveur web local WAMP (Apache, PHP)</li>
+            </ul>
+          </article>
+          <article class="card skill reveal">
+            <h3>Développement</h3>
+            <ul class="tags">
+              <li>Java</li>
+              <li>Python</li>
+              <li>HTML5 / CSS3</li>
+              <li>PHP 8</li>
+              <li>JavaScript (bases)</li>
+            </ul>
+          </article>
+          <article class="card skill reveal">
+            <h3>Outils &amp; méthodes</h3>
+            <ul class="tags">
+              <li>Git, GitHub et GitHub Desktop</li>
+              <li>Publication GitHub Pages</li>
+              <li>Utilisation raisonnée de l'IA</li>
+              <li>Saisie informatique</li>
+            </ul>
+          </article>
+          <article class="card skill reveal">
+            <h3>Qualité web</h3>
+            <ul class="tags">
+              <li>Accessibilité (clavier, contrastes)</li>
+              <li>SEO de base</li>
+              <li>Performance (PageSpeed)</li>
+              <li>Validation W3C</li>
+            </ul>
+          </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="qualites">
-      <p class="section-code">Dossier 04 · Qualités professionnelles</p>
-      <h2 class="saber-title saber-yellow"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Qualités professionnelles</span></h2>
-      <ul class="tag-list">
-        <li>Sens de l'observation</li>
-        <li>Autonomie dans l'apprentissage</li>
-        <li>Rigueur et précision</li>
-        <li>Fiabilité et ponctualité</li>
-        <li>Travail en équipe</li>
-      </ul>
-    </section>
-
-    <section id="experiences">
-      <p class="section-code">Dossier 05 · Expériences professionnelles</p>
-      <h2 class="saber-title saber-red"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Expériences professionnelles</span></h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <h3>Stage d'observation de 2de</h3>
-          <p class="org">Police Municipale, Saint-Galmier</p>
-          <p class="date">06/2024 – 07/2024</p>
-          <p>Découverte du monde du travail</p>
+      <!-- 04 · PROJETS -->
+      <section id="projets" class="section" data-color="purple" aria-labelledby="t-projets">
+        <p class="kicker">Dossier 04</p>
+        <h2 id="t-projets" class="saber-title">Projets</h2>
+        <div class="projects-grid">
+          <article class="card project reveal">
+            <p class="project-tag">BTS SIO · 1<sup>re</sup> année</p>
+            <h3>IT Config : site vitrine et panel d'administration</h3>
+            <p>Site d'une entreprise fictive de matériel informatique, avec un espace d'administration privé codé en PHP natif.</p>
+            <ul class="checklist">
+              <li>Connexion protégée contre les attaques par force brute</li>
+              <li>Formulaire de contact limité à 1 message par minute et 5 par heure par IP</li>
+              <li>Envoi d'e-mails SMTP (PHPMailer) et réinitialisation du mot de passe par code</li>
+              <li>Page de maintenance : diagnostic du serveur et journal des connexions</li>
+            </ul>
+            <ul class="stack" aria-label="Technologies">
+              <li>PHP 8</li><li>HTML/CSS</li><li>JavaScript</li><li>Apache (WAMP)</li>
+            </ul>
+            <a class="link-arrow" href="https://github.com/MaximeMontcel/Documentation-et-ToDoList-TP-2-bis">Voir le projet IT Config sur GitHub<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="card project reveal">
+            <p class="project-tag">BTS SIO · Projet web</p>
+            <h3>Ce CV en ligne, version Star Wars</h3>
+            <p>Page HTML statique sans framework, publiée avec GitHub Pages et vérifiée avec les validateurs W3C, Outiref et PageSpeed.</p>
+            <ul class="checklist">
+              <li>Images passées de 4,2 Mo à 0,6 Mo (WebP), soit −87 %</li>
+              <li>Navigation complète au clavier, contrastes renforcés</li>
+              <li>Animations désactivées si l'utilisateur limite les mouvements</li>
+              <li>Effets sonores synthétisés en JavaScript, sans fichier audio</li>
+            </ul>
+            <ul class="stack" aria-label="Technologies">
+              <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>GitHub Pages</li>
+            </ul>
+            <a class="link-arrow" href="https://github.com/MaximeMontcel/page_cv">Voir le code de ce CV sur GitHub<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
         </div>
-        <div class="timeline-item">
-          <h3>Stage d'observation de 3e</h3>
-          <p class="org">Pharmacie St-Laurent, Veauche</p>
-          <p class="date">11/2022 – 12/2022</p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="formations">
-      <p class="section-code">Dossier 06 · Formations</p>
-      <h2 class="saber-title saber-purple"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Formations</span></h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <h3>BTS SIO – Option SISR</h3>
-          <p class="org">CFAI LDA, Saint-Étienne</p>
-          <p class="date">Septembre 2026 – Juin 2028 (en cours)</p>
-        </div>
-        <div class="timeline-item">
-          <h3>Baccalauréat technologique STI2D option SIN</h3>
-          <p class="org">Lycée François-Mauriac Forez, Andrézieux-Bouthéon</p>
-          <p class="date">Obtenu en juin 2026</p>
-        </div>
-        <div class="timeline-item">
-          <h3>Diplôme national du Brevet</h3>
-          <p class="org">Collège Émile Falabrègue, Saint-Bonnet-Le-Château</p>
-          <p class="date">2023 – Mention Très Bien</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="langues">
-      <p class="section-code">Dossier 07 · Langues</p>
-      <h2 class="saber-title saber-orange"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Langues</span></h2>
-      <ul class="tag-list">
-        <li>Français – Langue maternelle</li>
-        <li>Anglais – Intermédiaire</li>
-        <li>Espagnol – Notions</li>
-      </ul>
-    </section>
-
-    <section id="certificats">
-      <p class="section-code">Dossier 08 · Certificats</p>
-      <h2 class="saber-title saber-cyan"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Certificats</span></h2>
-      <ul class="tag-list">
-        <li>Apprentissage Anticipé de la Conduite (en cours)</li>
-        <li>Formation aux premiers secours (PSC 1)</li>
-        <li>Niveau Indépendant 2 sur Pix – score 515</li>
-      </ul>
-    </section>
-
-    <section id="interets">
-      <p class="section-code">Dossier 09 · Centres d'intérêt</p>
-      <h2 class="saber-title saber-magenta"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Centres d'intérêt</span></h2>
-      <ul class="tag-list">
-        <li>Football en club depuis 9 ans</li>
-        <li>Cinéma</li>
-        <li>Jeux vidéo</li>
-      </ul>
-    </section>
-
-    <section id="planetes">
-      <p class="section-code">Dossier 10 · Les 20 planètes les plus importantes</p>
-      <h2 class="saber-title saber-cyan"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Les planètes de la galaxie</span></h2>
-      <div class="marquee marquee--planets" tabindex="0" aria-label="Défilement : les vingt planètes les plus importantes de l'univers Star Wars">
-        <div class="marquee-track">
-          <div class="marquee-group">
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-tatooine.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Tatooine</strong><span class="chip-desc">Planète désert à deux soleils, berceau de Luke Skywalker.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-coruscant.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Coruscant</strong><span class="chip-desc">Océan de métropoles, capitale de la République puis de l'Empire.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-naboo.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Naboo</strong><span class="chip-desc">Plaines verdoyantes et grottes de Gunga, planète de Padmé Amidala.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-hoth.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Hoth</strong><span class="chip-desc">Monde gelé et isolé, base rebelle d'Echo.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-dagobah.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dagobah</strong><span class="chip-desc">Marais brumeux et pleins de vie, ermitage de Yoda.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-endor.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Endor</strong><span class="chip-desc">Lune forestière des Ewoks, dernière bataille de l'Empire.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-kashyyyk.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Kashyyyk</strong><span class="chip-desc">Monde-forêt des Wookiees, arbres cathédrales gigantesques.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-mustafar.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Mustafar</strong><span class="chip-desc">Planète de laves, forteresse personnelle de Dark Vador.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-alderaan.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Alderaan</strong><span class="chip-desc">Monde pacifique de la princesse Leia, détruit par l'Étoile de la Mort.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-mandalore.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Mandalore</strong><span class="chip-desc">Planète guerrière des Mandaloriens et de leur armure en beskar.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-geonosis.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Geonosis</strong><span class="chip-desc">Monde caverneux où fut forgée l'armée Séparatiste.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-kamino.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Kamino</strong><span class="chip-desc">Planète océanique, berceau de l'armée de clones.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-utapau.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Utapau</strong><span class="chip-desc">Mesas creusées de cités-arches, dernière retraite de Grievous.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-bespin.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Bespin</strong><span class="chip-desc">Géante gazeuse surmontée de la Cité des Nuages.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-ilum.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Ilum</strong><span class="chip-desc">Planète glaciaire des cristaux de kyber, sanctuaire Jedi.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-ahch-to.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Ahch-To</strong><span class="chip-desc">Îles perdues du premier temple, ermitage de Luke.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-scarif.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Scarif</strong><span class="chip-desc">Paradis tropical protégé par un bouclier planétaire.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-jakku.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Jakku</strong><span class="chip-desc">Déserts de la Frontière, charnier de la bataille finale.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-crait.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Crait</strong><span class="chip-desc">Plaines de sel aux veines rouges, débâcle de la Résistance.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-corellia.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Corellia</strong><span class="chip-desc">Chantiers navals réputés, patrie de Han Solo.</span></span></span>
+      <!-- 05 · PARCOURS -->
+      <section id="parcours" class="section" data-color="yellow" aria-labelledby="t-parcours">
+        <p class="kicker">Dossier 05</p>
+        <h2 id="t-parcours" class="saber-title">Parcours</h2>
+        <div class="parcours-grid">
+          <div>
+            <h3 class="col-title">Formations</h3>
+            <ol class="timeline">
+              <li class="timeline-item reveal">
+                <h4>BTS SIO, option SISR</h4>
+                <p class="org">CFAI LDA, Saint-Étienne</p>
+                <p class="date">Septembre 2026 – juin 2028 · en cours</p>
+              </li>
+              <li class="timeline-item reveal">
+                <h4>Baccalauréat technologique STI2D, option SIN</h4>
+                <p class="org">Lycée François-Mauriac Forez, Andrézieux-Bouthéon</p>
+                <p class="date">Obtenu en juin 2026</p>
+              </li>
+              <li class="timeline-item reveal">
+                <h4>Diplôme national du Brevet</h4>
+                <p class="org">Collège Émile Falabrègue, Saint-Bonnet-le-Château</p>
+                <p class="date">2023 · mention Très Bien</p>
+              </li>
+            </ol>
           </div>
-          <div class="marquee-group" aria-hidden="true">
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-tatooine.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Tatooine</strong><span class="chip-desc">Planète désert à deux soleils, berceau de Luke Skywalker.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-coruscant.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Coruscant</strong><span class="chip-desc">Océan de métropoles, capitale de la République puis de l'Empire.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-naboo.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Naboo</strong><span class="chip-desc">Plaines verdoyantes et grottes de Gunga, planète de Padmé Amidala.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-hoth.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Hoth</strong><span class="chip-desc">Monde gelé et isolé, base rebelle d'Echo.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-dagobah.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dagobah</strong><span class="chip-desc">Marais brumeux et pleins de vie, ermitage de Yoda.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-endor.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Endor</strong><span class="chip-desc">Lune forestière des Ewoks, dernière bataille de l'Empire.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-kashyyyk.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Kashyyyk</strong><span class="chip-desc">Monde-forêt des Wookiees, arbres cathédrales gigantesques.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-mustafar.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Mustafar</strong><span class="chip-desc">Planète de laves, forteresse personnelle de Dark Vador.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-alderaan.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Alderaan</strong><span class="chip-desc">Monde pacifique de la princesse Leia, détruit par l'Étoile de la Mort.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-mandalore.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Mandalore</strong><span class="chip-desc">Planète guerrière des Mandaloriens et de leur armure en beskar.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-geonosis.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Geonosis</strong><span class="chip-desc">Monde caverneux où fut forgée l'armée Séparatiste.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-kamino.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Kamino</strong><span class="chip-desc">Planète océanique, berceau de l'armée de clones.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-utapau.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Utapau</strong><span class="chip-desc">Mesas creusées de cités-arches, dernière retraite de Grievous.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-bespin.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Bespin</strong><span class="chip-desc">Géante gazeuse surmontée de la Cité des Nuages.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-ilum.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Ilum</strong><span class="chip-desc">Planète glaciaire des cristaux de kyber, sanctuaire Jedi.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-ahch-to.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Ahch-To</strong><span class="chip-desc">Îles perdues du premier temple, ermitage de Luke.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-scarif.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Scarif</strong><span class="chip-desc">Paradis tropical protégé par un bouclier planétaire.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-jakku.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Jakku</strong><span class="chip-desc">Déserts de la Frontière, charnier de la bataille finale.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-crait.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Crait</strong><span class="chip-desc">Plaines de sel aux veines rouges, débâcle de la Résistance.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/planet-corellia.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Corellia</strong><span class="chip-desc">Chantiers navals réputés, patrie de Han Solo.</span></span></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="personnages">
-      <p class="section-code">Dossier 11 · Les 21 personnages les plus importants</p>
-      <h2 class="saber-title saber-orange"><img class="saber-img" src="img/saber.png" alt="" aria-hidden="true"><span class="saber-label">Les personnages de la galaxie</span></h2>
-      <div class="marquee marquee--chars" tabindex="0" aria-label="Défilement : les vingt et un personnages les plus importants de l'univers Star Wars">
-        <div class="marquee-track">
-          <div class="marquee-group">
-            <span class="marquee-chip"><img class="chip-img" src="img/char-luke.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Luke Skywalker</strong><span class="chip-desc">Farm boy devenu Jedi, héros de la trilogie originale.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-leia.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Leia Organa</strong><span class="chip-desc">Princesse d'Alderaan, générale de l'Alliance rebelle.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-anakin.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Anakin Skywalker</strong><span class="chip-desc">Le Chosen One, Jedi tombé sous l'emprise de l'Empereur.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-vader.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dark Vador</strong><span class="chip-desc">Seigneur Sith en armure noire, poing de l'Empire.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-han.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Han Solo</strong><span class="chip-desc">Contremandier légendaire, capitaine du Faucon Millenium.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-chewbacca.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Chewbacca</strong><span class="chip-desc">Wookiee loyal, co-pilote et meilleur ami de Han Solo.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-obiwan.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Obi-Wan Kenobi</strong><span class="chip-desc">Maître Jedi, mentor d'Anakin puis de Luke.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-yoda.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Yoda</strong><span class="chip-desc">Grand Maître Jedi, près de 900 ans de sagesse.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-palpatine.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dark Sidious</strong><span class="chip-desc">Empereur Palpatine, maître Sith manipulateur.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-maul.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dark Maul</strong><span class="chip-desc">Sith à la lame double, apprenti de Sidious.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-grogu.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Grogu</strong><span class="chip-desc">Jeune padawan disparu, protégé par Din Djarin.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-rey.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Rey</strong><span class="chip-desc">Force sensible au destin inattendu, dernière Jedi.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-kylo.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Kylo Ren</strong><span class="chip-desc">Chevalier de Ren, héritier tourmenté de la lignée Skywalker.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-finn.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Finn</strong><span class="chip-desc">Stormtrooper repenti, héros de la Résistance.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-ahsoka.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Ahsoka Tano</strong><span class="chip-desc">Ancienne padawan d'Anakin, devenue esprit libre.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-din.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Din Djarin</strong><span class="chip-desc">Le Mandalorien, chasseur de primes au cœur d'or.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-boba.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Boba Fett</strong><span class="chip-desc">Chasseur de primes en armure mandalorienne.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-lando.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Lando Calrissian</strong><span class="chip-desc">Ancien capitaine du Faucon, baron de la Cité des Nuages.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-jyn.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Jyn Erso</strong><span class="chip-desc">Agente rebelle, à l'origine du vol des plans de l'Étoile de la Mort.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-padme.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Padmé Amidala</strong><span class="chip-desc">Reine puis sénatrice de Naboo, mère de Luke et Leia.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-dooku.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Comte Dooku</strong><span class="chip-desc">Seigneur Sith et chef des Séparatistes.</span></span></span>
-          </div>
-          <div class="marquee-group" aria-hidden="true">
-            <span class="marquee-chip"><img class="chip-img" src="img/char-luke.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Luke Skywalker</strong><span class="chip-desc">Farm boy devenu Jedi, héros de la trilogie originale.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-leia.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Leia Organa</strong><span class="chip-desc">Princesse d'Alderaan, générale de l'Alliance rebelle.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-anakin.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Anakin Skywalker</strong><span class="chip-desc">Le Chosen One, Jedi tombé sous l'emprise de l'Empereur.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-vader.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dark Vador</strong><span class="chip-desc">Seigneur Sith en armure noire, poing de l'Empire.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-han.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Han Solo</strong><span class="chip-desc">Contremandier légendaire, capitaine du Faucon Millenium.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-chewbacca.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Chewbacca</strong><span class="chip-desc">Wookiee loyal, co-pilote et meilleur ami de Han Solo.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-obiwan.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Obi-Wan Kenobi</strong><span class="chip-desc">Maître Jedi, mentor d'Anakin puis de Luke.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-yoda.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Yoda</strong><span class="chip-desc">Grand Maître Jedi, près de 900 ans de sagesse.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-palpatine.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dark Sidious</strong><span class="chip-desc">Empereur Palpatine, maître Sith manipulateur.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-maul.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Dark Maul</strong><span class="chip-desc">Sith à la lame double, apprenti de Sidious.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-grogu.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Grogu</strong><span class="chip-desc">Jeune padawan disparu, protégé par Din Djarin.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-rey.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Rey</strong><span class="chip-desc">Force sensible au destin inattendu, dernière Jedi.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-kylo.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Kylo Ren</strong><span class="chip-desc">Chevalier de Ren, héritier tourmenté de la lignée Skywalker.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-finn.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Finn</strong><span class="chip-desc">Stormtrooper repenti, héros de la Résistance.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-ahsoka.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Ahsoka Tano</strong><span class="chip-desc">Ancienne padawan d'Anakin, devenue esprit libre.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-din.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Din Djarin</strong><span class="chip-desc">Le Mandalorien, chasseur de primes au cœur d'or.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-boba.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Boba Fett</strong><span class="chip-desc">Chasseur de primes en armure mandalorienne.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-lando.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Lando Calrissian</strong><span class="chip-desc">Ancien capitaine du Faucon, baron de la Cité des Nuages.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-jyn.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Jyn Erso</strong><span class="chip-desc">Agente rebelle, à l'origine du vol des plans de l'Étoile de la Mort.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-padme.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Padmé Amidala</strong><span class="chip-desc">Reine puis sénatrice de Naboo, mère de Luke et Leia.</span></span></span>
-            <span class="marquee-chip"><img class="chip-img" src="img/char-dooku.jpg" alt="" width="360" height="150" loading="lazy"><span class="chip-body"><strong>Comte Dooku</strong><span class="chip-desc">Seigneur Sith et chef des Séparatistes.</span></span></span>
+          <div>
+            <h3 class="col-title">Expériences</h3>
+            <ol class="timeline">
+              <li class="timeline-item reveal">
+                <h4>Stage d'observation de seconde</h4>
+                <p class="org">Police municipale, Saint-Galmier</p>
+                <p class="date">Juin – juillet 2024</p>
+                <p>Découverte du monde du travail et de l'organisation d'un service public.</p>
+              </li>
+              <li class="timeline-item reveal">
+                <h4>Stage d'observation de troisième</h4>
+                <p class="org">Pharmacie Saint-Laurent, Veauche</p>
+                <p class="date">Novembre – décembre 2022</p>
+                <p>Découverte du monde du travail et de l'accueil du public.</p>
+              </li>
+            </ol>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </main>
+      <!-- 06 · ATOUTS -->
+      <section id="atouts" class="section" data-color="orange" aria-labelledby="t-atouts">
+        <p class="kicker">Dossier 06</p>
+        <h2 id="t-atouts" class="saber-title">Mes atouts : l'équipage de droids</h2>
+        <div class="droids-grid">
+          <article class="card droid reveal" data-droid="r2">
+            <img class="droid-photo" src="img/droid-r2d2.webp" alt="Le droïde R2-D2" width="720" height="405" loading="lazy" decoding="async">
+            <h3>R2-D2</h3>
+            <p class="droid-role">Astromech de terrain</p>
+            <p>Fiable sous pression, il répare le système quand tout s'effondre.</p>
+            <ul class="tags tags--small"><li>Rigueur et précision</li><li>Fiabilité</li></ul>
+          </article>
+          <article class="card droid reveal" data-droid="c3po">
+            <img class="droid-photo" src="img/droid-c3po.webp" alt="Le droïde C-3PO" width="720" height="405" loading="lazy" decoding="async">
+            <h3>C-3PO</h3>
+            <p class="droid-role">Maître du protocole</p>
+            <p>Il parle six millions de langages… et sait toujours se présenter à l'heure.</p>
+            <ul class="tags tags--small"><li>Travail en équipe</li><li>Ponctualité</li></ul>
+          </article>
+          <article class="card droid reveal" data-droid="bb8">
+            <img class="droid-photo" src="img/droid-bb8.webp" alt="Le droïde BB-8" width="720" height="405" loading="lazy" decoding="async">
+            <h3>BB-8</h3>
+            <p class="droid-role">Explorateur curieux</p>
+            <p>Petit, rapide, jamais fatigué : il observe et explore chaque nouveau terrain.</p>
+            <ul class="tags tags--small"><li>Sens de l'observation</li><li>Autonomie dans l'apprentissage</li></ul>
+          </article>
+        </div>
 
-  <footer>
-    <p>&copy; 2026 Maxime MONTCEL – <a href="https://github.com/MaximeMontcel">Profil GitHub</a></p>
-    <p class="footer-note">Que la Force du code soit avec toi… mais pour l'alternance : rejoins la bonne équipe ✦</p>
-    <p class="footer-credits">Visuels : <a href="https://www.starwars.com/databank">Databank StarWars.com</a> · Univers : <a href="https://starwars.fandom.com/">Wookieepedia</a> · Effets sonores synthétisés en Web Audio</p>
-  </footer>
+        <div class="infos-grid">
+          <article class="card info reveal">
+            <h3>Langues</h3>
+            <ul class="lang-list">
+              <li><span>Français</span><span class="level">Langue maternelle</span></li>
+              <li><span>Anglais</span><span class="level">Intermédiaire</span></li>
+              <li><span>Espagnol</span><span class="level">Notions</span></li>
+            </ul>
+          </article>
+          <article class="card info reveal">
+            <h3>Certificats</h3>
+            <ul class="dot-list">
+              <li>Pix : Niveau Indépendant 2 (score 515)</li>
+              <li>Prévention et secours civiques (PSC 1)</li>
+              <li>Apprentissage anticipé de la conduite (en cours)</li>
+            </ul>
+          </article>
+          <article class="card info reveal">
+            <h3>Centres d'intérêt</h3>
+            <ul class="dot-list">
+              <li>Football en club depuis 9 ans</li>
+              <li>Cinéma (saga Star Wars en tête)</li>
+              <li>Jeux vidéo</li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
-  <button type="button" class="sound-toggle" id="sound-toggle" aria-pressed="false" aria-label="Couper les effets sonores">
-    <span aria-hidden="true">🔊</span>
-  </button>
+      <!-- 07 · GALAXIE -->
+      <section id="galaxie" class="section" data-color="red" aria-labelledby="t-galaxie">
+        <p class="kicker">Dossier 07 · Bonus</p>
+        <h2 id="t-galaxie" class="saber-title">La galaxie Star Wars</h2>
+        <div class="galaxy-head">
+          <p class="galaxy-intro">Pour le plaisir : les planètes et les personnages qui ont marqué la saga.</p>
+          <button type="button" class="btn btn--small" id="marquee-toggle" aria-pressed="false">
+            <svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg><span>Mettre en pause</span>
+          </button>
+        </div>
 
-  <button type="button" class="back-to-top" id="back-to-top" aria-label="Retour en haut de page">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 14 12 8 18 14" /></svg>
-  </button>
+        <h3 class="marquee-title">20 planètes</h3>
+        <div class="marquee" role="region" aria-label="Planètes de la saga Star Wars" tabindex="0">
+          <div class="marquee-track">
+            <ul class="marquee-group">
+              <li class="g-card"><img src="img/planet-tatooine.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Tatooine</strong>Planète désertique à deux soleils, berceau de Luke Skywalker.</p></li>
+              <li class="g-card"><img src="img/planet-coruscant.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Coruscant</strong>Planète-ville, capitale de la République puis de l'Empire.</p></li>
+              <li class="g-card"><img src="img/planet-naboo.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Naboo</strong>Plaines verdoyantes et cités gungans, planète de Padmé Amidala.</p></li>
+              <li class="g-card"><img src="img/planet-hoth.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Hoth</strong>Monde gelé et isolé, siège de la base rebelle Echo.</p></li>
+              <li class="g-card"><img src="img/planet-dagobah.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Dagobah</strong>Marais brumeux, lieu d'exil de Yoda.</p></li>
+              <li class="g-card"><img src="img/planet-endor.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Endor</strong>Lune forestière des Ewoks, théâtre de la chute de l'Empire.</p></li>
+              <li class="g-card"><img src="img/planet-kashyyyk.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Kashyyyk</strong>Monde-forêt des Wookiees aux arbres gigantesques.</p></li>
+              <li class="g-card"><img src="img/planet-mustafar.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Mustafar</strong>Planète volcanique, forteresse de Dark Vador.</p></li>
+              <li class="g-card"><img src="img/planet-alderaan.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Alderaan</strong>Monde pacifique de Leia, détruit par l'Étoile de la Mort.</p></li>
+              <li class="g-card"><img src="img/planet-mandalore.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Mandalore</strong>Planète des Mandaloriens et de leur armure en beskar.</p></li>
+              <li class="g-card"><img src="img/planet-geonosis.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Geonosis</strong>Monde rocheux où fut produite l'armée séparatiste.</p></li>
+              <li class="g-card"><img src="img/planet-kamino.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Kamino</strong>Planète océanique, berceau de l'armée des clones.</p></li>
+              <li class="g-card"><img src="img/planet-utapau.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Utapau</strong>Cités creusées dans des gouffres, refuge du général Grievous.</p></li>
+              <li class="g-card"><img src="img/planet-bespin.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Bespin</strong>Géante gazeuse et sa Cité des Nuages.</p></li>
+              <li class="g-card"><img src="img/planet-ilum.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Ilum</strong>Planète glacée des cristaux kyber, sanctuaire Jedi.</p></li>
+              <li class="g-card"><img src="img/planet-ahch-to.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Ahch-To</strong>Île du premier temple Jedi, exil de Luke.</p></li>
+              <li class="g-card"><img src="img/planet-scarif.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Scarif</strong>Paradis tropical protégé par un bouclier planétaire.</p></li>
+              <li class="g-card"><img src="img/planet-jakku.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Jakku</strong>Désert parsemé d'épaves de la dernière grande bataille.</p></li>
+              <li class="g-card"><img src="img/planet-crait.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Crait</strong>Plaines de sel aux reflets rouges, refuge de la Résistance.</p></li>
+              <li class="g-card"><img src="img/planet-corellia.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Corellia</strong>Chantiers navals réputés, planète natale de Han Solo.</p></li>
+            </ul>
+          </div>
+        </div>
 
-  <aside class="yoda-wrapper" aria-label="Assistant Yoda">
-    <div class="yoda-bubble" id="yoda-bubble" aria-hidden="true">
-      <p id="yoda-text"></p>
-      <div class="bubble-actions">
-        <button type="button" class="btn-yoda" id="yoda-next">Suivant</button>
-        <button type="button" class="btn-yoda" id="yoda-close">Fermer</button>
-      </div>
+        <h3 class="marquee-title">21 personnages</h3>
+        <div class="marquee marquee--reverse" role="region" aria-label="Personnages de la saga Star Wars" tabindex="0">
+          <div class="marquee-track">
+            <ul class="marquee-group">
+              <li class="g-card"><img src="img/char-luke.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Luke Skywalker</strong>Garçon de ferme devenu chevalier Jedi.</p></li>
+              <li class="g-card"><img src="img/char-leia.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Leia Organa</strong>Princesse d'Alderaan et générale de l'Alliance rebelle.</p></li>
+              <li class="g-card"><img src="img/char-anakin.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Anakin Skywalker</strong>L'Élu, Jedi passé du côté obscur.</p></li>
+              <li class="g-card"><img src="img/char-vader.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Dark Vador</strong>Seigneur Sith en armure noire, bras armé de l'Empire.</p></li>
+              <li class="g-card"><img src="img/char-han.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Han Solo</strong>Contrebandier légendaire, capitaine du Faucon Millenium.</p></li>
+              <li class="g-card"><img src="img/char-chewbacca.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Chewbacca</strong>Wookiee loyal, copilote et ami de Han Solo.</p></li>
+              <li class="g-card"><img src="img/char-obiwan.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Obi-Wan Kenobi</strong>Maître Jedi, mentor d'Anakin puis de Luke.</p></li>
+              <li class="g-card"><img src="img/char-yoda.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Yoda</strong>Grand Maître Jedi, 900 ans de sagesse.</p></li>
+              <li class="g-card"><img src="img/char-palpatine.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Dark Sidious</strong>L'empereur Palpatine, Sith manipulateur.</p></li>
+              <li class="g-card"><img src="img/char-maul.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Dark Maul</strong>Sith au sabre double, apprenti de Sidious.</p></li>
+              <li class="g-card"><img src="img/char-grogu.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Grogu</strong>Jeune être sensible à la Force, protégé de Din Djarin.</p></li>
+              <li class="g-card"><img src="img/char-rey.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Rey</strong>Pilleuse d'épaves devenue Jedi.</p></li>
+              <li class="g-card"><img src="img/char-kylo.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Kylo Ren</strong>Héritier tourmenté de la lignée Skywalker.</p></li>
+              <li class="g-card"><img src="img/char-finn.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Finn</strong>Stormtrooper repenti, héros de la Résistance.</p></li>
+              <li class="g-card"><img src="img/char-ahsoka.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Ahsoka Tano</strong>Ancienne padawan d'Anakin, guerrière indépendante.</p></li>
+              <li class="g-card"><img src="img/char-din.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Din Djarin</strong>Le Mandalorien, chasseur de primes au grand cœur.</p></li>
+              <li class="g-card"><img src="img/char-boba.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Boba Fett</strong>Chasseur de primes en armure mandalorienne.</p></li>
+              <li class="g-card"><img src="img/char-lando.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Lando Calrissian</strong>Baron-administrateur de la Cité des Nuages.</p></li>
+              <li class="g-card"><img src="img/char-jyn.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Jyn Erso</strong>Rebelle à l'origine du vol des plans de l'Étoile de la Mort.</p></li>
+              <li class="g-card"><img src="img/char-padme.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Padmé Amidala</strong>Reine puis sénatrice de Naboo, mère de Luke et Leia.</p></li>
+              <li class="g-card"><img src="img/char-dooku.webp" alt="" width="480" height="270" loading="lazy" decoding="async"><p><strong>Comte Dooku</strong>Seigneur Sith à la tête des Séparatistes.</p></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 · CONTACT -->
+      <section id="contact" class="section section--contact" data-color="blue" aria-labelledby="t-contact">
+        <p class="kicker">Dossier 08</p>
+        <h2 id="t-contact" class="saber-title">Me contacter</h2>
+        <div class="contact-box reveal">
+          <p class="lead">Une question sur mon parcours ou mes projets ? Le plus simple est de <strong>m'écrire sur LinkedIn</strong> ou de <strong>m'envoyer un message depuis mon profil GitHub</strong>. Je vous réponds rapidement.</p>
+          <div class="contact-actions">
+            <a class="btn btn--primary" href="https://www.linkedin.com/in/maxime-montcel-b7a4153b3/"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>M'écrire sur LinkedIn</a>
+            <a class="btn btn--ghost" href="https://github.com/MaximeMontcel"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>Me contacter via GitHub</a>
+            <a class="btn btn--ghost" href="cv-maxime-montcel.pdf" download><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Télécharger mon CV (PDF)</a>
+          </div>
+          <p class="privacy-note">Par souci de confidentialité, ce site ne publie ni numéro de téléphone, ni adresse e-mail, ni adresse postale.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 Maxime Montcel · <a href="https://github.com/MaximeMontcel">GitHub</a> · <a href="https://www.linkedin.com/in/maxime-montcel-b7a4153b3/">LinkedIn</a></p>
+      <p class="footer-quote">« Fais-le, ou ne le fais pas. Il n'y a pas d'essai. » – Yoda</p>
+      <p class="footer-credits">Projet scolaire non commercial. Star Wars et ses visuels appartiennent à Lucasfilm Ltd. Sources : <a href="https://www.starwars.com/databank">Databank StarWars.com</a> et <a href="https://starwars.fandom.com/fr/">Wookieepedia</a>. Sons générés en Web Audio.</p>
+    </footer>
+
+    <!-- Commandes flottantes -->
+    <div class="float-controls">
+      <button type="button" class="fab" id="sound-toggle" aria-pressed="false">
+        <svg class="icon icon-on" aria-hidden="true"><use href="#i-sound"/></svg>
+        <svg class="icon icon-off" aria-hidden="true"><use href="#i-mute"/></svg>
+        <span class="sr-only">Effets sonores</span>
+      </button>
+      <button type="button" class="fab" id="back-to-top">
+        <svg class="icon" aria-hidden="true"><use href="#i-up"/></svg>
+        <span class="sr-only">Retour en haut de page</span>
+      </button>
     </div>
-    <div class="yoda" role="button" tabindex="0" aria-label="Parler avec Yoda"></div>
-  </aside>
 
-  <div id="intro-overlay" role="dialog" aria-modal="true" aria-label="Générique d'ouverture Star Wars" aria-hidden="true">
-    <div class="intro-stars" aria-hidden="true"></div>
+    <aside class="yoda" aria-label="Assistant Yoda">
+      <div class="yoda-bubble" id="yoda-bubble" hidden>
+        <p class="yoda-text" aria-hidden="true"></p>
+        <p class="sr-only" id="yoda-live" aria-live="polite"></p>
+        <div class="yoda-actions">
+          <button type="button" class="btn btn--small" id="yoda-next">Suivant</button>
+          <button type="button" class="btn btn--small btn--ghost" id="yoda-close">Fermer</button>
+        </div>
+      </div>
+      <button type="button" class="yoda-btn" id="yoda-btn" aria-expanded="false" aria-controls="yoda-bubble">
+        <img src="img/yoda.webp" alt="" width="200" height="213">
+        <span class="sr-only">Parler avec Yoda</span>
+      </button>
+    </aside>
 
-    <p class="intro-fade" aria-hidden="true">Il y a bien longtemps, dans une galaxie lointaine, très lointaine…</p>
+  </div>
 
-    <div class="intro-logo" aria-hidden="true"><span>STAR&nbsp;WARS</span></div>
-
+  <!-- Générique d'ouverture -->
+  <div id="intro" role="dialog" aria-modal="true" aria-label="Générique d'ouverture Star Wars" hidden>
+    <p class="intro-fade">Il y a bien longtemps, dans une galaxie lointaine, très lointaine…</p>
+    <p class="intro-logo" aria-hidden="true"><span>STAR</span><span>WARS</span></p>
     <div class="intro-crawl">
       <div class="crawl" id="crawl">
         <div class="crawl-inner">
-          <p class="crawl-episode">ÉPISODE I</p>
-          <p class="crawl-title">LE PADAVAN DE L'ALTERNANCE</p>
-          <p>Il y a bien longtemps, dans une galaxie tranquille, un jeune technicien du web préparait son CV pour affronter les périls de l'alternance.</p>
-          <p>Ainsi commence l'histoire de MAXIME MONTCEL, bachelier STI2D option SIN obtenu en juin 2026, qui poursuit son entraînement vers les systèmes et les réseaux en BTS SIO SISR.</p>
-          <p>Maîtrisant les mystères du JAVA, du PYTHON et du HTML/CSS, notre Padawan construit de nouveaux mondes numériques grâce à la Force du code.</p>
-          <p>Son unique quête : trouver l'entreprise qui lui permettra de parfaire ses connaissances, avec sérieux, rigueur et autodiscipline.</p>
-          <p>Que la Force du code soit avec vous, et surtout… avec ceux qui l'accueilleront.</p>
+          <p class="crawl-episode">Épisode I</p>
+          <p class="crawl-title">Le Padawan de l'alternance</p>
+          <p>Il y a peu de temps, dans la Loire, un jeune Padawan obtint son baccalauréat STI2D option SIN. Sa quête le mena au CFAI LDA de Saint-Étienne, en BTS SIO option SISR.</p>
+          <p>Initié aux mystères de JAVA, de PYTHON, du PHP et du HTML/CSS, MAXIME MONTCEL apprend désormais à maîtriser les systèmes et les réseaux de la galaxie.</p>
+          <p>Sa quête a porté ses fruits : le DÉPARTEMENT DE LA LOIRE l'accueille en alternance, deux semaines sur quatre, pour mettre sa rigueur et sa curiosité au service de son équipe.</p>
+          <p>Que la Force soit avec lui… et avec ceux qui l'ont accueilli.</p>
         </div>
       </div>
     </div>
-
-    <button type="button" class="intro-close" id="intro-close" aria-label="Fermer le générique">✕</button>
-    <button type="button" class="intro-mute" id="intro-mute" aria-pressed="false">🔊 Musique</button>
+    <button type="button" class="intro-btn intro-close" id="intro-close">✕<span class="sr-only">Fermer le générique</span></button>
+    <button type="button" class="intro-btn intro-mute" id="intro-mute" aria-pressed="false">Couper la musique</button>
   </div>
 
 </body>

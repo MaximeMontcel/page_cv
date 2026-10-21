@@ -1,371 +1,572 @@
-const prefersReducedMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)"
-).matches;
+/* =====================================================================
+   CV Maxime Montcel — interactions Star Wars
+   1. Audio partagé          2. Fond étoilé + hyperespace
+   3. Trafic de vaisseaux     4. Progression, retour en haut, menu actif
+   5. Apparitions au défilement   6. Effets de survol des cartes
+   7. Bandes défilantes       8. Yoda
+   9. Générique d'ouverture   10. Effets sonores
+   ===================================================================== */
 
-const coruscant = document.getElementById("coruscant");
+"use strict";
 
-function rand(min, max) {
-  return min + Math.random() * (max - min);
+const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+let reduceMotion = motionQuery.matches;
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+const rand = (min, max) => min + Math.random() * (max - min);
+
+/* 1. AUDIO PARTAGÉ ---------------------------------------------------- */
+
+let audioCtx = null;
+
+function getAudio() {
+  if (!audioCtx) {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    try {
+      audioCtx = new AC();
+    } catch (err) {
+      return null;
+    }
+  }
+  if (audioCtx.state === "suspended") audioCtx.resume();
+  return audioCtx;
+}
+
+/* 2. FOND ÉTOILÉ + HYPERESPACE --------------------------------------- */
+
+const starfield = (() => {
+  const canvas = document.getElementById("starfield");
+  const ctx = canvas && canvas.getContext ? canvas.getContext("2d") : null;
+  if (!ctx) return { warp: () => Promise.resolve() };
+
+  const DEPTH = 1000;
+  const CRUISE = 0.5;
+  let w = 0;
+  let h = 0;
+  let stars = [];
+  let speed = CRUISE;
+  let target = CRUISE;
+  let last = 0;
+  let raf = 0;
+  let mouseX = 0;
+  let mouseY = 0;
+  let offX = 0;
+  let offY = 0;
+  let shooting = null;
+  let nextShoot = 0;
+
+  function newStar(anyDepth) {
+    return {
+      x: rand(-1, 1) * w,
+      y: rand(-1, 1) * h,
+      z: anyDepth ? rand(1, DEPTH) : DEPTH,
+      tw: rand(0, Math.PI * 2),
+    };
+  }
+
+  function project(s, z) {
+    const k = (DEPTH * 0.5) / z;
+    return [w / 2 + offX + s.x * k, h / 2 + offY + s.y * k];
+  }
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.round(Math.min(260, Math.max(90, (w * h) / 5200)));
+    stars = Array.from({ length: count }, () => newStar(true));
+    if (reduceMotion) draw(0);
+  }
+
+  function drawShootingStar(dt) {
+    const now = performance.now();
+    if (!shooting && now > nextShoot && speed < 2) {
+      const angle = rand(0.15, 0.45);
+      shooting = { x: rand(w * 0.3, w), y: rand(0, h * 0.45), vx: -Math.cos(angle), vy: Math.sin(angle), life: 1 };
+    }
+    if (!shooting) return;
+    const step = dt * 0.9;
+    shooting.x += shooting.vx * step;
+    shooting.y += shooting.vy * step;
+    shooting.life -= dt / 1100;
+    const tailX = shooting.x - shooting.vx * 140;
+    const tailY = shooting.y - shooting.vy * 140;
+    const grad = ctx.createLinearGradient(shooting.x, shooting.y, tailX, tailY);
+    grad.addColorStop(0, `rgba(255,255,255,${Math.max(0, shooting.life)})`);
+    grad.addColorStop(1, "rgba(140,210,255,0)");
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.moveTo(shooting.x, shooting.y);
+    ctx.lineTo(tailX, tailY);
+    ctx.stroke();
+    if (shooting.life <= 0) {
+      shooting = null;
+      nextShoot = now + rand(4000, 9000);
+    }
+  }
+
+  function draw(dt) {
+    const warping = speed > 3;
+    ctx.fillStyle = warping ? "rgba(5,7,13,0.35)" : "#05070d";
+    ctx.fillRect(0, 0, w, h);
+
+    offX += (mouseX - offX) * 0.04;
+    offY += (mouseY - offY) * 0.04;
+
+    for (const s of stars) {
+      const pz = s.z;
+      s.z -= speed * dt * 0.06;
+      if (s.z < 1) Object.assign(s, newStar(false));
+      const [x, y] = project(s, s.z);
+      if (x < -20 || x > w + 20 || y < -20 || y > h + 20) {
+        Object.assign(s, newStar(false));
+        continue;
+      }
+      const near = 1 - s.z / DEPTH;
+      const size = near * 2.2 + 0.35;
+      s.tw += dt * 0.002;
+      const alpha = Math.min(1, near * 1.2 + 0.25) * (reduceMotion ? 1 : 0.8 + Math.sin(s.tw) * 0.2);
+
+      if (warping) {
+        const [px, py] = project(s, Math.min(DEPTH, pz + speed * 2.2));
+        ctx.strokeStyle = `rgba(200,230,255,${alpha})`;
+        ctx.lineWidth = size;
+        ctx.beginPath();
+        ctx.moveTo(px, py);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+      } else {
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        ctx.fillRect(x, y, size, size);
+      }
+    }
+    if (!reduceMotion) drawShootingStar(dt);
+  }
+
+  function frame(t) {
+    const dt = Math.min(50, t - (last || t));
+    last = t;
+    speed += (target - speed) * (1 - Math.pow(0.92, dt / 16));
+    draw(dt);
+    raf = requestAnimationFrame(frame);
+  }
+
+  function start() {
+    cancelAnimationFrame(raf);
+    last = 0;
+    if (reduceMotion) draw(0);
+    else raf = requestAnimationFrame(frame);
+  }
+
+  window.addEventListener("resize", resize);
+  if (finePointer) {
+    window.addEventListener("pointermove", (e) => {
+      mouseX = (e.clientX - w / 2) * -0.03;
+      mouseY = (e.clientY - h / 2) * -0.03;
+    }, { passive: true });
+  }
+  motionQuery.addEventListener("change", (e) => {
+    reduceMotion = e.matches;
+    start();
+  });
+
+  resize();
+  nextShoot = performance.now() + rand(2500, 6000);
+  start();
+
+  return {
+    /* saut en hyperespace : accélère puis revient à la vitesse de croisière */
+    warp(duration = 900) {
+      if (reduceMotion) return Promise.resolve();
+      target = 46;
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          target = CRUISE;
+          resolve();
+        }, duration);
+      });
+    },
+  };
+})();
+
+/* 3. TRAFIC DE VAISSEAUX (hero) -------------------------------------- */
+
+const hero = document.querySelector(".hero");
+const traffic = document.querySelector(".hero-traffic");
+const SHIPS = {
+  xwing: { src: "img/x-wing.webp", w: 180, h: 115 },
+  tie: { src: "img/tie-fighter.webp", w: 150, h: 96 },
+  falcon: { src: "img/falcon.webp", w: 300, h: 174 },
+};
+let trafficWide = null;
+let falconTimer = 0;
+let heroVisible = true;
+
+function makeShip(model) {
+  const ship = document.createElement("div");
+  ship.className = "ship";
+  const img = new Image(model.w, model.h);
+  img.src = model.src;
+  img.alt = "";
+  img.decoding = "async";
+  ship.appendChild(img);
+  return ship;
 }
 
 function buildTraffic() {
-  if (!coruscant) return;
-  coruscant.querySelectorAll(".ship").forEach((el) => el.remove());
-  const count = window.innerWidth < 768 ? 10 : 16;
-  const lanes = Math.max(4, Math.floor(count * 0.6));
+  if (!traffic || reduceMotion) return;
+  const wide = window.innerWidth >= 768;
+  if (wide === trafficWide) return;
+  trafficWide = wide;
+  traffic.querySelectorAll(".ship:not(.ship--falcon)").forEach((s) => s.remove());
+
+  const count = wide ? 6 : 3;
   for (let i = 0; i < count; i++) {
-    const ship = document.createElement("div");
-    ship.className = "ship";
-    const isTie = i % 3 === 0;
-    if (isTie) ship.classList.add("ship--tie");
-    const img = document.createElement("img");
-    img.src = isTie ? "img/tie-fighter.png" : "img/x-wing.png";
-    img.alt = "";
-    ship.appendChild(img);
-
-    ship.style.top = rand(2, 96) + "%";
-    const y = parseFloat(ship.style.top);
-    const rev = y % 2 < 1;
-    if (rev) ship.classList.add("ship--rev");
-
-    ship.style.animationDuration = rand(7, 16).toFixed(1) + "s";
-    ship.style.animationDelay = -rand(0, 18).toFixed(1) + "s";
-    if (i < lanes) ship.style.opacity = "0.65";
-    coruscant.appendChild(ship);
+    const isTie = i % 3 === 1;
+    const ship = makeShip(isTie ? SHIPS.tie : SHIPS.xwing);
+    const depth = rand(0.45, 1);
+    ship.style.setProperty("--y", rand(4, 80).toFixed(1) + "%");
+    ship.style.setProperty("--w", (isTie ? 54 : 66) + "px");
+    ship.style.setProperty("--s", depth.toFixed(2));
+    ship.style.setProperty("--dur", (rand(16, 26) / depth).toFixed(1) + "s");
+    ship.style.setProperty("--delay", (-rand(0, 30)).toFixed(1) + "s");
+    ship.style.opacity = (0.3 + depth * 0.6).toFixed(2);
+    if (Math.random() < 0.5) ship.classList.add("ship--rev");
+    traffic.appendChild(ship);
   }
 }
-
-function buildCoruscant() {
-  buildTraffic();
-  scheduleFalcon();
-  scheduleShootingStar();
-}
-
-let shootTimer = null;
-
-function scheduleShootingStar() {
-  clearTimeout(shootTimer);
-  if (prefersReducedMotion) return;
-  shootTimer = setTimeout(spawnShootingStar, rand(3.5, 8) * 1000);
-}
-
-function spawnShootingStar() {
-  if (!coruscant || prefersReducedMotion) return;
-  if (document.hidden) {
-    scheduleShootingStar();
-    return;
-  }
-  const star = document.createElement("div");
-  star.className = "shooting-star";
-  star.style.top = rand(4, 55).toFixed(1) + "%";
-  star.style.left = rand(15, 75).toFixed(1) + "%";
-  star.style.animationDuration = rand(0.9, 1.5).toFixed(2) + "s";
-  star.addEventListener("animationend", () => star.remove());
-  coruscant.appendChild(star);
-  scheduleShootingStar();
-}
-
-let falconTimer = null;
 
 function scheduleFalcon() {
   clearTimeout(falconTimer);
-  if (prefersReducedMotion) return;
-  falconTimer = setTimeout(spawnFalcon, rand(22, 40) * 1000);
+  if (!traffic || reduceMotion) return;
+  falconTimer = setTimeout(spawnFalcon, rand(14, 30) * 1000);
 }
 
 function spawnFalcon() {
-  if (!coruscant) return;
-  if (document.hidden) {
+  if (document.hidden || !heroVisible) {
     scheduleFalcon();
     return;
   }
-  const ship = document.createElement("div");
-  ship.className = "ship ship--falcon";
-  const img = document.createElement("img");
-  img.src = "img/falcon.png";
-  img.alt = "";
-  ship.appendChild(img);
-  ship.style.top = rand(8, 50).toFixed(1) + "%";
-  ship.style.animationDuration = rand(18, 26).toFixed(1) + "s";
+  const ship = makeShip(SHIPS.falcon);
+  ship.classList.add("ship--falcon");
+  ship.style.setProperty("--y", rand(10, 45).toFixed(1) + "%");
+  ship.style.setProperty("--w", "130px");
+  ship.style.setProperty("--s", "1");
+  ship.style.setProperty("--dur", rand(11, 15).toFixed(1) + "s");
+  ship.style.setProperty("--delay", "0s");
   ship.addEventListener("animationend", () => {
     ship.remove();
     scheduleFalcon();
   });
-  coruscant.appendChild(ship);
+  traffic.appendChild(ship);
 }
 
-let resizeTimer = null;
+let resizeTimer = 0;
 window.addEventListener("resize", () => {
   clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(buildCoruscant, 250);
+  resizeTimer = setTimeout(() => {
+    buildTraffic();
+    moveIndicator();
+  }, 200);
 });
 
-/* ─────────────────────── PROGRESS + BACK TO TOP ─────────────────────── */
+/* met en pause les animations hors écran (économie de batterie) */
+if ("IntersectionObserver" in window) {
+  const pauseObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      entry.target.classList.toggle("is-offscreen", !entry.isIntersecting);
+      if (entry.target === hero) heroVisible = entry.isIntersecting;
+    });
+  });
+  [hero, document.getElementById("galaxie")].forEach((el) => el && pauseObserver.observe(el));
+}
+
+/* 4. PROGRESSION, RETOUR EN HAUT, MENU ACTIF ------------------------- */
 
 const progressBar = document.querySelector(".scroll-progress");
 const backToTop = document.getElementById("back-to-top");
-
+const navList = document.querySelector(".nav-list");
+const navIndicator = document.querySelector(".nav-indicator");
+const navLinks = Array.from(document.querySelectorAll(".nav a"));
+let activeLink = null;
 let ticking = false;
 
 function onScroll() {
   if (ticking) return;
   ticking = true;
   requestAnimationFrame(() => {
-    const scrollY = window.scrollY;
+    const y = window.scrollY;
     const max = document.documentElement.scrollHeight - window.innerHeight;
-
-    if (progressBar) {
-      progressBar.style.width = max > 0 ? (scrollY / max) * 100 + "%" : "0%";
-    }
-
-    if (backToTop) {
-      backToTop.classList.toggle("visible", scrollY > 400);
-    }
-
-    if (coruscant && !prefersReducedMotion) {
-      coruscant.style.transform = "translateY(" + Math.min(36, scrollY * 0.04) + "px)";
-    }
-
+    if (progressBar) progressBar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+    if (backToTop) backToTop.classList.toggle("is-visible", y > 600);
     ticking = false;
   });
 }
 
+function moveIndicator() {
+  if (!navIndicator) return;
+  if (!activeLink) {
+    navIndicator.style.opacity = "0";
+    return;
+  }
+  const x = activeLink.offsetLeft - navList.scrollLeft + 14;
+  const width = Math.max(1, activeLink.offsetWidth - 28);
+  navIndicator.style.opacity = "1";
+  navIndicator.style.transform = `translateX(${x}px) scaleX(${width})`;
+}
+
+function setActive(id) {
+  const link = navLinks.find((a) => a.getAttribute("href") === "#" + id) || null;
+  if (link === activeLink) return;
+  navLinks.forEach((a) => {
+    a.classList.toggle("active", a === link);
+    if (a === link) a.setAttribute("aria-current", "true");
+    else a.removeAttribute("aria-current");
+  });
+  activeLink = link;
+  if (link && navList.scrollWidth > navList.clientWidth) {
+    navList.scrollTo({
+      left: link.offsetLeft - (navList.clientWidth - link.offsetWidth) / 2,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+  }
+  moveIndicator();
+}
+
 window.addEventListener("scroll", onScroll, { passive: true });
-
-if (backToTop) {
-  backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
-  });
-}
-
-/* ─────────────────────────── SCROLL SPY ─────────────────────────── */
-
-const navLinks = Array.from(document.querySelectorAll(".nav a"));
-
-function setActiveLink(id) {
-  navLinks.forEach((link) => {
-    link.classList.toggle("active", link.getAttribute("href") === "#" + id);
-  });
-}
-
-setActiveLink("profil");
+if (navList) navList.addEventListener("scroll", moveIndicator, { passive: true });
 
 if ("IntersectionObserver" in window) {
   const spy = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id === "personnages" ? "planetes" : entry.target.id;
-          setActiveLink(id);
-        }
+        if (entry.isIntersecting) setActive(entry.target.id);
       });
     },
-    { rootMargin: "-35% 0px -55% 0px" }
+    { rootMargin: "-45% 0px -50% 0px" }
   );
   document.querySelectorAll("main section[id]").forEach((s) => spy.observe(s));
+  if (hero) {
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && entry.intersectionRatio > 0.35) setActive(null);
+    }, { threshold: [0, 0.35, 1] }).observe(hero);
+  }
 }
 
-/* ─────────────────────────── REVEAL ─────────────────────────── */
+if (backToTop) {
+  backToTop.addEventListener("click", () => {
+    sfx("hyper", 0);
+    starfield.warp(700);
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    document.getElementById("haut").focus({ preventScroll: true });
+  });
+  document.getElementById("haut").setAttribute("tabindex", "-1");
+}
 
-const sections = document.querySelectorAll("main section");
+/* 5. APPARITIONS AU DÉFILEMENT --------------------------------------- */
 
-if (!prefersReducedMotion && "IntersectionObserver" in window) {
-  const reveal = new IntersectionObserver(
+function animateCount(el) {
+  const end = Number(el.dataset.count);
+  const prefix = el.dataset.prefix || "";
+  const suffix = el.dataset.suffix || "";
+  const start = performance.now();
+  const duration = 1400;
+  function step(now) {
+    const p = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = prefix + Math.round(end * eased) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const revealEls = document.querySelectorAll(".reveal, main .section");
+
+/* décalage en cascade entre éléments voisins */
+document.querySelectorAll(".reveal").forEach((el) => {
+  const siblings = Array.from(el.parentElement.children).filter((c) => c.classList.contains("reveal"));
+  el.style.setProperty("--delay", Math.min(siblings.indexOf(el), 5) * 90 + "ms");
+});
+
+if ("IntersectionObserver" in window && !reduceMotion) {
+  const revealer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = "running";
-          reveal.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        entry.target.querySelectorAll(".stat-num[data-count]").forEach(animateCount);
+        revealer.unobserve(entry.target);
       });
     },
-    { threshold: 0.06 }
+    { threshold: 0, rootMargin: "0px 0px -12% 0px" }
   );
-  sections.forEach((section) => {
-    section.style.animationPlayState = "paused";
-    reveal.observe(section);
-  });
+  revealEls.forEach((el) => revealer.observe(el));
 } else {
-  sections.forEach((section) => {
-    section.style.animation = "none";
-    section.style.opacity = "1";
+  revealEls.forEach((el) => el.classList.add("is-visible"));
+}
+
+/* 6. EFFETS DE SURVOL DES CARTES (halo + inclinaison des droids) ------ */
+
+if (finePointer) {
+  document.querySelectorAll(".card").forEach((card) => {
+    const tilt = card.classList.contains("droid");
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      card.style.setProperty("--mx", x + "px");
+      card.style.setProperty("--my", y + "px");
+      if (tilt && !reduceMotion) {
+        card.style.setProperty("--ry", ((x / r.width - 0.5) * 12).toFixed(2) + "deg");
+        card.style.setProperty("--rx", ((0.5 - y / r.height) * 12).toFixed(2) + "deg");
+      }
+    });
+    if (tilt) {
+      card.addEventListener("pointerleave", () => {
+        card.style.setProperty("--rx", "0deg");
+        card.style.setProperty("--ry", "0deg");
+      });
+    }
   });
 }
 
-/* ────────────────────────────── YODA ────────────────────────────── */
+/* 7. BANDES DÉFILANTES (planètes et personnages) --------------------- */
 
-const yodaEl = document.querySelector(".yoda");
+const galaxy = document.getElementById("galaxie");
+const marqueeToggle = document.getElementById("marquee-toggle");
 
-if (yodaEl) {
-  const img = document.createElement("img");
-  img.src = "img/yoda.png";
-  img.alt = "";
-  img.className = "yoda-img";
-  yodaEl.appendChild(img);
+if (!reduceMotion) {
+  document.querySelectorAll(".marquee").forEach((marquee) => {
+    const group = marquee.querySelector(".marquee-group");
+    const clone = group.cloneNode(true);
+    clone.setAttribute("aria-hidden", "true");
+    marquee.querySelector(".marquee-track").appendChild(clone);
+    marquee.classList.add("is-ready");
+  });
+} else if (marqueeToggle) {
+  marqueeToggle.hidden = true;
 }
 
-const yodaBubble = document.querySelector(".yoda-bubble");
-const yodaText = document.querySelector("#yoda-text");
-const yodaNext = document.querySelector("#yoda-next");
-const yodaClose = document.querySelector("#yoda-close");
+if (marqueeToggle && galaxy) {
+  marqueeToggle.addEventListener("click", () => {
+    const paused = galaxy.classList.toggle("marquees-paused");
+    marqueeToggle.setAttribute("aria-pressed", String(paused));
+    marqueeToggle.querySelector("span").textContent = paused ? "Reprendre le défilement" : "Mettre en pause";
+    marqueeToggle.querySelector("use").setAttribute("href", paused ? "#i-play" : "#i-pause");
+  });
+}
+
+/* 8. YODA ------------------------------------------------------------- */
+
+const yodaBtn = document.getElementById("yoda-btn");
+const yodaBubble = document.getElementById("yoda-bubble");
+const yodaText = yodaBubble ? yodaBubble.querySelector(".yoda-text") : null;
+const yodaLive = document.getElementById("yoda-live");
+const yodaNext = document.getElementById("yoda-next");
+const yodaClose = document.getElementById("yoda-close");
 
 const yodaLines = [
-  "En paix, jeune Padawan... Ton parcours, je vois.",
-  "Bachelier STI2D option SIN obtenu en juin 2026, tu es. BTS SIO SISR, depuis, tu suis.",
-  "Vers les systèmes et réseaux, ton chemin s'oriente. Java, Python, HTML et CSS, maîtriser tu veux.",
-  "Sérieux, rigoureux et curieux, les qualités d'un bon technicien, tu possèdes.",
-  "Une alternance, tu recherches. L'Entreprise, avec toi, grandira. Certainement.",
-  "Que la Force du code soit avec toi, Padawan !",
+  "Bienvenue, jeune visiteur. Le dossier de Maxime, consulter tu veux ?",
+  "Bachelier STI2D option SIN en juin 2026, il est. En BTS SIO SISR, désormais il se forme.",
+  "Son alternance, il a trouvée : au Département de la Loire, deux semaines sur quatre. Fier, il est.",
+  "Java, Python, PHP, HTML et CSS, déjà il pratique. Les systèmes et réseaux, bientôt il maîtrisera.",
+  "Rigoureux et ponctuel, il est. Un bon Padawan pour son équipe, il fait.",
+  "Son CV en PDF, télécharger tu peux. Sur LinkedIn, le suivre tu dois !",
+  "Que la Force soit avec toi.",
 ];
 
 let yodaIndex = 0;
-let isBubbleOpen = false;
-let typeTimer = null;
+let typeTimer = 0;
 
-function typeText(el, text, done) {
+function typeText(text) {
   clearTimeout(typeTimer);
-  el.textContent = "";
-  el.classList.add("typing");
-  let i = 0;
-  function step() {
-    if (i <= text.length) {
-      el.textContent = text.slice(0, i) + (i < text.length ? "▌" : "");
-      i++;
-      if (i <= text.length) {
-        typeTimer = setTimeout(step, 16);
-      } else {
-        el.classList.remove("typing");
-        if (done) done();
-      }
-    }
+  if (yodaLive) yodaLive.textContent = text;
+  if (reduceMotion) {
+    yodaText.textContent = text;
+    return;
   }
-  step();
+  let i = 0;
+  yodaText.classList.add("typing");
+  (function step() {
+    yodaText.textContent = text.slice(0, i);
+    if (i++ < text.length) typeTimer = setTimeout(step, 18);
+    else yodaText.classList.remove("typing");
+  })();
 }
 
 function showYodaLine(index) {
-  if (!yodaText) return;
-  yodaIndex = index % yodaLines.length;
-  typeText(yodaText, yodaLines[yodaIndex]);
+  yodaIndex = (index + yodaLines.length) % yodaLines.length;
+  typeText(yodaLines[yodaIndex]);
 }
 
-function openBubble() {
-  if (!yodaBubble) return;
-  isBubbleOpen = true;
-  yodaBubble.setAttribute("aria-hidden", "false");
+function openYoda(fromKeyboard) {
+  yodaBubble.hidden = false;
+  yodaBtn.setAttribute("aria-expanded", "true");
   showYodaLine(0);
-  yodaBubble.classList.add("active");
+  if (fromKeyboard) yodaNext.focus();
 }
 
-function closeBubble() {
-  if (!yodaBubble) return;
-  isBubbleOpen = false;
-  yodaBubble.setAttribute("aria-hidden", "true");
+function closeYoda() {
+  const hadFocus = yodaBubble.contains(document.activeElement);
   clearTimeout(typeTimer);
-  yodaBubble.classList.remove("active");
+  yodaBubble.hidden = true;
+  yodaBtn.setAttribute("aria-expanded", "false");
+  if (hadFocus) yodaBtn.focus();
 }
 
-function toggleBubble(e) {
-  if (e) e.preventDefault();
-  if (isBubbleOpen) {
-    closeBubble();
-  } else {
-    openBubble();
-  }
-}
-
-if (yodaEl) {
-  yodaEl.addEventListener("click", toggleBubble);
-  yodaEl.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      toggleBubble();
-    }
+if (yodaBtn && yodaBubble) {
+  yodaBtn.addEventListener("click", (e) => {
+    sfx("force", 400);
+    if (yodaBubble.hidden) openYoda(e.detail === 0);
+    else closeYoda();
   });
-}
-
-if (yodaNext) {
-  yodaNext.addEventListener("click", (e) => {
-    e.stopPropagation();
+  yodaNext.addEventListener("click", () => {
+    sfx("chirp", 0);
     showYodaLine(yodaIndex + 1);
   });
+  yodaClose.addEventListener("click", closeYoda);
 }
 
-if (yodaClose) {
-  yodaClose.addEventListener("click", (e) => {
-    e.stopPropagation();
-    closeBubble();
-  });
-}
+/* 9. GÉNÉRIQUE D'OUVERTURE ------------------------------------------- */
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && isBubbleOpen) closeBubble();
-});
-
-/* ─────────────────────────── STAR WARS INTRO ─────────────────────────── */
-
-const introOverlay = document.getElementById("intro-overlay");
+const page = document.getElementById("page");
+const intro = document.getElementById("intro");
 const btnIntro = document.getElementById("btn-intro");
 const introClose = document.getElementById("intro-close");
 const introMute = document.getElementById("intro-mute");
-const crawlEl = document.getElementById("crawl");
-const introStars = introOverlay ? introOverlay.querySelector(".intro-stars") : null;
-const reduceMotionIntro = window.matchMedia("(prefers-reduced-motion: reduce)");
+const crawl = document.getElementById("crawl");
 
-const CRAWL_DELAY = 11.3;
+const CRAWL_START = 11; /* doit correspondre au délai de .crawl dans le CSS */
 let introTimers = [];
-let introIsOpen = false;
-let introMuted = false;
-let audioCtx = null;
-let masterGain = null;
-
-function buildIntroStars() {
-  if (!introStars) return;
-  const shadows = [];
-  for (let i = 0; i < 160; i++) {
-    const x = Math.floor(Math.random() * 100);
-    const y = Math.floor(Math.random() * 100);
-    const size = (Math.random() * 1.3 + 0.4).toFixed(1);
-    const alpha = (Math.random() * 0.7 + 0.3).toFixed(2);
-    shadows.push(`${x}vw ${y}vh 0 ${size}px rgba(255, 255, 255, ${alpha})`);
-  }
-  introStars.style.boxShadow = shadows.join(", ");
-}
+let introOpen = false;
+let musicMuted = false;
+let musicBus = null;
 
 function sizeCrawl() {
-  if (!crawlEl) return 26;
-  const inner = crawlEl.querySelector(".crawl-inner");
-  const height = inner ? inner.offsetHeight : 1400;
-  const dist = Math.max(1700, Math.round(height + window.innerHeight * 1.2));
-  const dur = Math.min(34, Math.max(18, Math.round(dist / 95)));
-  crawlEl.style.setProperty("--crawl-dist", `-${dist}px`);
-  crawlEl.style.setProperty("--crawl-dur", `${dur}s`);
+  const inner = crawl.querySelector(".crawl-inner");
+  const dist = Math.max(1700, Math.round(inner.offsetHeight + window.innerHeight * 1.3));
+  const dur = Math.min(36, Math.max(20, Math.round(dist / 90)));
+  crawl.style.setProperty("--crawl-dist", `-${dist}px`);
+  crawl.style.setProperty("--crawl-dur", `${dur}s`);
   return dur;
 }
 
-function playIntroMusic() {
-  if (introMuted) return;
-  try {
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return;
-    if (!audioCtx) {
-      audioCtx = new AC();
-      masterGain = audioCtx.createGain();
-      masterGain.connect(audioCtx.destination);
-    }
-    masterGain.gain.cancelScheduledValues(audioCtx.currentTime);
-    masterGain.gain.value = 0.32;
-    if (audioCtx.state === "suspended") audioCtx.resume();
-    scheduleFanfare(audioCtx.currentTime + 0.15);
-  } catch (err) {
-    /* audio indisponible */
-  }
-}
+function playMusic() {
+  const ctx = getAudio();
+  if (!ctx) return;
+  musicBus = ctx.createGain();
+  musicBus.gain.value = musicMuted ? 0 : 0.3;
+  musicBus.connect(ctx.destination);
+  const t0 = ctx.currentTime + 0.3;
 
-function scheduleFanfare(t0) {
   const voice = (freq, start, dur, peak, type, cutoff) => {
-    const osc = audioCtx.createOscillator();
-    const lp = audioCtx.createBiquadFilter();
-    const g = audioCtx.createGain();
+    const osc = ctx.createOscillator();
+    const lp = ctx.createBiquadFilter();
+    const g = ctx.createGain();
     osc.type = type;
     osc.frequency.value = freq;
     lp.type = "lowpass";
@@ -375,103 +576,109 @@ function scheduleFanfare(t0) {
     g.gain.exponentialRampToValueAtTime(0.0001, start + dur);
     osc.connect(lp);
     lp.connect(g);
-    g.connect(masterGain);
+    g.connect(musicBus);
     osc.start(start);
     osc.stop(start + dur + 0.1);
   };
 
-  voice(55, t0, 1.6, 0.5, "sine", 220);
-  voice(58.27, t0, 1.6, 0.3, "triangle", 240);
-
-  const chords = [
-    [146.83, 174.61, 220.0],
-    [116.54, 146.83, 174.61],
-    [174.61, 220.0, 261.63],
-    [130.81, 164.81, 196.0],
-  ];
-  chords.forEach((chord, i) => {
-    const start = t0 + 0.3 + i * 3;
-    chord.forEach((f) => voice(f, start, 3.1, 0.16, "sawtooth", 900));
-    voice(chord[0] / 2, start, 3.1, 0.2, "triangle", 400);
+  /* nappe d'attente pendant « Il y a bien longtemps… » */
+  [[146.83, 174.61, 220], [116.54, 146.83, 174.61]].forEach((chord, i) => {
+    chord.forEach((f) => voice(f, t0 + i * 2.3, 2.5, 0.07, "sine", 700));
   });
 
-  voice(55, t0 + 4.7, 2.2, 0.45, "sine", 200);
-  voice(87.31, t0 + 4.7, 2.0, 0.25, "sawtooth", 700);
+  /* impact au moment où le logo apparaît */
+  const hit = t0 + 4.7;
+  voice(55, hit, 2.4, 0.5, "sine", 220);
+  voice(87.31, hit, 2.2, 0.25, "sawtooth", 700);
+  [[146.83, 220, 293.66], [174.61, 220, 261.63], [130.81, 196, 261.63]].forEach((chord, i) => {
+    chord.forEach((f) => voice(f, hit + i * 2.1, 2.3, 0.13, "sawtooth", 1100));
+    voice(chord[0] / 2, hit + i * 2.1, 2.3, 0.18, "triangle", 400);
+  });
 
-  const motif = [220, 261.63, 293.66, 349.23];
-  motif.forEach((f, i) => {
-    const start = t0 + CRAWL_DELAY + i * 0.55;
-    voice(f, start, 1.1, 0.2, "sawtooth", 1500);
-    voice(f * 2, start, 1.1, 0.1, "sawtooth", 2200);
+  /* fanfare au démarrage du texte déroulant */
+  [220, 261.63, 293.66, 349.23, 293.66].forEach((f, i) => {
+    const start = t0 + CRAWL_START - 0.3 + i * 0.5;
+    voice(f, start, 1.1, 0.18, "sawtooth", 1600);
+    voice(f * 2, start, 1.1, 0.08, "sawtooth", 2400);
   });
 }
 
-function openIntro() {
-  if (!introOverlay || introIsOpen) return;
-  introIsOpen = true;
-  buildIntroStars();
-  introOverlay.classList.remove("is-static");
-  introOverlay.classList.add("is-open");
-  introOverlay.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-  introMute.hidden = false;
+function stopMusic() {
+  if (!musicBus || !audioCtx) return;
+  try {
+    musicBus.gain.cancelScheduledValues(audioCtx.currentTime);
+    musicBus.gain.setTargetAtTime(0, audioCtx.currentTime, 0.12);
+  } catch (err) {
+    /* rien à arrêter */
+  }
+  musicBus = null;
+}
 
-  if (reduceMotionIntro.matches) {
-    introOverlay.classList.add("is-static");
-    introMute.hidden = true;
+async function openIntro() {
+  if (introOpen) return;
+  introOpen = true;
+  sfx("hyper", 0);
+  await starfield.warp(850);
+
+  intro.hidden = false;
+  document.body.classList.add("intro-open");
+  page.inert = true;
+  introMute.hidden = reduceMotion;
+
+  if (reduceMotion) {
+    intro.classList.add("is-static");
   } else {
+    intro.classList.remove("is-static");
     const dur = sizeCrawl();
-    playIntroMusic();
-    introTimers.push(setTimeout(closeIntro, (CRAWL_DELAY + dur + 2.5) * 1000));
+    playMusic();
+    introTimers.push(setTimeout(closeIntro, (CRAWL_START + dur + 1.5) * 1000));
   }
   introClose.focus();
 }
 
 function closeIntro() {
-  if (!introIsOpen) return;
-  introIsOpen = false;
+  if (!introOpen) return;
+  introOpen = false;
   introTimers.forEach(clearTimeout);
   introTimers = [];
-  introOverlay.classList.remove("is-open", "is-static");
-  introOverlay.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-  if (audioCtx && masterGain) {
-    try {
-      masterGain.gain.cancelScheduledValues(audioCtx.currentTime);
-      masterGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.12);
-    } catch (err) {
-      /* ignore */
-    }
-  }
-  if (btnIntro) btnIntro.focus();
+  stopMusic();
+  intro.hidden = true;
+  document.body.classList.remove("intro-open");
+  page.inert = false;
+  starfield.warp(450);
+  btnIntro.focus();
 }
 
-if (btnIntro) btnIntro.addEventListener("click", openIntro);
-if (introClose) introClose.addEventListener("click", closeIntro);
+if (intro && btnIntro) {
+  btnIntro.addEventListener("click", openIntro);
+  introClose.addEventListener("click", closeIntro);
 
-if (introMute) {
   introMute.addEventListener("click", () => {
-    introMuted = !introMuted;
-    introMute.setAttribute("aria-pressed", String(introMuted));
-    introMute.textContent = introMuted ? "🔇 Musique" : "🔊 Musique";
-    if (audioCtx && masterGain) {
-      try {
-        masterGain.gain.cancelScheduledValues(audioCtx.currentTime);
-        masterGain.gain.value = introMuted ? 0 : 0.32;
-      } catch (err) {
-        /* ignore */
-      }
-    }
+    musicMuted = !musicMuted;
+    introMute.setAttribute("aria-pressed", String(musicMuted));
+    introMute.textContent = musicMuted ? "Activer la musique" : "Couper la musique";
+    if (musicBus && audioCtx) musicBus.gain.setTargetAtTime(musicMuted ? 0 : 0.3, audioCtx.currentTime, 0.05);
+  });
+
+  /* garde le focus clavier à l'intérieur du générique */
+  intro.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab") return;
+    const items = [introClose, introMute].filter((el) => !el.hidden);
+    const i = items.indexOf(document.activeElement);
+    e.preventDefault();
+    items[(i + (e.shiftKey ? -1 : 1) + items.length) % items.length].focus();
   });
 }
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && introIsOpen) closeIntro();
+  if (e.key !== "Escape") return;
+  if (introOpen) closeIntro();
+  else if (yodaBubble && !yodaBubble.hidden) closeYoda();
 });
 
-/* ─────────────────────────── EFFETS SONORES ─────────────────────────── */
+/* 10. EFFETS SONORES (désactivés par défaut) ------------------------- */
 
-function sfxNoise(ctx, dur) {
+function noiseBuffer(ctx, dur) {
   const len = Math.floor(ctx.sampleRate * dur);
   const buf = ctx.createBuffer(1, len, ctx.sampleRate);
   const data = buf.getChannelData(0);
@@ -479,251 +686,130 @@ function sfxNoise(ctx, dur) {
   return buf;
 }
 
+function envelope(ctx, node, t, peak, attack, release) {
+  const g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(peak, t + attack);
+  g.gain.exponentialRampToValueAtTime(0.001, t + release);
+  node.connect(g);
+  return g;
+}
+
+function noise(ctx, t, dur, type, freqs, q) {
+  const src = ctx.createBufferSource();
+  src.buffer = noiseBuffer(ctx, dur);
+  const filter = ctx.createBiquadFilter();
+  filter.type = type;
+  filter.Q.value = q;
+  filter.frequency.setValueAtTime(freqs[0], t);
+  freqs.slice(1).forEach(([f, at]) => filter.frequency.exponentialRampToValueAtTime(f, t + at));
+  src.connect(filter);
+  src.start(t);
+  src.stop(t + dur);
+  return filter;
+}
+
+function tone(ctx, t, dur, type, freqs) {
+  const o = ctx.createOscillator();
+  o.type = type;
+  o.frequency.setValueAtTime(freqs[0], t);
+  freqs.slice(1).forEach(([f, at]) => o.frequency.exponentialRampToValueAtTime(f, t + at));
+  o.start(t);
+  o.stop(t + dur);
+  return o;
+}
+
 const SFX = {
   ignite(ctx, t, out) {
-    const src = ctx.createBufferSource();
-    src.buffer = sfxNoise(ctx, 0.6);
-    const bp = ctx.createBiquadFilter();
-    bp.type = "bandpass";
-    bp.Q.value = 1.6;
-    bp.frequency.setValueAtTime(500, t);
-    bp.frequency.exponentialRampToValueAtTime(2600, t + 0.32);
-    const g = ctx.createGain();
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(0.4, t + 0.07);
-    g.gain.exponentialRampToValueAtTime(0.001, t + 0.55);
-    src.connect(bp);
-    bp.connect(g);
-    g.connect(out);
-    src.start(t);
-    src.stop(t + 0.6);
-    const hum = ctx.createOscillator();
-    hum.type = "sawtooth";
-    hum.frequency.value = 112;
-    const hg = ctx.createGain();
-    hg.gain.setValueAtTime(0.0001, t);
-    hg.gain.exponentialRampToValueAtTime(0.1, t + 0.12);
-    hg.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
-    hum.connect(hg);
-    hg.connect(out);
-    hum.start(t);
-    hum.stop(t + 0.65);
+    envelope(ctx, noise(ctx, t, 0.6, "bandpass", [500, [2600, 0.32]], 1.6), t, 0.35, 0.07, 0.55).connect(out);
+    envelope(ctx, tone(ctx, t, 0.65, "sawtooth", [112]), t, 0.08, 0.12, 0.6).connect(out);
   },
-
   blaster(ctx, t, out) {
-    const o = ctx.createOscillator();
-    o.type = "square";
-    o.frequency.setValueAtTime(1750, t);
-    o.frequency.exponentialRampToValueAtTime(240, t + 0.16);
-    const g = ctx.createGain();
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(0.3, t + 0.012);
-    g.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
-    o.connect(g);
-    g.connect(out);
-    o.start(t);
-    o.stop(t + 0.22);
-    const src = ctx.createBufferSource();
-    src.buffer = sfxNoise(ctx, 0.12);
-    const hp = ctx.createBiquadFilter();
-    hp.type = "highpass";
-    hp.frequency.value = 1200;
-    const ng = ctx.createGain();
-    ng.gain.setValueAtTime(0.22, t);
-    ng.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
-    src.connect(hp);
-    hp.connect(ng);
-    ng.connect(out);
-    src.start(t);
-    src.stop(t + 0.12);
+    envelope(ctx, tone(ctx, t, 0.22, "square", [1750, [240, 0.16]]), t, 0.22, 0.012, 0.2).connect(out);
+    envelope(ctx, noise(ctx, t, 0.12, "highpass", [1200], 0.7), t, 0.16, 0.005, 0.1).connect(out);
   },
-
   chirp(ctx, t, out) {
     [[1240, 0], [1760, 0.08], [1080, 0.16]].forEach(([f, d]) => {
-      const o = ctx.createOscillator();
-      o.type = "square";
-      o.frequency.setValueAtTime(f, t + d);
-      const g = ctx.createGain();
-      g.gain.setValueAtTime(0.0001, t + d);
-      g.gain.exponentialRampToValueAtTime(0.16, t + d + 0.012);
-      g.gain.exponentialRampToValueAtTime(0.001, t + d + 0.07);
-      o.connect(g);
-      g.connect(out);
-      o.start(t + d);
-      o.stop(t + d + 0.09);
+      envelope(ctx, tone(ctx, t + d, 0.09, "square", [f]), t + d, 0.12, 0.012, 0.07).connect(out);
     });
   },
-
-  force(ctx, t, out) {
-    const src = ctx.createBufferSource();
-    src.buffer = sfxNoise(ctx, 1.1);
-    const bp = ctx.createBiquadFilter();
-    bp.type = "bandpass";
-    bp.Q.value = 0.8;
-    bp.frequency.setValueAtTime(300, t);
-    bp.frequency.exponentialRampToValueAtTime(1800, t + 0.35);
-    bp.frequency.exponentialRampToValueAtTime(260, t + 1.0);
-    const g = ctx.createGain();
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(0.3, t + 0.3);
-    g.gain.exponentialRampToValueAtTime(0.001, t + 1.05);
-    src.connect(bp);
-    bp.connect(g);
-    g.connect(out);
-    src.start(t);
-    src.stop(t + 1.1);
-    const pad = ctx.createOscillator();
-    pad.type = "sine";
-    pad.frequency.setValueAtTime(96, t);
-    pad.frequency.linearRampToValueAtTime(128, t + 1.0);
-    const pg = ctx.createGain();
-    pg.gain.setValueAtTime(0.0001, t);
-    pg.gain.exponentialRampToValueAtTime(0.14, t + 0.25);
-    pg.gain.exponentialRampToValueAtTime(0.001, t + 1.1);
-    pad.connect(pg);
-    pg.connect(out);
-    pad.start(t);
-    pad.stop(t + 1.15);
-  },
-
-  hyper(ctx, t, out) {
-    const src = ctx.createBufferSource();
-    src.buffer = sfxNoise(ctx, 1.4);
-    const bp = ctx.createBiquadFilter();
-    bp.type = "bandpass";
-    bp.Q.value = 1.1;
-    bp.frequency.setValueAtTime(180, t);
-    bp.frequency.exponentialRampToValueAtTime(7000, t + 1.0);
-    const g = ctx.createGain();
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(0.42, t + 0.75);
-    g.gain.exponentialRampToValueAtTime(0.001, t + 1.35);
-    src.connect(bp);
-    bp.connect(g);
-    g.connect(out);
-    src.start(t);
-    src.stop(t + 1.4);
-    const sub = ctx.createOscillator();
-    sub.type = "sine";
-    sub.frequency.setValueAtTime(70, t);
-    sub.frequency.exponentialRampToValueAtTime(42, t + 1.2);
-    const sg = ctx.createGain();
-    sg.gain.setValueAtTime(0.0001, t);
-    sg.gain.exponentialRampToValueAtTime(0.3, t + 0.5);
-    sg.gain.exponentialRampToValueAtTime(0.001, t + 1.3);
-    sub.connect(sg);
-    sg.connect(out);
-    sub.start(t);
-    sub.stop(t + 1.35);
-  },
-
   beep(ctx, t, out) {
-    const o = ctx.createOscillator();
-    o.type = "triangle";
-    o.frequency.setValueAtTime(880, t);
-    o.frequency.setValueAtTime(1320, t + 0.07);
-    const g = ctx.createGain();
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(0.2, t + 0.015);
-    g.gain.exponentialRampToValueAtTime(0.001, t + 0.16);
-    o.connect(g);
-    g.connect(out);
-    o.start(t);
-    o.stop(t + 0.18);
+    envelope(ctx, tone(ctx, t, 0.18, "triangle", [880, [1320, 0.07]]), t, 0.2, 0.015, 0.16).connect(out);
+  },
+  force(ctx, t, out) {
+    envelope(ctx, noise(ctx, t, 1.1, "bandpass", [300, [1800, 0.35], [260, 1]], 0.8), t, 0.28, 0.3, 1.05).connect(out);
+    envelope(ctx, tone(ctx, t, 1.15, "sine", [96, [128, 1]]), t, 0.14, 0.25, 1.1).connect(out);
+  },
+  hyper(ctx, t, out) {
+    envelope(ctx, noise(ctx, t, 1.4, "bandpass", [180, [7000, 1]], 1.1), t, 0.38, 0.75, 1.35).connect(out);
+    envelope(ctx, tone(ctx, t, 1.35, "sine", [70, [42, 1.2]]), t, 0.28, 0.5, 1.3).connect(out);
   },
 };
 
-let sfxMuted = false;
-try {
-  sfxMuted = localStorage.getItem("sw-sfx-muted") === "1";
-} catch (err) {
-  /* stockage indisponible */
-}
-let sfxCtx = null;
+const soundToggle = document.getElementById("sound-toggle");
+let sfxOn = false;
 let sfxBus = null;
-let lastSfxAt = 0;
+let lastSfx = 0;
 
-function sfxReady() {
-  if (!sfxCtx) {
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return false;
-    try {
-      sfxCtx = new AC();
-      sfxBus = sfxCtx.createGain();
-      sfxBus.gain.value = 0.55;
-      sfxBus.connect(sfxCtx.destination);
-    } catch (err) {
-      return false;
-    }
-  }
-  if (sfxCtx.state === "suspended") sfxCtx.resume();
-  return true;
+try {
+  sfxOn = localStorage.getItem("sw-sfx") === "on";
+} catch (err) {
+  /* stockage indisponible : sons coupés */
 }
 
 function sfx(name, gap = 220) {
-  if (sfxMuted || !SFX[name] || !sfxReady()) return;
+  if (!sfxOn || !SFX[name]) return;
   const now = performance.now();
-  if (now - lastSfxAt < gap) return;
-  lastSfxAt = now;
+  if (now - lastSfx < gap) return;
+  lastSfx = now;
+  const ctx = getAudio();
+  if (!ctx) return;
+  if (!sfxBus) {
+    sfxBus = ctx.createGain();
+    sfxBus.gain.value = 0.5;
+    sfxBus.connect(ctx.destination);
+  }
   try {
-    SFX[name](sfxCtx, sfxCtx.currentTime + 0.02, sfxBus);
+    SFX[name](ctx, ctx.currentTime + 0.02, sfxBus);
   } catch (err) {
-    /* ignore */
+    /* son ignoré */
   }
 }
 
-document.addEventListener("pointerdown", () => sfxReady(), { once: true });
-
-const soundToggleEl = document.getElementById("sound-toggle");
-
 function syncSoundToggle() {
-  if (!soundToggleEl) return;
-  soundToggleEl.setAttribute("aria-pressed", String(sfxMuted));
-  soundToggleEl.setAttribute(
-    "aria-label",
-    sfxMuted ? "Activer les effets sonores" : "Couper les effets sonores"
-  );
-  const icon = soundToggleEl.querySelector("span");
-  if (icon) icon.textContent = sfxMuted ? "🔇" : "🔊";
+  soundToggle.setAttribute("aria-pressed", String(sfxOn));
+  soundToggle.title = sfxOn ? "Couper les effets sonores" : "Activer les effets sonores";
 }
 
-if (soundToggleEl) {
+if (soundToggle) {
   syncSoundToggle();
-  soundToggleEl.addEventListener("click", () => {
-    sfxMuted = !sfxMuted;
+  soundToggle.addEventListener("click", () => {
+    sfxOn = !sfxOn;
     try {
-      localStorage.setItem("sw-sfx-muted", sfxMuted ? "1" : "0");
+      localStorage.setItem("sw-sfx", sfxOn ? "on" : "off");
     } catch (err) {
-      /* ignore */
+      /* préférence non mémorisée */
     }
     syncSoundToggle();
-    if (!sfxMuted) sfx("beep", 0);
+    sfx("beep", 0);
   });
 }
 
-document
-  .querySelectorAll(
-    ".nav a, .hero-contact a, footer a, .back-to-top, .btn-intro, .intro-close, .intro-mute"
-  )
-  .forEach((el) => el.addEventListener("click", () => sfx("blaster")));
-
-document
-  .querySelectorAll(".saber-title")
-  .forEach((el) => el.addEventListener("mouseenter", () => sfx("ignite", 450)));
-
-if (yodaEl) yodaEl.addEventListener("click", () => sfx("force", 400));
-if (yodaNext) yodaNext.addEventListener("click", () => sfx("chirp", 200));
-if (backToTop) backToTop.addEventListener("click", () => sfx("hyper", 600));
-
-const droidSfx = { r2: "chirp", c3po: "beep", bb8: "chirp" };
-
-document.querySelectorAll(".droid-card").forEach((card) => {
-  const sound = droidSfx[card.dataset.droid] || "beep";
-  card.addEventListener("mouseenter", () => sfx(sound, 350));
-  card.addEventListener("click", () => sfx(sound, 350));
+document.querySelectorAll(".nav a, .hero a, .contact-actions a, .link-arrow, .section-cta a, .footer a").forEach((el) => {
+  el.addEventListener("click", () => sfx("blaster"));
 });
 
-/* ─────────────────────────── INIT ─────────────────────────── */
+document.querySelectorAll(".saber-title").forEach((el) => {
+  el.addEventListener("mouseenter", () => sfx("ignite", 450));
+});
 
-buildCoruscant();
+const droidSounds = { r2: "chirp", c3po: "beep", bb8: "chirp" };
+document.querySelectorAll(".droid").forEach((card) => {
+  card.addEventListener("mouseenter", () => sfx(droidSounds[card.dataset.droid] || "beep", 350));
+});
+
+/* INITIALISATION ------------------------------------------------------ */
+
+buildTraffic();
+scheduleFalcon();
 onScroll();
