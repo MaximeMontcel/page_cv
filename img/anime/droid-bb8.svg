@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 90" role="img" aria-label="BB-8"><style>.tw{animation:tw 3.6s ease-in-out infinite}@keyframes tw{50%{opacity:.2}}
+.bob{animation:bob 3.4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-1.3px)}}
+.blink{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.glow{animation:glow 1.3s ease-in-out infinite}@keyframes glow{50%{opacity:.72}}
+.pulse{animation:pulse 4s ease-in-out infinite}@keyframes pulse{50%{opacity:.55}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}.roll{transform-origin:80px 64px;animation:roll 6s linear infinite}@keyframes roll{to{transform:rotate(360deg)}}
+.headw{transform-origin:80px 44px;animation:hw 3s ease-in-out infinite}@keyframes hw{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+.move{animation:mv 6s ease-in-out infinite}@keyframes mv{50%{transform:translateX(6px)}}
+.led{animation:led 1.6s steps(1) infinite}@keyframes led{50%{opacity:.2}}</style><defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a1f12"/><stop offset=".65" stop-color="#c46a2a"/><stop offset="1" stop-color="#e3a25a"/></linearGradient><clipPath id="ball"><circle cx="80" cy="64" r="21"/></clipPath></defs>
+<rect width="160" height="90" fill="url(#bg)"/><circle class="tw" cx="157" cy="22.9" r="0.5" fill="#fff" style="animation-delay:-1.8s"/><circle class="tw" cx="22.4" cy="50.2" r="0.5" fill="#fff" style="animation-delay:-2s"/><circle class="tw" cx="4.5" cy="1.1" r="0.7" fill="#fff" style="animation-delay:-2.8s"/><circle class="tw" cx="84.1" cy="22.6" r="0.7" fill="#fff" style="animation-delay:-3.8s"/><circle class="tw" cx="133.6" cy="46.2" r="0.4" fill="#fff" style="animation-delay:-3.7s"/><circle class="tw" cx="28" cy="4.6" r="0.7" fill="#fff" style="animation-delay:-0.7s"/><circle class="tw" cx="143.2" cy="22.9" r="0.3" fill="#fff" style="animation-delay:-1.3s"/><circle class="tw" cx="6.3" cy="2" r="0.8" fill="#fff" style="animation-delay:-3.9s"/><circle class="tw" cx="141.3" cy="63.2" r="0.4" fill="#fff" style="animation-delay:-1.5s"/><circle class="tw" cx="122.5" cy="20.6" r="0.7" fill="#fff" style="animation-delay:-2.2s"/><path d="M0 80 Q40 74 80 80 T160 78 V90 H0Z" fill="#d9a35b"/><path d="M0 84 Q50 79 100 85 T160 83 V90 H0Z" fill="#c4893f"/>
+<g class="move"><ellipse cx="80" cy="86" rx="20" ry="3" fill="#000" opacity=".3"/>
+<circle cx="80" cy="64" r="21" fill="#f4f3ef"/>
+<g clip-path="url(#ball)"><g class="roll"><circle cx="80" cy="64" r="9" fill="none" stroke="#e8792a" stroke-width="3"/><circle cx="80" cy="64" r="4" fill="#c9ccd1"/>
+<circle cx="80" cy="40" r="9" fill="none" stroke="#e8792a" stroke-width="3"/><circle cx="80" cy="88" r="9" fill="none" stroke="#e8792a" stroke-width="3"/><circle cx="56" cy="64" r="9" fill="none" stroke="#e8792a" stroke-width="3"/><circle cx="104" cy="64" r="9" fill="none" stroke="#e8792a" stroke-width="3"/>
+<path d="M80 43 V50 M80 78 V85 M59 64 H66 M94 64 H101" stroke="#9aa0a8" stroke-width="1.6"/></g></g>
+<circle cx="80" cy="64" r="21" fill="none" stroke="#c9ccd1" stroke-width=".8"/><circle cx="72" cy="56" r="8" fill="#fff" opacity=".35"/>
+<g class="headw"><path d="M67 45 Q67 31 80 31 Q93 31 93 45Z" fill="#f4f3ef"/><path d="M67.5 41 H92.5" stroke="#e8792a" stroke-width="2.2"/><rect x="67" y="44" width="26" height="2.4" rx="1" fill="#9aa0a8"/><circle cx="80" cy="37" r="3.6" fill="#141518"/><circle cx="81" cy="36" r="1.2" fill="#6aa0ff"/><circle class="led" cx="87.5" cy="38.5" r="1.3" fill="#ff4d4d"/><path d="M76 31.5 V25 M79 31 V21.5" stroke="#9aa0a8" stroke-width="1"/></g>
+</g></svg>

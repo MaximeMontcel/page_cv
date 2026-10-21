@@ -14,18 +14,18 @@ Contrat d'apprentissage · 2 semaines en entreprise / 2 semaines en cours · Loi
 
 ## Profil
 
-Bachelier STI2D option SIN (juin 2026), je prépare un BTS SIO option SISR au CFAI LDA de Saint-Étienne, en alternance au Département de la Loire. J'ai déjà pratiqué la configuration de postes, la programmation (Java, Python) et le développement web (HTML/CSS, PHP) lors de mes projets. Rigoureux, ponctuel et curieux, je mets désormais ces acquis en pratique au sein d'une collectivité, tout en continuant à progresser.
+Bachelier STI2D option SIN (juin 2026), je prépare un BTS SIO option SISR au CFAI LDA de Saint-Étienne, en alternance au Département de la Loire, où j'assure le support aux utilisateurs et la gestion du parc informatique. J'ai déjà pratiqué la configuration de postes, la programmation (Java, Python) et le développement web (HTML/CSS, PHP) lors de mes projets. Rigoureux, ponctuel et curieux, je mets désormais ces acquis en pratique au sein d'une collectivité, tout en continuant à progresser.
 
 ## Mon alternance
 
 - **Employeur** : Département de la Loire (collectivité territoriale)
 - **Contrat** : apprentissage pendant mon BTS SIO option SISR (2026 – 2028)
 - **Rythme** : 2 semaines en entreprise / 2 semaines en cours au CFAI LDA de Saint-Étienne
-- **Domaine** : systèmes et réseaux, en lien direct avec ma formation SISR
+- **Missions** : support aux utilisateurs et gestion du parc informatique
 
 ## Compétences
 
-- **Systèmes et réseaux** : configuration de postes de travail, administration systèmes et réseaux (BTS SISR en cours), serveur web local WAMP (Apache, PHP)
+- **Systèmes et réseaux** : support aux utilisateurs, gestion de parc informatique, configuration de postes de travail, administration systèmes et réseaux (BTS SISR en cours), serveur web local WAMP (Apache, PHP)
 - **Développement** : Java, Python, HTML5 / CSS3, PHP 8, JavaScript (bases)
 - **Outils et méthodes** : Git, GitHub et GitHub Desktop, publication GitHub Pages, utilisation raisonnée de l'IA, saisie informatique
 - **Qualité web** : accessibilité (clavier, contrastes), SEO de base, performance (PageSpeed), validation W3C
@@ -36,7 +36,7 @@ Bachelier STI2D option SIN (juin 2026), je prépare un BTS SIO option SISR au CF
 Site d'une entreprise fictive de matériel informatique avec un espace d'administration en PHP natif : connexion protégée contre la force brute, formulaire de contact limité (1 message par minute et 5 par heure par IP), envoi d'e-mails SMTP avec PHPMailer, page de maintenance.
 
 **Ce CV en ligne, version Star Wars** – [voir sur GitHub](https://github.com/MaximeMontcel/page_cv)
-Page HTML statique sans framework publiée avec GitHub Pages : images passées de 4,2 Mo à 0,6 Mo (−87 %), navigation complète au clavier, animations désactivées si l'utilisateur limite les mouvements.
+Page HTML statique sans framework publiée avec GitHub Pages : images passées de 4,2 Mo à 0,16 Mo (−96 %), 44 illustrations animées en SVG, navigation complète au clavier, animations désactivées si l'utilisateur limite les mouvements.
 
 ## Formations
 
@@ -47,6 +47,9 @@ Page HTML statique sans framework publiée avec GitHub Pages : images passées d
 **Diplôme national du Brevet** — Collège Émile Falabrègue, Saint-Bonnet-le-Château — *2023, mention Très Bien*
 
 ## Expériences
+
+**Alternance en BTS SIO SISR** — Département de la Loire — *2026 – 2028 (en cours)*
+Support aux utilisateurs et gestion du parc informatique.
 
 **Stage d'observation de seconde** — Police municipale, Saint-Galmier — *juin – juillet 2024*
 Découverte du monde du travail et de l'organisation d'un service public.

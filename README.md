@@ -20,8 +20,8 @@ CV web statique (HTML, CSS, JavaScript sans framework) publié avec GitHub Pages
 | Sabres laser | Une poignée et une lame lumineuse qui **s'allume** à l'apparition de chaque section (couleur différente par section) |
 | Générique Star Wars | « Il y a bien longtemps… », logo, texte déroulant en 3D et musique générée en Web Audio (bouton pour couper le son) |
 | Yoda assistant | Bulle de dialogue avec effet machine à écrire, utilisable au clavier et lue par les lecteurs d'écran |
-| Droids | R2-D2, C-3PO et BB-8 présentent mes qualités ; les cartes s'inclinent en 3D sous la souris |
-| Galaxie | Bandes défilantes de 20 planètes et 21 personnages, avec un bouton pause |
+| Droids | R2-D2, C-3PO et BB-8 **dessinés et animés en SVG** (dôme qui pivote, bras qui salue, boule qui roule) présentent mes qualités ; les cartes s'inclinent en 3D sous la souris |
+| Galaxie | Bandes défilantes de 20 planètes et 21 personnages **dessinés et animés en SVG** : coups de sabre, tirs de blaster, salut de la main, Force, éclairs de Sidious, oreilles de Yoda et Grogu, planètes qui tournent avec nuages, lunes, anneaux et vaisseaux. Bouton pause |
 | Effets sonores | Sabre, blaster, bips de droids, hyperespace : **désactivés par défaut**, activables avec le bouton haut-parleur (choix mémorisé) |
 | Navigation | Menu collant avec soulignement lumineux qui suit la section lue, barre de progression, bouton retour en haut |
 | CV PDF | Version imprimable sur 2 pages A4, générée à partir de la feuille de style d'impression |
@@ -33,7 +33,8 @@ CV web statique (HTML, CSS, JavaScript sans framework) publié avec GitHub Pages
 ├─ index.html               Page unique du CV
 ├─ css/style.css            Styles (mobile d'abord, impression, mouvements réduits)
 ├─ js/app.js                Interactions (chargé avec defer)
-├─ img/                     Images WebP optimisées + favicon SVG + image de partage
+├─ img/                     Images WebP optimisées, favicon SVG, image de partage
+│  └─ anime/                44 illustrations animées en SVG (personnages, planètes, droids)
 ├─ cv-maxime-montcel.pdf    CV téléchargeable
 ├─ cv.md                    Contenu du CV rédigé en Markdown (étape 1 des consignes)
 ├─ grille_evaluation.md     Grille d'évaluation du projet
@@ -54,7 +55,7 @@ CV web statique (HTML, CSS, JavaScript sans framework) publié avec GitHub Pages
   - toutes les animations coupées si l'utilisateur a activé « réduire les animations ».
 - **SEO** : `title` et `meta description` pertinents, URL canonique, balises Open Graph pour le partage, favicon.
 - **Performance** :
-  - images WebP redimensionnées à leur taille d'affichage ×2 ;
+  - illustrations en SVG animé (quelques Ko chacune, compressées par GitHub Pages) et photos WebP redimensionnées à leur taille d'affichage ×2 ;
   - `loading="lazy"` sous la ligne de flottaison et `fetchpriority="high"` sur l'image du hero ;
   - une seule police web (2 graisses) ;
   - script en `defer` ;
@@ -94,7 +95,7 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 
 | Indicateur | V1 | Version finale | Évolution |
 |---|---|---|---|
-| Poids des images chargées | 4 246 Ko (51 JPEG/PNG) | 530 Ko (WebP) | **−87 %** |
+| Poids des images transférées | 4 246 Ko (51 JPEG/PNG) | 161 Ko (8 WebP + 44 SVG animés compressés) | **−96 %** |
 | Polices web | 3 familles, 9 graisses, dont un `@import` bloquant dans le CSS | 1 famille, 2 graisses, `<link>` + `preconnect` | −7 graisses |
 | Poids du CSS | 44,7 Ko (≈ 250 lignes inutilisées) | 37 Ko, sans code mort | −17 % |
 | Poids du HTML | 37,7 Ko | 33 Ko | −12 % |
@@ -123,17 +124,19 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 | 14 | Pas de projets ni de section alternance | Section absente | Sections « Mon alternance » et « Projets » avec liens GitHub | Lecture recruteur plus rapide |
 | 15 | Pas de favicon ni de balises de partage | Non prévus | Favicon SVG, Open Graph, URL canonique | SEO et partage |
 | 16 | CV encore orienté « recherche d'alternance » | Alternance trouvée au Département de la Loire | Hero, profil, section « Mon alternance », contact, générique, Yoda, title, meta description et PDF mis à jour | Contenu à jour et cohérent |
+| 17 | Missions d'alternance absentes | Information ajoutée après la signature | Support aux utilisateurs et gestion de parc ajoutés (alternance, compétences, expériences, PDF) | Expérience professionnelle concrète |
+| 18 | 44 photos officielles (droits Lucasfilm, 438 Ko) | Visuels repris du Databank | Remplacées par des illustrations SVG dessinées et animées pour le site | −63 % sur ces images et plus de photos sous droits |
 
 ### Auto-évaluation selon la grille
 
 | Critère | Auto-note (0–4) | Justification |
 |---|---:|---|
-| C1 Contenu | 3 | Accroche claire, alternance au Département de la Loire, 2 projets avec résultats chiffrés (−87 %, limites anti-spam) ; l'expérience professionnelle reste limitée à des stages d'observation |
+| C1 Contenu | 3 | Accroche claire, alternance au Département de la Loire (support utilisateurs, gestion de parc), 2 projets avec résultats chiffrés (−96 %, limites anti-spam) |
 | C2 HTML sémantique | 4 | H1 unique, hiérarchie sans saut, balises structurelles, ancres et liens explicites |
 | C3 Responsive | 4 | Grilles mobile d'abord, typographie fluide, testé de 375 px à 1 024 px sans défilement horizontal |
 | C4 UX & accessibilité | 4 | Contrastes ≥ 6,85:1, focus visibles, clavier complet, mouvements réduits respectés, sons désactivés par défaut |
 | C5 SEO | 4 | Title et meta description ciblés, Open Graph, URL canonique, structure claire |
-| C6 Performance | 3 | Images −87 %, une police, `defer`, aucune bibliothèque ; à confirmer avec PageSpeed |
+| C6 Performance | 3 | Images −96 %, une police, `defer`, aucune bibliothèque ; à confirmer avec PageSpeed |
 | C7 Validation | 3 | Corrections listées ci-dessus ; scores W3C et PageSpeed à relever après publication |
 | C8 Publication | à faire | Activer GitHub Pages (Settings → Pages → `main` / root), puis tester sur mobile |
 | C9 Auto-évaluation | 4 | Résultats, causes, corrections et impact mesuré |
@@ -144,4 +147,4 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 
 ## Crédits
 
-Projet scolaire non commercial. Star Wars et ses visuels appartiennent à Lucasfilm Ltd. Sources : [Databank StarWars.com](https://www.starwars.com/databank) et [Wookieepedia](https://starwars.fandom.com/fr/). Police : [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch) (Google Fonts).
+Projet scolaire non commercial. Star Wars appartient à Lucasfilm Ltd. Les droids, planètes et personnages sont des illustrations SVG dessinées et animées pour ce site. Autres visuels (Coruscant, vaisseaux, Yoda) : [Databank StarWars.com](https://www.starwars.com/databank) ; univers : [Wookieepedia](https://starwars.fandom.com/fr/). Police : [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch) (Google Fonts).

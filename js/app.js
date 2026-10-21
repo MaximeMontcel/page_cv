@@ -472,7 +472,7 @@ const yodaClose = document.getElementById("yoda-close");
 const yodaLines = [
   "Bienvenue, jeune visiteur. Le dossier de Maxime, consulter tu veux ?",
   "Bachelier STI2D option SIN en juin 2026, il est. En BTS SIO SISR, désormais il se forme.",
-  "Son alternance, il a trouvée : au Département de la Loire, deux semaines sur quatre. Fier, il est.",
+  "Son alternance, il a trouvée : au Département de la Loire. Support aux utilisateurs et gestion du parc, il assure.",
   "Java, Python, PHP, HTML et CSS, déjà il pratique. Les systèmes et réseaux, bientôt il maîtrisera.",
   "Rigoureux et ponctuel, il est. Un bon Padawan pour son équipe, il fait.",
   "Son CV en PDF, télécharger tu peux. Sur LinkedIn, le suivre tu dois !",

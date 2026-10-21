@@ -1908,6 +1908,11 @@ main:focus {
     border-bottom: 1pt solid #999;
     color: #1b4f8a;
     font-size: 12.5pt;
+    break-after: avoid;
+  }
+
+  #projets {
+    break-before: page;
   }
 
   .lead {
