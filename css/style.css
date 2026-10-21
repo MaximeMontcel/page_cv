@@ -882,7 +882,7 @@ main:focus {
 
 .project .project-tag {
   color: var(--c);
-  font: 700 0.72rem/1.2 var(--font-display);
+  font: 700 0.75rem/1.2 var(--font-display);
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -937,7 +937,7 @@ main:focus {
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.07);
   color: var(--text);
-  font: 700 0.72rem/1.2 var(--font-display);
+  font: 700 0.75rem/1.2 var(--font-display);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1747,7 +1747,7 @@ main:focus {
 .intro-player-credit {
   margin: 6px 0 0;
   color: #c5cede;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   line-height: 1.35;
 }
 

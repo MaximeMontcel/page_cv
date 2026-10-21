@@ -99,8 +99,9 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 |---|---|---|---|
 | Poids des images transférées | 4 246 Ko (51 JPEG/PNG) | 117 Ko (3 WebP + 45 SVG compressés, fond en canvas) | **−97 %** |
 | Polices web | 3 familles, 9 graisses, dont un `@import` bloquant dans le CSS | 1 famille, 2 graisses, `<link>` + `preconnect` | −7 graisses |
-| Poids du CSS | 44,7 Ko (≈ 250 lignes inutilisées) | 37 Ko, sans code mort | −17 % |
-| Poids du HTML | 37,7 Ko | 33 Ko | −12 % |
+| Poids du CSS | 44,7 Ko (≈ 250 lignes inutilisées) | 39 Ko, sans code mort | −13 % |
+| Poids du HTML | 37,7 Ko | 34 Ko | −10 % |
+| Poids du JavaScript | 22 Ko | 55 Ko (bataille d'Endor, hyperespace, lecteur YouTube, bandes défilantes) | +150 %, sans aucune bibliothèque, chargé en `defer` |
 | Contextes audio | 2 | 1 (partagé) | |
 | Données personnelles dans le dépôt | Téléphone et e-mail dans `cv.md` | Aucune | Conforme |
 | Sons au chargement | Activés par défaut | Désactivés par défaut | |
