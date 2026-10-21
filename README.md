@@ -34,8 +34,9 @@ CV web statique (HTML, CSS, JavaScript sans framework) publié avec GitHub Pages
 ├─ index.html               Page unique du CV
 ├─ css/style.css            Styles (mobile d'abord, impression, mouvements réduits)
 ├─ js/app.js                Interactions (chargé avec defer)
-├─ img/                     Images WebP optimisées, favicon SVG, image de partage
-│  └─ anime/                44 illustrations animées en SVG (personnages, planètes, droids)
+├─ fonts/                   Police Chakra Petch (WOFF2) et sa licence OFL
+├─ img/                     Favicon SVG, image de partage, poignée de sabre
+│  └─ anime/                46 illustrations animées en SVG (personnages, planètes, droids, Yoda, Faucon Millenium)
 ├─ cv-maxime-montcel.pdf    CV téléchargeable
 ├─ cv.md                    Contenu du CV rédigé en Markdown (étape 1 des consignes)
 ├─ grille_evaluation.md     Grille d'évaluation du projet
@@ -58,7 +59,7 @@ CV web statique (HTML, CSS, JavaScript sans framework) publié avec GitHub Pages
 - **Performance** :
   - illustrations en SVG animé (quelques Ko chacune, compressées par GitHub Pages) et photos WebP redimensionnées à leur taille d'affichage ×2 ;
   - `loading="lazy"` sous la ligne de flottaison et `fetchpriority="high"` sur l'image du hero ;
-  - une seule police web (2 graisses) ;
+  - une seule police web (2 graisses), hébergée dans le dépôt et préchargée : aucun blocage du rendu par un service externe ;
   - script en `defer` ;
   - aucune bibliothèque ;
   - animations mises en pause hors écran (la bataille du hero s'arrête dès qu'il n'est plus visible) ;
@@ -87,7 +88,7 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 |---|---|---|
 | W3C HTML (validator.w3.org) | **0 erreur, 0 avertissement** | Testé le 21/10/2026 sur l'URL publique. La V1 n'avait pas pu être testée : le site renvoyait une erreur 404 (GitHub Pages non activé) |
 | W3C CSS (jigsaw.w3.org) | **CSS valide, 0 erreur** | 36 avertissements d'information seulement (variables CSS non vérifiables, préfixes `-webkit-`) |
-| Outiref (audit SEO) | **4 étoiles** | H1 unique et hiérarchie correcte, URL canonique, liens internes et externes. Remarques : textes alternatifs vides sur les illustrations décoratives (le nom figure déjà sous chaque carte), meta description courte (128 caractères), tiret bas dans l'URL du dépôt. Titre allongé à 11 mots suite à l'audit |
+| Outiref (audit SEO) | **4 étoiles** | H1 unique et hiérarchie correcte, URL canonique, liens internes et externes. Remarques : textes alternatifs vides sur les illustrations décoratives (le nom figure déjà sous chaque carte), meta description courte (128 caractères), tiret bas dans l'URL du dépôt. Suite à l'audit : titre allongé à 11 mots, textes alternatifs ajoutés et meta description allongée (corrections n° 26) |
 | Structure des titres (Outiref / plan W3C) | H1 unique, hiérarchie H2 → H4 sans saut | Plan relevé par le W3C : `h1` Maxime Montcel, 8 `h2` (Profil, Mon alternance, Compétences, Projets, Parcours, Mes atouts, La galaxie, Me contacter), `h3` et `h4` imbriqués correctement |
 | PageSpeed mobile | **Performance 93 · Accessibilité 100 · Bonnes pratiques 100 · SEO 100** | FCP 2,5 s · LCP 2,5 s · TBT 0 ms · CLS 0,004 · Speed Index 3,9 s (Moto G Power, 4G lente). [Rapport](https://pagespeed.web.dev/analysis/https-maximemontcel-github-io-page_cv/rekrqs6xhi?form_factor=mobile) |
 | PageSpeed ordinateur | **Performance 98 · Accessibilité 100 · Bonnes pratiques 100 · SEO 100** | [Rapport](https://pagespeed.web.dev/analysis/https-maximemontcel-github-io-page_cv/rekrqs6xhi?form_factor=desktop) |
@@ -100,8 +101,8 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 
 | Indicateur | V1 | Version finale | Évolution |
 |---|---|---|---|
-| Poids des images transférées | 4 246 Ko (51 JPEG/PNG) | 117 Ko (3 WebP + 45 SVG compressés, fond en canvas) | **−97 %** |
-| Polices web | 3 familles, 9 graisses, dont un `@import` bloquant dans le CSS | 1 famille, 2 graisses, `<link>` + `preconnect` | −7 graisses |
+| Poids des images transférées | 4 246 Ko (51 JPEG/PNG) | 79 Ko (1 WebP + 47 SVG compressés, fond en canvas) | **−98 %** |
+| Polices web | 3 familles, 9 graisses, dont un `@import` bloquant dans le CSS | 1 famille, 2 graisses (20 Ko) hébergées dans le dépôt et préchargées | −7 graisses, plus aucune requête vers Google Fonts |
 | Poids du CSS | 44,7 Ko (≈ 250 lignes inutilisées) | 39 Ko, sans code mort | −13 % |
 | Poids du HTML | 37,7 Ko | 34 Ko | −10 % |
 | Poids du JavaScript | 22 Ko | 55 Ko (bataille d'Endor, hyperespace, lecteur YouTube, bandes défilantes) | +150 %, sans aucune bibliothèque, chargé en `defer` |
@@ -138,17 +139,21 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 | 22 | « Erreur de configuration » du lecteur YouTube | Site ouvert en fichier local : YouTube refuse la lecture sans site d'origine (erreur 153), et un délai de secours trop court (4 s) | Détection du fichier local avec message explicatif, préchargement au survol du bouton, délai porté à 9 s, repli sur la musique synthétisée seulement en cas d'erreur réelle | Musique officielle fiable sur le site en ligne |
 | 23 | Personnages trop génériques | Mêmes formes pour tous | Casques de Vador, Kylo, Din et Boba redessinés, coiffures propres à chacun, capuche et visage de Dark Sidious, Reine Amidala maquillée, arbalète laser de Chewbacca, détails de costumes | Personnages reconnaissables au premier coup d'œil |
 | 24 | Le bouton « Mettre en pause » des bandes défilantes ne faisait rien | Règle CSS de l'animation plus prioritaire que celle de la pause | Défilement piloté en JavaScript : pause fiable, flèches précédent / suivant, défilement manuel au doigt, à la molette ou au clavier, reprise automatique après 2,5 s | Pause conforme WCAG 2.2.2 et navigation libre |
+| 25 | Accroche du profil trop longue (environ 5 lignes) | Deux paragraphes | Accroche ramenée à 2 phrases, comme le demande la consigne (2–3 lignes) | Lecture recruteur plus rapide |
+| 26 | Outiref : 43 images sans texte alternatif, meta description courte (128 caractères) | Illustrations considérées comme décoratives | Texte alternatif sur les 41 illustrations de la galaxie, meta description allongée à 209 caractères | Meilleure note SEO, images décrites pour les lecteurs d'écran |
+| 27 | PageSpeed : la police Google bloque le rendu (≈ 1,4 s d'économie possible) | Feuille de style chargée depuis fonts.googleapis.com | Police hébergée dans le dépôt (2 × 10 Ko) et préchargée | Affichage plus rapide, plus de dépendance externe |
+| 28 | Yoda et le Faucon Millenium encore en photos officielles | Visuels du Databank | Redessinés en SVG comme les autres personnages | 100 % de visuels originaux, −41 Ko |
 
 ### Auto-évaluation selon la grille
 
 | Critère | Auto-note (0–4) | Justification |
 |---|---:|---|
-| C1 Contenu | 3 | Accroche claire, alternance au Département de la Loire (support utilisateurs, gestion de parc), 2 projets avec résultats chiffrés (−97 %, limites anti-spam) |
+| C1 Contenu | 3 | Accroche claire, alternance au Département de la Loire (support utilisateurs, gestion de parc), 2 projets avec résultats chiffrés (−98 %, limites anti-spam) |
 | C2 HTML sémantique | 4 | H1 unique, hiérarchie sans saut, balises structurelles, ancres et liens explicites |
 | C3 Responsive | 4 | Grilles mobile d'abord, typographie fluide, testé de 375 px à 1 024 px sans défilement horizontal |
 | C4 UX & accessibilité | 4 | Contrastes ≥ 6,85:1, focus visibles, clavier complet, mouvements réduits respectés, sons désactivés par défaut |
 | C5 SEO | 4 | Title et meta description ciblés, Open Graph, URL canonique, structure claire |
-| C6 Performance | 4 | PageSpeed 93 sur mobile et 98 sur ordinateur, TBT 0 ms, CLS 0,004 ; images −97 %, une police, `defer`, aucune bibliothèque |
+| C6 Performance | 4 | PageSpeed 93 sur mobile et 98 sur ordinateur (mesuré avant d'héberger la police), TBT 0 ms, CLS 0,004 ; images −98 %, une police locale, `defer`, aucune bibliothèque |
 | C7 Validation | 4 | W3C HTML 0 erreur, CSS valide, titres conformes, PageSpeed 93 à 100 ; journal de 24 corrections V1 → finale |
 | C8 Publication | 4 | En ligne sur https://maximemontcel.github.io/page_cv/, testé sur mobile (375 px), plusieurs itérations après publication |
 | C9 Auto-évaluation | 4 | Résultats, causes, corrections et impact mesuré |
@@ -159,4 +164,4 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 
 ## Crédits
 
-Projet scolaire non commercial. Star Wars appartient à Lucasfilm Ltd. Les droids, planètes et personnages sont des illustrations SVG dessinées et animées pour ce site. Autres visuels (Faucon Millenium, Yoda) : [Databank StarWars.com](https://www.starwars.com/databank) ; univers : [Wookieepedia](https://starwars.fandom.com/fr/). Musique du générique : « Main Title » de John Williams et du London Symphony Orchestra, piste officielle fournie à YouTube par Universal Music Group, lue sans être copiée dans le dépôt. Police : [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch) (Google Fonts).
+Projet scolaire non commercial. Star Wars appartient à Lucasfilm Ltd. Toutes les illustrations (personnages, droids, planètes, vaisseaux, bataille d'Endor) sont dessinées et animées pour ce site, sans photo officielle. Univers : [Wookieepedia](https://starwars.fandom.com/fr/). Musique du générique : « Main Title » de John Williams et du London Symphony Orchestra, piste officielle fournie à YouTube par Universal Music Group, lue sans être copiée dans le dépôt. Police : [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch), sous licence SIL Open Font License 1.1 (voir `fonts/OFL.txt`).

@@ -221,7 +221,7 @@ const battle = (() => {
     empire: { glow: "rgba(60, 255, 80, 0.7)", core: "#eaffe8" },
   };
   const falconImg = new Image();
-  falconImg.src = "img/falcon.webp";
+  falconImg.src = "img/anime/falcon.svg";
 
   let W = 0;
   let H = 0;
@@ -919,7 +919,7 @@ const battle = (() => {
       const w = 78 * k;
       ctx.drawImage(falconImg, falcon.x - w / 2, falcon.y - w * 0.29, w, w * 0.58);
       ctx.fillStyle = `rgba(150, 210, 255, ${0.55 + 0.3 * Math.sin(time * 30)})`;
-      ctx.fillRect(falcon.x + w * 0.38, falcon.y - w * 0.04, 3 * k, w * 0.12);
+      ctx.fillRect(falcon.x + w * 0.31, falcon.y - w * 0.15, 3 * k, w * 0.3);
     }
 
     ctx.save();

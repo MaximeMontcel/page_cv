@@ -14,7 +14,7 @@ Contrat d'apprentissage · 2 semaines en entreprise / 2 semaines en cours · Loi
 
 ## Profil
 
-Bachelier STI2D option SIN (juin 2026), je prépare un BTS SIO option SISR au CFAI LDA de Saint-Étienne, en alternance au Département de la Loire, où j'assure le support aux utilisateurs et la gestion du parc informatique. J'ai déjà pratiqué la configuration de postes, la programmation (Java, Python) et le développement web (HTML/CSS, PHP) lors de mes projets. Rigoureux, ponctuel et curieux, je mets désormais ces acquis en pratique au sein d'une collectivité, tout en continuant à progresser.
+Alternant en BTS SIO option SISR au Département de la Loire, j'assure le support aux utilisateurs et la gestion du parc informatique. Rigoureux et curieux, je développe aussi des projets web et PHP.
 
 ## Mon alternance
 
@@ -36,7 +36,7 @@ Bachelier STI2D option SIN (juin 2026), je prépare un BTS SIO option SISR au CF
 Site d'une entreprise fictive de matériel informatique avec un espace d'administration en PHP natif : connexion protégée contre la force brute, formulaire de contact limité (1 message par minute et 5 par heure par IP), envoi d'e-mails SMTP avec PHPMailer, page de maintenance.
 
 **Ce CV en ligne, version Star Wars** – [voir sur GitHub](https://github.com/MaximeMontcel/page_cv)
-Page HTML statique sans framework publiée avec GitHub Pages : images passées de 4,2 Mo à 0,12 Mo (−97 %), 44 illustrations animées en SVG, bataille d'Endor animée en canvas, navigation complète au clavier, animations désactivées si l'utilisateur limite les mouvements.
+Page HTML statique sans framework publiée avec GitHub Pages : images passées de 4,2 Mo à 0,1 Mo (−98 %), 46 illustrations animées en SVG, bataille d'Endor animée en canvas, navigation complète au clavier, animations désactivées si l'utilisateur limite les mouvements.
 
 ## Formations
 
