@@ -24,7 +24,7 @@ CV web statique (HTML, CSS, JavaScript sans framework) publié avec GitHub Pages
 | Générique Star Wars | « Il y a bien longtemps… », logo, texte déroulant en 3D et **vraie musique du générique** (« Main Title » de John Williams, piste officielle sur YouTube) qui démarre avec le logo ; bouton pour couper le son ; version synthétisée de secours si YouTube ne répond pas |
 | Yoda assistant | Bulle de dialogue avec effet machine à écrire, utilisable au clavier et lue par les lecteurs d'écran |
 | Droids | R2-D2, C-3PO et BB-8 **dessinés et animés en SVG** (dôme qui pivote, bras qui salue, boule qui roule) présentent mes qualités ; les cartes s'inclinent en 3D sous la souris |
-| Galaxie | Bandes défilantes de 20 planètes et 21 personnages **dessinés et animés en SVG** : coups de sabre, tirs de blaster, salut de la main, Force, éclairs de Sidious, oreilles de Yoda et Grogu, planètes qui tournent avec nuages, lunes, anneaux et vaisseaux. Bouton pause, **flèches précédent / suivant** et défilement manuel (glisser au doigt, molette, flèches du clavier) |
+| Galaxie | Bandes défilantes de 20 planètes et 21 personnages **en portraits style dessin animé (SVG)**, fidèles aux vrais personnages : respiration, tête et regard qui bougent, clignements, coups de sabre, tirs de blaster, salut de la main, Force, éclairs de Sidious, rugissement de Chewbacca, oreilles de Yoda et Grogu, planètes qui tournent avec nuages, lunes, anneaux et vaisseaux. Bouton pause, **flèches précédent / suivant** et défilement manuel (glisser au doigt, molette, flèches du clavier) |
 | Effets sonores | Sabre, blaster, bips de droids, hyperespace : **désactivés par défaut**, activables avec le bouton haut-parleur (choix mémorisé) |
 | Navigation | Menu collant avec soulignement lumineux qui suit la section lue, barre de progression, bouton retour en haut |
 | CV PDF | Version imprimable sur 2 pages A4, générée à partir de la feuille de style d'impression |
@@ -103,10 +103,10 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 
 | Indicateur | V1 | Version finale | Évolution |
 |---|---|---|---|
-| Poids des images transférées | 4 246 Ko (51 JPEG/PNG) | 79 Ko (1 WebP + 47 SVG compressés, fond en canvas) | **−98 %** |
+| Poids des images transférées | 4 246 Ko (51 JPEG/PNG) | 137 Ko (1 WebP + 47 SVG compressés, fond en canvas) | **−97 %** |
 | Polices web | 3 familles, 9 graisses, dont un `@import` bloquant dans le CSS | 1 famille, 2 graisses (20 Ko) hébergées dans le dépôt et préchargées | −7 graisses, plus aucune requête vers Google Fonts |
-| Poids du CSS | 44,7 Ko (≈ 250 lignes inutilisées) | 39 Ko, sans code mort | −13 % |
-| Poids du HTML | 37,7 Ko | 34 Ko | −10 % |
+| Poids du CSS | 44,7 Ko (≈ 250 lignes inutilisées) | 40 Ko, sans code mort | −11 % |
+| Poids du HTML | 37,7 Ko | 35 Ko | −7 % |
 | Poids du JavaScript | 22 Ko | 55 Ko (bataille d'Endor, hyperespace, lecteur YouTube, bandes défilantes) | +150 %, sans aucune bibliothèque, chargé en `defer` |
 | Contextes audio | 2 | 1 (partagé) | |
 | Données personnelles dans le dépôt | Téléphone et e-mail dans `cv.md` | Aucune | Conforme |
@@ -146,17 +146,20 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 | 27 | PageSpeed : la police Google bloque le rendu (≈ 1,4 s d'économie possible) | Feuille de style chargée depuis fonts.googleapis.com | Police hébergée dans le dépôt (2 × 10 Ko) et préchargée | PageSpeed mobile 93 → 96, ordinateur 98 → 100 ; FCP mobile 2,5 s → 1,1 s |
 | 28 | Yoda et le Faucon Millenium encore en photos officielles | Visuels du Databank | Redessinés en SVG comme les autres personnages | 100 % de visuels originaux, −41 Ko |
 | 29 | Dépôt et projet peu « vendeurs » pour un recruteur | Pas d'aperçu ni de preuve de qualité | Capture d'écran en tête du README et scores PageSpeed affichés dans le projet du CV | Qualité démontrée en un coup d'œil |
+| 30 | Statistique « −98 % de poids d'images » dans le profil et compétence PHP | Informations peu utiles pour un recruteur en systèmes et réseaux | Statistique retirée du profil et du projet, PHP retiré des compétences, de l'accroche et du générique ; ajout de la compétence « Prompting IA » | Profil recentré sur l'essentiel |
+| 31 | Personnages au style « chibi » peu ressemblants | Têtes et corps génériques | 21 portraits en buste style dessin animé : proportions réalistes, iris colorés, sourcils, nez et lèvres, vraies coiffures (Han décoiffé, Leia et ses macarons…), carrure propre à chacun (Leia fine, Chewbacca et Vador massifs), costumes et armes de chaque personnage, animations (respiration, regard, clignement, sabre, tir, Force) | Personnages fidèles et reconnaissables |
+| 32 | Capuche de Palpatine peu crédible, droids et planètes trop simples | Formes plates sans volume | Capuche en tissu fin, ajustée à la tête, qui cache et assombrit le visage ; casques de Vador et Kylo Ren fidèles aux films (rabats évasés, verres sombres, grille à lamelles ; visière en T chromée, lame instable à garde) avec reflets et contre-jour ; droids redessinés avec reflets métalliques et détails (dôme et panneaux de R2-D2, câbles de C-3PO, panneaux de BB-8) ; planètes avec face jour / nuit, relief, nuages flous, calottes glaciaires, lave lumineuse et lumières des villes côté nuit | Illustrations cohérentes et réalistes, environ 13 à 30 Ko par planète |
 
 ### Auto-évaluation selon la grille
 
 | Critère | Auto-note (0–4) | Justification |
 |---|---:|---|
-| C1 Contenu | 3 | Accroche claire, alternance au Département de la Loire (support utilisateurs, gestion de parc), 2 projets avec résultats chiffrés (−98 %, limites anti-spam) |
+| C1 Contenu | 3 | Accroche claire, alternance au Département de la Loire (support utilisateurs, gestion de parc), 2 projets avec résultats chiffrés (scores PageSpeed et W3C, limites anti-spam) |
 | C2 HTML sémantique | 4 | H1 unique, hiérarchie sans saut, balises structurelles, ancres et liens explicites |
 | C3 Responsive | 4 | Grilles mobile d'abord, typographie fluide, testé de 375 px à 1 024 px sans défilement horizontal |
 | C4 UX & accessibilité | 4 | Contrastes ≥ 6,85:1, focus visibles, clavier complet, mouvements réduits respectés, sons désactivés par défaut |
 | C5 SEO | 4 | Title et meta description ciblés, Open Graph, URL canonique, structure claire |
-| C6 Performance | 4 | PageSpeed 96 sur mobile et 100 sur ordinateur, LCP 1,3 s sur mobile ; images −98 %, une police locale, `defer`, aucune bibliothèque |
+| C6 Performance | 4 | PageSpeed 96 sur mobile et 100 sur ordinateur, LCP 1,3 s sur mobile ; images −97 %, une police locale, `defer`, aucune bibliothèque |
 | C7 Validation | 4 | W3C HTML 0 erreur, CSS valide, titres conformes, PageSpeed 96 à 100 ; journal de 24 corrections V1 → finale |
 | C8 Publication | 4 | En ligne sur https://maximemontcel.github.io/page_cv/, testé sur mobile (375 px), plusieurs itérations après publication |
 | C9 Auto-évaluation | 4 | Résultats, causes, corrections et impact mesuré |

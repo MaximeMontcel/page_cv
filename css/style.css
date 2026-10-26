@@ -308,6 +308,15 @@ a {
   align-items: center;
   width: min(80vw, 460px);
   margin: clamp(18px, 3vw, 28px) auto;
+  /* le sabre n'apparaît qu'à la sortie de l'hyperespace */
+  animation: saber-in 0.7s var(--ease) calc(var(--arrive) + 0.2s) both;
+}
+
+@keyframes saber-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) rotate(-6deg) scale(0.92);
+  }
 }
 
 .saber-hilt {
@@ -329,7 +338,7 @@ a {
     0 0 38px 8px color-mix(in srgb, var(--c) 45%, transparent);
   transform: scaleX(0);
   transform-origin: left;
-  animation: ignite 0.6s var(--ease) calc(var(--arrive) + 0.6s) forwards, hum 2.6s ease-in-out calc(var(--arrive) + 1.4s) infinite;
+  animation: ignite 0.6s var(--ease) calc(var(--arrive) + 0.9s) forwards, hum 2.6s ease-in-out calc(var(--arrive) + 1.7s) infinite;
 }
 
 @keyframes ignite {
@@ -790,6 +799,10 @@ main:focus {
   border: 1px solid var(--border);
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.03);
+}
+
+.stat:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
 }
 
 .stat-num {
