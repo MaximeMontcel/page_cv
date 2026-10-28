@@ -75,10 +75,10 @@ Découverte du monde du travail et de l'accueil du public.
 
 - Pix : Niveau Indépendant 2 (score 515)
 - Prévention et secours civiques de niveau 1 (PSC 1)
-- Apprentissage anticipé de la conduite (en cours)
+- Permis de conduire (B)
 
 ## Centres d'intérêt
 
 - Football en club depuis 9 ans
-- Cinéma
+- Films et séries
 - Jeux vidéo
