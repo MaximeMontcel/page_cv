@@ -164,7 +164,7 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 | C8 Publication | 4 | En ligne sur https://maximemontcel.github.io/page_cv/, testé sur mobile (375 px), plusieurs itérations après publication |
 | C9 Auto-évaluation | 4 | Résultats, causes, corrections et impact mesuré |
 | C10 Confidentialité | 4 | Aucune donnée sensible, message de contact clair via GitHub et LinkedIn |
-| C11 Qualité du dépôt | 3 | Arborescence claire, README utile, commits numérotés V1 → V13 avec messages détaillés |
+| C11 Qualité du dépôt | 3 | Arborescence claire, README utile, commits numérotés V1 → V15 avec messages détaillés |
 
 ---
 
