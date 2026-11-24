@@ -156,22 +156,23 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 | 37 | Meta description mal dimensionnée : 249 caractères après l'ajout des compétences, puis 148 caractères jugés « légèrement trop courts » par Outiref (200 à 300 conseillés) | Allongée à chaque ajout de compétence, puis trop raccourcie | Réécrite en 216 caractères, mots clés importants (BTS SIO SISR, Département de la Loire, réseaux Cisco) dans les 150 premiers | Conforme à Outiref, l'essentiel reste visible même si Google coupe le texte |
 | 38 | Lighthouse : police de texte (graisse 500) découverte seulement après le CSS ; temps de blocage (TBT) de 240 ms sur mobile | Seule la graisse 700 était préchargée ; les 41 illustrations animées de la galaxie étaient rendues même hors écran | Préchargement de la graisse 500 et `content-visibility: auto` sur la section galaxie | Mesure locale (Lighthouse CLI, mobile, 3 passages) : performance 95 à 98, TBT 140 à 250 ms ; W3C HTML et CSS toujours sans erreur |
 | 39 | Outiref : titre trop long (13 mots, 12 au maximum) | « au Département de la Loire » ajouté au titre lors de l'alternance | Titre réécrit en 12 mots et 66 caractères : « Maxime Montcel – CV BTS SIO SISR, alternant en systèmes et réseaux » | Titre conforme, avec les mots clés du métier visé |
+| 40 | Missions d'alternance trop vagues (« support aux utilisateurs et gestion du parc » répété partout) | Missions détaillées après les premières semaines en entreprise | Missions détaillées : utilisation de SCCM et de l'Active Directory, migration des données et profils utilisateurs avec USMT, interventions sur site, bientôt hotline ; compétences « SCCM », « Active Directory » et « Migration de profils (USMT) » ajoutées ; mise en page du PDF resserrée pour rester sur 2 pages (descriptions des stages d'observation masquées à l'impression) | Expérience professionnelle concrète, lisible en un coup d'œil |
 
 ### Auto-évaluation selon la grille
 
 | Critère | Auto-note (0–4) | Justification |
 |---|---:|---|
-| C1 Contenu | 3 | Accroche claire, alternance au Département de la Loire (support utilisateurs, gestion de parc), compétences réseaux et systèmes du BTS SISR (Cisco, DHCP, STP, SSH, Bash, PostgreSQL), 3 projets dont un projet réseau, avec résultats chiffrés (scores PageSpeed et W3C, limites anti-spam) |
+| C1 Contenu | 4 | Accroche claire, missions d'alternance concrètes (support utilisateurs, SCCM, Active Directory, migration de profils USMT, interventions sur site, bientôt hotline), compétences réseaux et systèmes du BTS SISR (Cisco, DHCP, STP, SSH, Bash, PostgreSQL), 3 projets dont un projet réseau, avec résultats chiffrés (scores PageSpeed et W3C, limites anti-spam) |
 | C2 HTML sémantique | 4 | H1 unique, hiérarchie sans saut, balises structurelles, ancres et liens explicites |
 | C3 Responsive | 4 | Grilles mobile d'abord, typographie fluide, testé de 375 px à 1 024 px sans défilement horizontal |
 | C4 UX & accessibilité | 4 | Contrastes ≥ 6,85:1, focus visibles, clavier complet, mouvements réduits respectés, sons désactivés par défaut |
 | C5 SEO | 4 | Title et meta description ciblés, Open Graph, URL canonique, structure claire |
 | C6 Performance | 4 | PageSpeed 96 sur mobile et 100 sur ordinateur (V17), LCP 0,9 s et TBT 0 ms sur mobile ; images −97 %, une police locale préchargée, `defer`, aucune bibliothèque |
-| C7 Validation | 4 | W3C HTML 0 erreur, CSS valide, Outiref corrigé (titre, meta description), PageSpeed 96 à 100 ; journal de 39 corrections V1 → finale |
+| C7 Validation | 4 | W3C HTML 0 erreur, CSS valide, Outiref corrigé (titre, meta description), PageSpeed 96 à 100 ; journal de 40 corrections V1 → finale |
 | C8 Publication | 4 | En ligne sur https://maximemontcel.github.io/page_cv/, testé sur mobile (375 px), plusieurs itérations après publication |
 | C9 Auto-évaluation | 4 | Résultats, causes, corrections et impact mesuré |
 | C10 Confidentialité | 4 | Aucune donnée sensible, message de contact clair via GitHub et LinkedIn |
-| C11 Qualité du dépôt | 3 | Arborescence claire, README utile, commits numérotés V1 → V18 avec messages détaillés |
+| C11 Qualité du dépôt | 3 | Arborescence claire, README utile, commits numérotés V1 → V19 avec messages détaillés |
 
 ---
 

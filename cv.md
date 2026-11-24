@@ -21,12 +21,12 @@ Alternant en BTS SIO option SISR au Département de la Loire, j'assure le suppor
 - **Employeur** : Département de la Loire (collectivité territoriale)
 - **Contrat** : apprentissage pendant mon BTS SIO option SISR (2026 – 2028)
 - **Rythme** : 2 semaines en entreprise / 2 semaines en cours au CFAI LDA de Saint-Étienne
-- **Missions** : support aux utilisateurs et gestion du parc informatique
+- **Missions** : support aux utilisateurs et gestion du parc informatique, utilisation de SCCM et de l'Active Directory, migration des données et profils utilisateurs avec USMT, interventions sur site ; bientôt assistance téléphonique (hotline)
 
 ## Compétences
 
 - **Réseaux** : switchs et routeurs Cisco (IOS, console), adressage IPv4, serveur DHCP sur routeur, Spanning Tree (STP), accès distant sécurisé SSH, Cisco Packet Tracer
-- **Systèmes et support** : support aux utilisateurs, gestion de parc informatique, configuration de postes de travail, scripts Bash (création d'utilisateurs), serveur web Apache (WAMP)
+- **Systèmes et support** : support aux utilisateurs, gestion de parc informatique, configuration de postes de travail, SCCM, Active Directory, migration de profils (USMT), scripts Bash (création d'utilisateurs), serveur web Apache (WAMP)
 - **Développement et données** : Python, C#, Java, SQL (PostgreSQL, DBeaver), HTML5 / CSS3, JavaScript (bases)
 - **Outils et qualité web** : Git et GitHub, publication GitHub Pages, utilisation raisonnée de l'IA, accessibilité et SEO de base, validation W3C et PageSpeed
 
@@ -52,7 +52,7 @@ Page HTML statique sans framework publiée avec GitHub Pages : 46 illustrations 
 ## Expériences
 
 **Alternance en BTS SIO SISR** — Département de la Loire — *2026 – 2028 (en cours)*
-Support aux utilisateurs et gestion du parc informatique.
+Support aux utilisateurs et gestion du parc : SCCM, Active Directory, migration de profils avec USMT, interventions sur site, bientôt hotline.
 
 **Stage d'observation de seconde** — Police municipale, Saint-Galmier — *juin – juillet 2024*
 Découverte du monde du travail et de l'organisation d'un service public.

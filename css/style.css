@@ -2083,6 +2083,53 @@ main:focus {
     gap: 3pt;
   }
 
+  /* Alternance : 3 cartes courtes sur une ligne, missions sur toute la largeur */
+  .mission-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4pt 18pt;
+  }
+
+  .mission-grid .mission:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .mission .dot-list {
+    display: block;
+    columns: 2;
+    column-gap: 18pt;
+  }
+
+  .mission .dot-list li {
+    margin-bottom: 1pt;
+    break-inside: avoid;
+  }
+
+  /* page 1 plus compacte */
+  #profil .saber-title,
+  #alternance .saber-title,
+  #competences .saber-title,
+  #parcours .saber-title {
+    margin-bottom: 4pt;
+  }
+
+  .hero {
+    padding-bottom: 4pt;
+  }
+
+  #competences .skills-grid {
+    row-gap: 4pt;
+  }
+
+  #competences .tags li {
+    padding: 0 5pt;
+  }
+
+  /* déjà détaillé dans « Mon alternance » */
+  .timeline-item .alt-detail,
+  .timeline-item .obs-detail {
+    display: none;
+  }
+
   #parcours .timeline {
     gap: 3pt;
   }
