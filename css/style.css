@@ -903,7 +903,7 @@ main:focus {
 /* Projets */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: 18px;
 }
 
@@ -1850,6 +1850,12 @@ main:focus {
   margin: 12mm 14mm;
 }
 
+/* La galaxie (41 illustrations animées) n'est rendue qu'à l'approche de l'écran */
+#galaxie {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
 @media print {
   :root {
     --c: #1b4f8a;
@@ -2011,10 +2017,6 @@ main:focus {
     break-after: avoid;
   }
 
-  #projets {
-    break-before: page;
-  }
-
   .lead {
     font-size: 10pt;
   }
@@ -2047,6 +2049,60 @@ main:focus {
     grid-template-columns: repeat(3, 1fr);
     gap: 8pt;
     margin-bottom: 8pt;
+  }
+
+  /* 3 projets côte à côte pour tenir sur 2 pages A4 */
+  .projects-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8pt 12pt;
+  }
+
+  /* PDF : le parcours remplit la page 1, les projets ouvrent la page 2 */
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #parcours {
+    order: 1;
+  }
+
+  #projets {
+    order: 2;
+    break-before: page;
+  }
+
+  #profil,
+  #alternance,
+  #competences,
+  #parcours {
+    padding-top: 2pt;
+  }
+
+  #competences .tags {
+    gap: 3pt;
+  }
+
+  #parcours .timeline {
+    gap: 3pt;
+  }
+
+  #atouts,
+  #galaxie,
+  #contact {
+    order: 3;
+  }
+
+  .project {
+    font-size: 8.6pt;
+  }
+
+  .project .link-arrow::after {
+    overflow-wrap: anywhere;
+  }
+
+  .project .link-arrow {
+    overflow-wrap: anywhere;
   }
 
   .profil-grid,

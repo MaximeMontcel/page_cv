@@ -4,17 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Maxime Montcel – CV BTS SIO SISR, alternant au Département de la Loire</title>
-  <meta name="description" content="CV en ligne de Maxime Montcel, étudiant en BTS SIO option SISR au CFAI LDA de Saint-Étienne et alternant au Département de la Loire : support aux utilisateurs, gestion de parc informatique et développement web.">
+  <meta name="description" content="CV de Maxime Montcel, alternant en BTS SIO SISR au Département de la Loire : support utilisateurs, parc informatique, réseaux Cisco et scripts Bash.">
   <meta name="author" content="Maxime Montcel">
   <meta name="theme-color" content="#05070d">
   <link rel="canonical" href="https://maximemontcel.github.io/page_cv/">
   <meta property="og:type" content="profile">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:title" content="Maxime Montcel – CV BTS SIO SISR en alternance">
-  <meta property="og:description" content="Étudiant en BTS SIO SISR, alternant au Département de la Loire : support aux utilisateurs et gestion de parc informatique.">
+  <meta property="og:description" content="Étudiant en BTS SIO SISR, alternant au Département de la Loire : support aux utilisateurs, gestion de parc informatique et réseaux Cisco.">
   <meta property="og:url" content="https://maximemontcel.github.io/page_cv/">
   <meta property="og:image" content="https://maximemontcel.github.io/page_cv/img/og-image.jpg">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/chakra-petch-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/chakra-petch-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.className = "js";</script>
@@ -96,7 +97,7 @@
         <h2 id="t-profil" class="saber-title">Profil</h2>
         <div class="profil-grid">
           <div class="profil-text reveal">
-            <p class="lead">Alternant en <strong>BTS SIO option SISR</strong> au <strong>Département de la Loire</strong>, j'assure le support aux utilisateurs et la gestion du parc informatique. Rigoureux et curieux, je développe aussi des projets web.</p>
+            <p class="lead">Alternant en <strong>BTS SIO option SISR</strong> au <strong>Département de la Loire</strong>, j'assure le support aux utilisateurs et la gestion du parc informatique. En formation, je configure des réseaux Cisco (DHCP, STP, SSH) et j'automatise l'administration Linux avec des scripts Bash.</p>
           </div>
           <ul class="stats reveal">
             <li class="stat"><span class="stat-num" data-count="515">515</span><span class="stat-label">score Pix<br>Niveau Indépendant 2</span></li>
@@ -136,41 +137,45 @@
         <h2 id="t-competences" class="saber-title">Compétences</h2>
         <div class="skills-grid">
           <article class="card skill reveal">
-            <h3>Systèmes &amp; réseaux</h3>
+            <h3>Réseaux</h3>
+            <ul class="tags">
+              <li>Switchs et routeurs Cisco (IOS, console)</li>
+              <li>Adressage IPv4</li>
+              <li>Serveur DHCP sur routeur</li>
+              <li>Spanning Tree (STP)</li>
+              <li>Accès distant sécurisé SSH</li>
+              <li>Cisco Packet Tracer</li>
+            </ul>
+          </article>
+          <article class="card skill reveal">
+            <h3>Systèmes &amp; support</h3>
             <ul class="tags">
               <li>Support aux utilisateurs</li>
               <li>Gestion de parc informatique</li>
               <li>Configuration de postes de travail</li>
-              <li>Administration systèmes et réseaux (BTS SISR en cours)</li>
-              <li>Serveur web local WAMP (Apache)</li>
+              <li>Scripts Bash (création d'utilisateurs)</li>
+              <li>Serveur web Apache (WAMP)</li>
             </ul>
           </article>
           <article class="card skill reveal">
-            <h3>Développement</h3>
+            <h3>Développement &amp; données</h3>
             <ul class="tags">
-              <li>Java</li>
               <li>Python</li>
+              <li>C#</li>
+              <li>Java</li>
+              <li>SQL (PostgreSQL, DBeaver)</li>
               <li>HTML5 / CSS3</li>
               <li>JavaScript (bases)</li>
             </ul>
           </article>
           <article class="card skill reveal">
-            <h3>Outils &amp; méthodes</h3>
+            <h3>Outils &amp; qualité web</h3>
             <ul class="tags">
-              <li>Git, GitHub et GitHub Desktop</li>
+              <li>Git et GitHub</li>
               <li>Publication GitHub Pages</li>
-              <li>Prompting IA</li>
               <li>Utilisation raisonnée de l'IA</li>
-              <li>Saisie informatique</li>
-            </ul>
-          </article>
-          <article class="card skill reveal">
-            <h3>Qualité web</h3>
-            <ul class="tags">
-              <li>Accessibilité (clavier, contrastes)</li>
-              <li>SEO de base</li>
-              <li>Performance (PageSpeed)</li>
-              <li>Validation W3C</li>
+              <li>Accessibilité et SEO de base</li>
+              <li>Validation W3C et PageSpeed</li>
             </ul>
           </article>
         </div>
@@ -182,6 +187,20 @@
         <h2 id="t-projets" class="saber-title">Projets</h2>
         <div class="projects-grid">
           <article class="card project reveal">
+            <p class="project-tag">BTS SIO SISR · Réseau</p>
+            <h3>Réseau commuté redondant sous Cisco Packet Tracer</h3>
+            <p>Mise en place d'un réseau de 4 switchs Cisco 2960 reliés en boucle et d'un routeur Cisco 2901, configurés en ligne de commande depuis un poste en console.</p>
+            <ul class="checklist">
+              <li>Configuration de base : noms d'hôtes, comptes administrateur, adressage IPv4 du VLAN 1</li>
+              <li>Serveur DHCP sur le routeur pour le réseau 192.168.1.0/24, avec adresses réservées exclues</li>
+              <li>Spanning Tree : observation des boucles, test de convergence après coupure d'un lien, choix du pont racine par la priorité</li>
+              <li>Administration à distance sécurisée en SSH</li>
+            </ul>
+            <ul class="stack" aria-label="Technologies">
+              <li>Cisco IOS</li><li>DHCP</li><li>STP</li><li>SSH</li>
+            </ul>
+          </article>
+          <article class="card project reveal">
             <p class="project-tag">BTS SIO · 1<sup>re</sup> année</p>
             <h3>IT Config : site vitrine et panel d'administration</h3>
             <p>Site d'une entreprise fictive de matériel informatique, avec un espace d'administration privé codé en PHP natif.</p>
@@ -192,7 +211,7 @@
               <li>Page de maintenance : diagnostic du serveur et journal des connexions</li>
             </ul>
             <ul class="stack" aria-label="Technologies">
-              <li>PHP 8</li><li>HTML/CSS</li><li>JavaScript</li><li>Apache (WAMP)</li>
+              <li>PHP 8</li><li>SMTP</li><li>HTML/CSS</li><li>Apache (WAMP)</li>
             </ul>
             <a class="link-arrow" href="https://github.com/MaximeMontcel/Documentation-et-ToDoList-TP-2-bis">Voir le projet IT Config sur GitHub<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </article>
@@ -273,21 +292,21 @@
           <article class="card droid reveal" data-droid="r2">
             <img class="droid-photo" src="img/anime/droid-r2d2.svg" alt="Illustration animée du droïde R2-D2" width="720" height="405" loading="lazy" decoding="async">
             <h3>R2-D2</h3>
-            <p class="droid-role">Astromech de terrain</p>
+            <p class="droid-role">Fiable sur le terrain</p>
             <p>Fiable sous pression, il répare le système quand tout s'effondre.</p>
             <ul class="tags tags--small"><li>Rigueur et précision</li><li>Fiabilité</li></ul>
           </article>
           <article class="card droid reveal" data-droid="c3po">
             <img class="droid-photo" src="img/anime/droid-c3po.svg" alt="Illustration animée du droïde C-3PO" width="720" height="405" loading="lazy" decoding="async">
             <h3>C-3PO</h3>
-            <p class="droid-role">Maître du protocole</p>
+            <p class="droid-role">À l'aise en équipe</p>
             <p>Il parle six millions de langages… et sait toujours se présenter à l'heure.</p>
             <ul class="tags tags--small"><li>Travail en équipe</li><li>Ponctualité</li></ul>
           </article>
           <article class="card droid reveal" data-droid="bb8">
             <img class="droid-photo" src="img/anime/droid-bb8.svg" alt="Illustration animée du droïde BB-8" width="720" height="405" loading="lazy" decoding="async">
             <h3>BB-8</h3>
-            <p class="droid-role">Explorateur curieux</p>
+            <p class="droid-role">Curieux et autonome</p>
             <p>Petit, rapide, jamais fatigué : il observe et explore chaque nouveau terrain.</p>
             <ul class="tags tags--small"><li>Sens de l'observation</li><li>Autonomie dans l'apprentissage</li></ul>
           </article>
@@ -453,7 +472,7 @@
           <p class="crawl-episode">Épisode I</p>
           <p class="crawl-title">Le Padawan de l'alternance</p>
           <p>Il y a peu de temps, dans la Loire, un jeune Padawan obtint son baccalauréat STI2D option SIN. Sa quête le mena au CFAI LDA de Saint-Étienne, en BTS SIO option SISR.</p>
-          <p>Initié aux mystères de JAVA, de PYTHON et du HTML/CSS, MAXIME MONTCEL apprend désormais à maîtriser les systèmes et les réseaux de la galaxie.</p>
+          <p>Initié aux mystères de PYTHON, de C# et du HTML/CSS, MAXIME MONTCEL dompte désormais les switchs CISCO, le protocole SPANNING TREE et les scripts BASH de la galaxie.</p>
           <p>Sa quête a porté ses fruits : le DÉPARTEMENT DE LA LOIRE l'accueille en alternance, deux semaines sur quatre. Là-bas, il veille sur les utilisateurs et sur tout le parc informatique, avec rigueur et curiosité.</p>
           <p>Que la Force soit avec lui… et avec ceux qui l'ont accueilli.</p>
         </div>

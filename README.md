@@ -149,22 +149,28 @@ La feuille de style d'impression (section 13 de `style.css`) produit automatique
 | 30 | Statistique « −98 % de poids d'images » dans le profil et compétence PHP | Informations peu utiles pour un recruteur en systèmes et réseaux | Statistique retirée du profil et du projet, PHP retiré des compétences, de l'accroche et du générique ; ajout de la compétence « Prompting IA » | Profil recentré sur l'essentiel |
 | 31 | Personnages au style « chibi » peu ressemblants | Têtes et corps génériques | 21 portraits en buste style dessin animé : proportions réalistes, iris colorés, sourcils, nez et lèvres, vraies coiffures (Han décoiffé, Leia et ses macarons…), carrure propre à chacun (Leia fine, Chewbacca et Vador massifs), costumes et armes de chaque personnage, animations (respiration, regard, clignement, sabre, tir, Force) | Personnages fidèles et reconnaissables |
 | 32 | Capuche de Palpatine peu crédible, droids et planètes trop simples | Formes plates sans volume | Capuche en tissu fin, ajustée à la tête, qui cache et assombrit le visage ; casques de Vador et Kylo Ren fidèles aux films (rabats évasés, verres sombres, grille à lamelles ; visière en T chromée, lame instable à garde) avec reflets et contre-jour ; droids redessinés avec reflets métalliques et détails (dôme et panneaux de R2-D2, câbles de C-3PO, panneaux de BB-8) ; planètes avec face jour / nuit, relief, nuages flous, calottes glaciaires, lave lumineuse et lumières des villes côté nuit | Illustrations cohérentes et réalistes, environ 13 à 30 Ko par planète |
+| 33 | Compétences systèmes et réseaux trop légères pour un CV SISR | CV rédigé avant les premiers TP réseau et système du BTS | Nouvelles catégories « Réseaux » (Cisco IOS, IPv4, DHCP, STP, SSH, Packet Tracer) et « Systèmes et support » (scripts Bash), ajout de C# et SQL (PostgreSQL, DBeaver) ; accroche, meta description, générique et Yoda mis à jour | Profil cohérent avec l'option SISR |
+| 34 | Aucun projet réseau | Idem | Projet « Réseau commuté redondant sous Cisco Packet Tracer » ajouté en premier | 3 projets, dont un dans le métier visé |
+| 35 | Compétences peu valorisantes (« Saisie informatique », « Prompting IA ») et sous-titres de droids peu professionnels dans le PDF | Choix de la V1 | Compétences retirées, sous-titres remplacés par des qualités (« Fiable sur le terrain »…) | Lecture recruteur plus sérieuse |
+| 36 | PDF : page 1 à moitié vide | Saut de page forcé avant les projets | Saut forcé retiré, parcours placé en page 1 à l'impression, projets sur 3 colonnes | 2 pages A4 remplies |
+| 37 | Meta description trop longue (249 caractères, coupée par Google vers 155–160) | Allongée à chaque ajout de compétence | Réécrite en 148 caractères | Description affichée en entier dans les résultats |
+| 38 | Lighthouse : police de texte (graisse 500) découverte seulement après le CSS ; temps de blocage (TBT) de 240 ms sur mobile | Seule la graisse 700 était préchargée ; les 41 illustrations animées de la galaxie étaient rendues même hors écran | Préchargement de la graisse 500 et `content-visibility: auto` sur la section galaxie | Mesure locale (Lighthouse CLI, mobile, 3 passages) : performance 95 à 98, TBT 140 à 250 ms ; W3C HTML et CSS toujours sans erreur |
 
 ### Auto-évaluation selon la grille
 
 | Critère | Auto-note (0–4) | Justification |
 |---|---:|---|
-| C1 Contenu | 3 | Accroche claire, alternance au Département de la Loire (support utilisateurs, gestion de parc), 2 projets avec résultats chiffrés (scores PageSpeed et W3C, limites anti-spam) |
+| C1 Contenu | 3 | Accroche claire, alternance au Département de la Loire (support utilisateurs, gestion de parc), compétences réseaux et systèmes du BTS SISR (Cisco, DHCP, STP, SSH, Bash, PostgreSQL), 3 projets dont un projet réseau, avec résultats chiffrés (scores PageSpeed et W3C, limites anti-spam) |
 | C2 HTML sémantique | 4 | H1 unique, hiérarchie sans saut, balises structurelles, ancres et liens explicites |
 | C3 Responsive | 4 | Grilles mobile d'abord, typographie fluide, testé de 375 px à 1 024 px sans défilement horizontal |
 | C4 UX & accessibilité | 4 | Contrastes ≥ 6,85:1, focus visibles, clavier complet, mouvements réduits respectés, sons désactivés par défaut |
 | C5 SEO | 4 | Title et meta description ciblés, Open Graph, URL canonique, structure claire |
 | C6 Performance | 4 | PageSpeed 96 sur mobile et 100 sur ordinateur, LCP 1,3 s sur mobile ; images −97 %, une police locale, `defer`, aucune bibliothèque |
-| C7 Validation | 4 | W3C HTML 0 erreur, CSS valide, titres conformes, PageSpeed 96 à 100 ; journal de 24 corrections V1 → finale |
+| C7 Validation | 4 | W3C HTML 0 erreur, CSS valide, titres conformes, PageSpeed 96 à 100 ; journal de 38 corrections V1 → finale |
 | C8 Publication | 4 | En ligne sur https://maximemontcel.github.io/page_cv/, testé sur mobile (375 px), plusieurs itérations après publication |
 | C9 Auto-évaluation | 4 | Résultats, causes, corrections et impact mesuré |
 | C10 Confidentialité | 4 | Aucune donnée sensible, message de contact clair via GitHub et LinkedIn |
-| C11 Qualité du dépôt | 3 | Arborescence claire, README utile, commits numérotés V1 → V16 avec messages détaillés |
+| C11 Qualité du dépôt | 3 | Arborescence claire, README utile, commits numérotés V1 → V17 avec messages détaillés |
 
 ---
 

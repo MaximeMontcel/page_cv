@@ -14,7 +14,7 @@ Contrat d'apprentissage · 2 semaines en entreprise / 2 semaines en cours · Loi
 
 ## Profil
 
-Alternant en BTS SIO option SISR au Département de la Loire, j'assure le support aux utilisateurs et la gestion du parc informatique. Rigoureux et curieux, je développe aussi des projets web.
+Alternant en BTS SIO option SISR au Département de la Loire, j'assure le support aux utilisateurs et la gestion du parc informatique. En formation, je configure des réseaux Cisco (DHCP, STP, SSH) et j'automatise l'administration Linux avec des scripts Bash.
 
 ## Mon alternance
 
@@ -25,12 +25,15 @@ Alternant en BTS SIO option SISR au Département de la Loire, j'assure le suppor
 
 ## Compétences
 
-- **Systèmes et réseaux** : support aux utilisateurs, gestion de parc informatique, configuration de postes de travail, administration systèmes et réseaux (BTS SISR en cours), serveur web local WAMP (Apache)
-- **Développement** : Java, Python, HTML5 / CSS3, JavaScript (bases)
-- **Outils et méthodes** : Git, GitHub et GitHub Desktop, publication GitHub Pages, prompting IA, utilisation raisonnée de l'IA, saisie informatique
-- **Qualité web** : accessibilité (clavier, contrastes), SEO de base, performance (PageSpeed), validation W3C
+- **Réseaux** : switchs et routeurs Cisco (IOS, console), adressage IPv4, serveur DHCP sur routeur, Spanning Tree (STP), accès distant sécurisé SSH, Cisco Packet Tracer
+- **Systèmes et support** : support aux utilisateurs, gestion de parc informatique, configuration de postes de travail, scripts Bash (création d'utilisateurs), serveur web Apache (WAMP)
+- **Développement et données** : Python, C#, Java, SQL (PostgreSQL, DBeaver), HTML5 / CSS3, JavaScript (bases)
+- **Outils et qualité web** : Git et GitHub, publication GitHub Pages, utilisation raisonnée de l'IA, accessibilité et SEO de base, validation W3C et PageSpeed
 
 ## Projets
+
+**Réseau commuté redondant sous Cisco Packet Tracer** (BTS SIO SISR)
+Réseau de 4 switchs Cisco 2960 reliés en boucle et d'un routeur Cisco 2901, configurés en ligne de commande depuis un poste en console : configuration de base (noms d'hôtes, comptes administrateur, adressage IPv4 du VLAN 1), serveur DHCP sur le routeur pour le réseau 192.168.1.0/24 avec adresses réservées exclues, Spanning Tree (observation des boucles, test de convergence après coupure d'un lien, choix du pont racine par la priorité), administration à distance sécurisée en SSH.
 
 **IT Config : site vitrine et panel d'administration** (BTS SIO, 1re année) – [voir sur GitHub](https://github.com/MaximeMontcel/Documentation-et-ToDoList-TP-2-bis)
 Site d'une entreprise fictive de matériel informatique avec un espace d'administration en PHP natif : connexion protégée contre la force brute, formulaire de contact limité (1 message par minute et 5 par heure par IP), envoi d'e-mails SMTP avec PHPMailer, page de maintenance.
