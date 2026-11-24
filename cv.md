@@ -21,7 +21,7 @@ Alternant en BTS SIO option SISR au Département de la Loire, j'assure le suppor
 - **Employeur** : Département de la Loire (collectivité territoriale)
 - **Contrat** : apprentissage pendant mon BTS SIO option SISR (2026 – 2028)
 - **Rythme** : 2 semaines en entreprise / 2 semaines en cours au CFAI LDA de Saint-Étienne
-- **Missions** : support aux utilisateurs et gestion du parc informatique, utilisation de SCCM et de l'Active Directory, migration des données et profils utilisateurs avec USMT, interventions sur site ; bientôt assistance téléphonique (hotline)
+- **Missions** : support aux utilisateurs et gestion du parc informatique, utilisation de SCCM et de l'Active Directory, migration des données et profils utilisateurs avec USMT, interventions sur site (livraison et remplacement de matériel) ; bientôt assistance téléphonique (hotline)
 
 ## Compétences
 
@@ -52,7 +52,7 @@ Page HTML statique sans framework publiée avec GitHub Pages : 46 illustrations 
 ## Expériences
 
 **Alternance en BTS SIO SISR** — Département de la Loire — *2026 – 2028 (en cours)*
-Support aux utilisateurs et gestion du parc : SCCM, Active Directory, migration de profils avec USMT, interventions sur site, bientôt hotline.
+Support aux utilisateurs et gestion du parc : SCCM, Active Directory, migration de profils avec USMT, livraison et remplacement de matériel sur site, bientôt hotline.
 
 **Stage d'observation de seconde** — Police municipale, Saint-Galmier — *juin – juillet 2024*
 Découverte du monde du travail et de l'organisation d'un service public.
